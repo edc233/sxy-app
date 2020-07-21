@@ -1,0 +1,39 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/user/user",
+    "pages/login/login",
+    "pages/train/train",
+    "pages/exam/exam"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Mini Program",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "selectedColor":"#d81e06",
+    "color":"#707070",
+    "list":[
+      {
+        "pagePath":"pages/index/index",
+        "text":"培训",
+        "iconPath":"./public/icon/icon00.png",
+        "selectedIconPath": "./public/icon/icon01.png"
+      },
+      {
+        "pagePath":"pages/exam/exam",
+        "text":"考试",
+        "iconPath":"./public/icon/icon20.png",
+        "selectedIconPath": "./public/icon/icon21.png"
+      },
+      {
+        "pagePath":"pages/user/user",
+        "text":"我的",
+        "iconPath":"./public/icon/icon30.png",
+        "selectedIconPath": "./public/icon/icon31.png"
+      }
+    ]
+  }
+}

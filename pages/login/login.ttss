@@ -1,0 +1,21 @@
+.logo{
+    width: 100vw;
+    display: block;
+    margin: 200rpx auto;
+}
+.content{
+    text-align: center;
+    font-size: 30rpx;
+    font-family: sans-serif;
+}
+.log-btn{
+    width: 60vw;
+    line-height: 100rpx;
+    text-align: center;
+    font-size: 30rpx;
+    border-radius: 100rpx;
+    color: #fff;
+    margin: 0 auto;
+    background: linear-gradient(to bottom,#f86241,#f26c46);
+    box-shadow: 0px 0px 20px #999;
+}

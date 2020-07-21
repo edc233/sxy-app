@@ -1,0 +1,20 @@
+<div class="index_container">
+    <div class="input_container">
+        <input type="text" class="input" placeholder="输入想要查找的内容" placeholder-style="font:normal bold 30rpx  PingFangSC-Regular;color:#999" />
+        <icon class="tt-icon" type="search"></icon>
+    </div>
+    <div class="nav_container">
+        <div tt:for="{{navList}}" class="{{activeIndex==index?'active nav_item':'nav_item'}}" bindtap="handleNav" data-id="{{item.index}}">{{item.title}}</div>
+    </div>
+    <div class="item_container">
+        <div class="item" tt:for="{{tableData}}">
+            <div class="item_tag">{{item.modeName}}</div>
+            <div class="control_btn">开始学习</div>
+            <div class="item_title">标题：{{item.title}}</div>
+            <div class="lecturer">讲师：{{item.lecturerName}}</div>
+            <div class="train_date">截止时间：{{item.finish_time_str}}</div>
+            <div class="item_content">备注：{{item.remark}}</div>
+        </div>
+    </div>
+    <div class="nomore" tt:if="{{tableData.length==0}}">暂无数据</div>
+</div>

@@ -1,0 +1,45 @@
+.userinfo {
+  width: 100vw;
+  height: 50vw;
+  background-color: #01c176;
+  padding: 0 80rpx;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.username {
+  color: #fff;
+  font-size: 40rpx;
+}
+.department {
+  color: #fff;
+  font-size: 40rpx;
+  margin-top: 10rpx;
+}
+.department span:nth-last-of-type(1) {
+  margin-left: 10rpx;
+}
+.avatar_container {
+  width: 180rpx;
+  height: 180rpx;
+  background-color: #fff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.avatar {
+  width: 170rpx;
+  height: 170rpx;
+  border-radius: 50%;
+}
+.btns {
+  padding: 50rpx;
+  box-sizing: border-box;
+  border-radius: 20rpx 20rpx 0 0;
+  top: -20rpx;
+  position: relative;
+  z-index: 2;
+  background-color: #fff;
+}

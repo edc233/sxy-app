@@ -1,0 +1,11 @@
+{
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"appid": "cli_9e630e4a0079100e",
+	"projectname": "sxy-app"
+}

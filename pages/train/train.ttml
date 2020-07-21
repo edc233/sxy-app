@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="nav_container">
+        <div tt:for="{{navList}}" class="{{activeIndex==index?'active nav_item':'nav_item'}}" bindtap="handleNav" data-id="{{item.index}}">{{item.title}}</div>
+    </div>
+    <div class="item" tt:for="{{10}}">
+        <div class="item_title">XXXX课程</div>
+        <div class="item_time">培训时间：</div>
+        <div class="item_deadline">完成时间：</div>
+        <div class="item_info">
+            <span>讲师：XXX</span>
+            <span>地点：魔法学院</span>
+        </div>
+        <div class="tags">
+            <div class="duration">2小时</div>
+            <div class="place">线下</div>
+        </div>
+    </div>
+</div>
