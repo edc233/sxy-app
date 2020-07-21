@@ -17,8 +17,10 @@ Page({
     ],
     activeIndex: 0,
     state: 1,
+    tip:'暂无数据',
     page: 1,
     tableData: [],
+    pageSize: 3,
     total_num: 0,
   },
   onLoad: function () {
@@ -30,7 +32,7 @@ Page({
     if (!tt.getStorageSync("token")) {
       app.navigator("/pages/login/login");
     } else {
-      this.getList();
+       this.getList();
     }
   },
   onPullDownRefresh() {
@@ -41,6 +43,7 @@ Page({
     })
   },
   getList: function () {
+    console.log("get")
     const that = this;
     tt.showLoading({ title: "加载中" });
     tt.request({
@@ -49,20 +52,21 @@ Page({
         token: tt.getStorageSync("token"),
         state: that.data.state,
         page: that.data.page,
-        pageSize: 10,
+        pageSize: that.data.pageSize,
       },
       success(res) {
+        console.log(res);
+        tt.stopPullDownRefresh();
         tt.hideLoading();
-        tt.stopPullDownRefresh()
         if (res.data.code == 200) {
           that.setData({
             tableData: res.data.data.list,
-            total_num: res.data.data.total_count,
+            total_num: res.data.data.list.length,
           });
         } else {
           app.showToast(res.data.msg);
         }
-      },
+      }
     });
   },
   handleNav: function (e) {
@@ -72,4 +76,44 @@ Page({
     });
     this.getList();
   },
-});
+  nextPage: function(){
+    const that = this;
+    var table=that.data.tableData;
+    that.setData({
+      page:that.data.page+1
+    });
+    tt.request({
+      url: app.baseUrl + "/college/College/getCollegeList",
+      data: {
+        token: tt.getStorageSync("token"),
+        state: that.data.state,
+        page: that.data.page,
+        pageSize: that.data.pageSize,
+      },
+      success(res) {
+        if (res.data.code == 200 && res.data.data.list.length!=0) {
+          for (var i = 0; i < that.data.pageSize; i++) {
+            table.push(res.data.data.list[i]) 
+          }
+          that.setData({
+            tableData:table,
+            total_num: res.data.data.total_count,
+          });
+          if(that.data.total_num!=0){
+            that.setData({
+              tip:'加载中'
+            })
+          }
+      }
+      else if(res.data.data.list.length==0){
+        that.setData({
+          tip:"加载完毕"
+        })
+      }
+    }
+  });
+  },
+  onReachBottom:function(){
+    this.nextPage()
+  }
+})
