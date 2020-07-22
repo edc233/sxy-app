@@ -25,10 +25,17 @@ Page({
   },
   onLoad: function () {
     app.setTitle("课程");
-    // tt.setTabBarBadge({
-    //   index: 0,
-    //   text: '99'
-    // })
+    if (!tt.getStorageSync("token")) {
+      app.navigator("/pages/login/login");
+    } else {
+       this.getList();
+    }
+  },
+  onShow:function(){
+    app.setTitle("课程");
+    this.setData({
+      page:1
+    })
     if (!tt.getStorageSync("token")) {
       app.navigator("/pages/login/login");
     } else {
@@ -43,9 +50,11 @@ Page({
     })
   },
   getList: function () {
-    console.log("get")
     const that = this;
     tt.showLoading({ title: "加载中" });
+    this.setData({
+      tip:"加载中"
+    })
     tt.request({
       url: app.baseUrl + "/college/College/getCollegeList",
       data: {
@@ -55,7 +64,6 @@ Page({
         pageSize: that.data.pageSize,
       },
       success(res) {
-        console.log(res);
         tt.stopPullDownRefresh();
         tt.hideLoading();
         if (res.data.code == 200) {
@@ -63,6 +71,11 @@ Page({
             tableData: res.data.data.list,
             total_num: res.data.data.list.length,
           });
+          if(that.data.total_num==0){
+            that.setData({
+              tip:"暂无数据"
+            });
+          }
         } else {
           app.showToast(res.data.msg);
         }
@@ -73,6 +86,9 @@ Page({
     this.setData({
       activeIndex: e.target.dataset.id,
       state: e.target.dataset.id + 1,
+      page: 1,
+      tip:"暂无数据",
+      total_num:0
     });
     this.getList();
   },
@@ -92,18 +108,13 @@ Page({
       },
       success(res) {
         if (res.data.code == 200 && res.data.data.list.length!=0) {
-          for (var i = 0; i < that.data.pageSize; i++) {
+          for (var i = 0; i < res.data.data.list.length; i++) {
             table.push(res.data.data.list[i]) 
           }
           that.setData({
             tableData:table,
             total_num: res.data.data.total_count,
           });
-          if(that.data.total_num!=0){
-            that.setData({
-              tip:'加载中'
-            })
-          }
       }
       else if(res.data.data.list.length==0){
         that.setData({
