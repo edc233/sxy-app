@@ -1,0 +1,27 @@
+<div tt:if="{{isReady}}" >
+    <div class="paper_info">
+        <div class="title">试卷标题：{{tableData.title}}</div>
+        <div class="score">及格分/总分：{{tableData.score_level}}/{{tableData.score}}</div>
+        <div class="question_num">已答题数/总题数：{{len}}/{{tableData.question.length}}</div>
+        <div class="time">考试剩余时间：{{hour}}:{{minutes}}</div>
+    </div>
+    <div class="questions">
+        <div class="item" tt:for="{{tableData.question}}">
+            <div class="question_title"> {{index+1}}.{{item.title}}({{item.property==1?'单选':item.property==2?'多选':'判断'}})({{item.score}}分)
+                <icon class="tt-icon" type="success" size="20px" color="#5dbe8a" tt:if="{{item.isRight==2}}"></icon>
+                <icon class="tt-icon" type="clear" size="20px" color="#ef475d" tt:if="{{item.isRight==1}}"></icon>
+            </div>
+            <radio-group class="radio_group" data-index="{{index}}" bindchange="handleChange" tt:if="{{item.property!=2}}">
+                <radio class="radio" tt:for-item="el" tt:for-index="in" disabled="{{block}}" tt:for="{{item.answer}}" color="#1661ab" value="{{in}}">{{el.title}}</radio>
+            </radio-group>
+            <checkbox-group class="radio_group"  data-index="{{index}}" bindchange="handleChange1" tt:if="{{item.property==2}}">
+                <checkbox class="radio" tt:for-item="el" tt:for-index="in" disabled="{{block}}" tt:for="{{item.answer}}" color="#1661ab" value="{{in}}">{{el.title}}</checkbox>
+            </checkbox-group>
+            <div class="right" >正确答案：{{item.right}}</div>
+        </div>
+    </div>
+    <div class="controls">
+        <div class="exit">退出考试</div>
+        <div class="submit" bindtap="submit">提交试卷</div>
+    </div>
+</div>
