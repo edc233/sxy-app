@@ -8,12 +8,16 @@ Page({
     app.showLoading('登录中')
     tt.login({
       success: function (res) {
+        console.log(res)
         if (res.code) {
           tt.request({
             url: app.baseUrl+'/college/Index/getToken?code='+res.code,
-            success(res) {
-              if(res.data.code==200){
-                tt.setStorageSync('token', res.data.data)
+            success(re) {
+                console.log(re)
+              if(re.data.code==200){
+                tt.setStorageSync('token', re.data.data)
+                console.log('token')
+                console.log(re.data.data)
                 app.showToast('登录成功')
                 setTimeout(() => {
                   app.hideToast()
