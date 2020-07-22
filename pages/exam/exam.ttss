@@ -38,9 +38,10 @@
       margin: 0 20rpx 20rpx;
       background-color: #fff;
       box-sizing: border-box;
-      padding: 20rpx 40rpx;
+      padding: 60rpx 40rpx 20rpx;
       border-radius: 5px;
       box-shadow:8px 8px 10px 0px rgba(51,51,51,0.05);
+      position: relative;
   }
   .item_title{
       font-size: 32rpx;
@@ -52,7 +53,7 @@
   }
   .item_deadline{
       font-size: 26rpx;
-      margin-top: 10rpx;
+      margin-top: 20rpx;
   }
   .item_info{
       margin-top: 10rpx;
@@ -63,7 +64,7 @@
       font-size: 28rpx;
   }
   .tags{
-      margin-top: 20rpx;
+      margin-top: 40rpx;
   }
   .tags > div{
       line-height: 40rpx;
@@ -80,4 +81,27 @@
       border: 1px solid #11659a;
       color: #11659a;
       margin-left: 10rpx;
+  }
+  .header{
+      border: 1px solid #ef475d;
+      color: #ef475d;
+      font-size: 30rpx;
+      display: inline-block;
+      padding:0 20rpx;
+      border-radius: 3px;
+      margin-right: 10rpx;
+  }
+  .exam_btn{
+      float: right;
+      padding: 10rpx 20rpx !important;
+      background-color: orangered;
+      color: #fff;
+  }
+  .times{
+      font-size: 30rpx;
+      margin-top: 20rpx;
+  }
+  .score,.score_level{
+    font-size: 30rpx;
+    margin-top: 20rpx;
   }

@@ -2,17 +2,22 @@
     <div class="nav_container">
         <div tt:for="{{navList}}" class="{{activeIndex==index?'active nav_item':'nav_item'}}" bindtap="handleNav" data-id="{{item.index}}">{{item.title}}</div>
     </div>
-    <div class="item" tt:for="{{10}}">
-        <div class="item_title">XXXX课程</div>
-        <div class="item_time">培训时间：</div>
-        <div class="item_deadline">完成时间：</div>
-        <div class="item_info">
-            <span>讲师：XXX</span>
-            <span>地点：魔法学院</span>
+    <div class="item" tt:for="{{tableData}}">
+        <div class="item_title"><span class="header">标题</span>{{item.title}}</div>
+        <div class="item_deadline"><span class="header">考试期限</span></div>
+        <div class="times">{{item.show_time}}</div>
+        <div class="score">
+            <span class="header">总数</span>
+            {{item.score}}分
+        </div>
+        <div class="score_level">
+            <span class="header">及格分</span>
+            {{item.score_level}}分
         </div>
         <div class="tags">
-            <div class="duration">2小时</div>
-            <div class="place">线下</div>
+            <div class="duration">{{item.time_length}}分钟</div>
+            <div class="place">{{item.typeName}}</div>
+            <div class="exam_btn"  data-id="{{item.id}}" bindtap="startExam">开始考试</div>
         </div>
     </div>
 </div>
