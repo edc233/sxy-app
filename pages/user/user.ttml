@@ -12,12 +12,10 @@
     </div>
 </div>
 
-<div class="container" tt:if="!{{identity}}">
+<div class="container" tt:if="{{!identity}}">
     <div class="nav_container">
         <div tt:for="{{navList}}" class="{{activeIndex==index?'active nav_item':'nav_item'}}" bindtap="handleNav" data-id="{{item.index}}">{{item.title}}</div>
     </div>
-    
-<image src="data:image/png;base64,{{test}}" class="test" />
      <div class="item_container" tt:if="{{activeIndex==0}}">
                 <div class="item" tt:for="{{tableData}}">
                     <div class="item_tag">{{item.modeName}}</div>

@@ -96,7 +96,6 @@ Page({
         pageSize:that.data.pageSize,
       },
       success(res) {
-        console.log(res)
         tt.stopPullDownRefresh();
         tt.hideLoading();
         if(res.data.code==200){
@@ -104,13 +103,12 @@ Page({
             tableData:res.data.data.list,
             total_num:res.data.data.total_count,
           });
-        }else{
-          app.showToast(res.data.msg);
+          if(res.data.data.list.length<this.data.total_num){
+            this.setData({
+              tip:'加载完成'
+            })
+          }
         }
-      },
-      fail(res) {
-        console.log(res)
-        console.log(res);
       }
     })
   },
@@ -126,7 +124,6 @@ Page({
         pageSize:that.data.pageSize,
       },
       success(res) {
-        console.log(res)
         tt.hideLoading();
         if (res.data.code == 200 && res.data.data.list.length!=0) {
           for (var i = 0; i < res.data.data.list.length; i++) {
@@ -137,11 +134,6 @@ Page({
             total_num: res.data.data.total_count,
             page:that.data.page+1
           });
-          if(that.data.total_num!=0){
-            that.setData({
-              tip:'加载中'
-            })
-          }
       }
       else if(res.data.data.list.length==0){
         that.setData({
@@ -157,8 +149,13 @@ Page({
   onPullDownRefresh() {
     this.setData({
       page:1
-    },() => {
-      this.getMissions()
+    },
+    () => {
+      if(this.data.identity){
+        this.getMissions()
+      }else{
+        tt.stopPullDownRefresh();
+      }
     })
   },
   onReachBottom:function(){
@@ -173,13 +170,12 @@ Page({
         id:e.currentTarget.dataset.id
       },
       success: (res) => {
-            console.log(res)
             this.setData({
-            test:res.data
+            test:"data:image/png;base64,"+res.data
             })
-            console.log(this.data.test)
-      },fail(re){
-        console.log(re)
+        tt.previewImage({
+          urls: [this.data.test], // 图片地址列表
+        });
       }
     });
   }
