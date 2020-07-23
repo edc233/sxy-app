@@ -1,60 +1,141 @@
-const app = getApp()
+const app = getApp();
 Page({
   data: {
-    navList:[
+    navList: [
       {
-        title:'待完成',
-        index: 1
+        title: "待完成",
+        index: 1,
       },
       {
-        title:'已完成',
-        index: 2
+        title: "已完成",
+        index: 2,
       },
       {
-        title:'已过期',
-        index: 3
-      }
+        title: "已过期",
+        index: 3,
+      },
     ],
-    activeIndex:0,
-    state:1,
-    page:1,
-    tableData:[]
+    activeIndex: 1,
+    page: 1,
+    tableData: [],
+    loading: 0,
+    loading1: false,
+    stop: false,
   },
   onLoad: function (options) {
-    app.setTitle('培训')
-    this.getList()
+    app.setTitle("培训");
+    this.getList();
+  },
+  onPullDownRefresh() {
+    this.setData(
+      {
+        page: 1,
+      },
+      () => {
+        this.getList();
+      }
+    );
+  },
+  onReachBottom() {
+    if (!this.data.stop) {
+      const page = this.data.page;
+      this.setData(
+        {
+          page: page + 1,
+        },
+        () => {
+          this.addList();
+        }
+      );
+    }
   },
   getList: function () {
-    const that = this
-    app.showLoading('加载中');
+    this.setData({
+      loading: 1,
+      loading1: false,
+      stop: false,
+    });
+    const that = this;
+    app.showLoading("加载中");
     tt.request({
-      url: app.baseUrl+'/college/Exam/getExamList',
+      url: app.baseUrl + "/college/Exam/getExamList",
       data: {
-        token:tt.getStorageSync('token'),
-        state:that.data.state,
-        page:that.data.page,
-        pageSize:5
+        token: tt.getStorageSync("token"),
+        state: that.data.activeIndex,
+        page: that.data.page,
+        pageSize: 5,
       },
       success(res) {
-        app.hideLoading()
-        if(res.data.code==200){
-          that.setData({
-            tableData:res.data.data.list
-          })
+        app.hideLoading();
+        tt.stopPullDownRefresh();
+        if (res.data.code == 200) {
+          if (that.data.page == 1) {
+            that.setData({
+              loading: 2,
+              tableData: res.data.data.list,
+            });
+          } else {
+            let list = res.data.data.list;
+            let list1 = that.data.tableData;
+            that.setData({
+              loading: 2,
+              tableData: list1.concat(...list),
+            });
+          }
         }
       },
       fail(res) {
         console.log(`request 调用失败`);
-      }
-    })
+      },
+    });
+  },
+  addList: function () {
+    const that = this;
+    this.setData({
+      loading: 3,
+    });
+    tt.request({
+      url: app.baseUrl + "/college/Exam/getExamList",
+      data: {
+        token: tt.getStorageSync("token"),
+        state: that.data.activeIndex,
+        page: that.data.page,
+        pageSize: 5,
+      },
+      success(res) {
+        app.hideLoading();
+        if (res.data.code == 200) {
+          let list = res.data.data.list;
+          if (!list.length) {
+            that.setData({
+              loading: 2,
+              loading1: true,
+              stop: true,
+            });
+            return;
+          }
+          let list1 = that.data.tableData;
+          that.setData({
+            loading: 2,
+            tableData: list1.concat(...list),
+          });
+        }
+      },
+    });
   },
   startExam: function (el) {
-    const id = el.target.dataset.id
-    app.navigator('/pages/examDetail/examDetail?id='+id)
+    const id = el.target.dataset.id;
+    app.navigator("/pages/examDetail/examDetail?id=" + id);
   },
   handleNav: function (e) {
-    this.setData({
-      activeIndex:e.target.dataset.id
-    })
-  }
-})
+    this.setData(
+      {
+        activeIndex: e.target.dataset.id,
+        page: 1,
+      },
+      () => {
+        this.getList();
+      }
+    );
+  },
+});
