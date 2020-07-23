@@ -5,13 +5,12 @@ Page({
     tableData: [],
     pageSize: 3,
     total_num: 0,
-    isLog: true,
-    username: "",
     department: "",
     avatar: "",
     position: "",
-    identity: false,
+    identity: true,
     test:{},
+    islog:true,
     navList:[
       {
         title:'我的任务',
@@ -27,19 +26,14 @@ Page({
   },
   onLoad: function (options) {
     app.setTitle("学员信息");
+    
   },
   onShow: function () {
     const that = this;
     that.setData({
       page:1
     })
-    if (this.data.username) {
-      if(this.identity>0){
-        this.getMissions()
-        return
-      }
-    } else if (
-      !this.data.username && tt.getStorageSync("token")) {
+    if (tt.getStorageSync("token")) {
       tt.request({
         url: app.baseUrl + "/college/User/getUserInfo",
         data: {
@@ -52,23 +46,30 @@ Page({
               department: res.data.data.depart_name,
               avatar: res.data.data.avatar,
               position: res.data.data.position_name,
+              islog:true,
             });
-            if(res.data.data.lecture_id>0){
-              this.getMissions()
+            if(res.data.data.lecturer_id>0){
+              console.log(res)
               that.setData({
                 identity: true,
               });
               tt.setNavigationBarTitle({
                 title: '讲师' // 导航栏标题
               });
+              that.getMissions()
+            }else{
+              that.setData({
+                identity:false
+              })
             }
           }
         },
-      });
+      }); 
     } else {
-      this.setData({
-        isLog: false,
-      });
+      that.setData({
+        islog:false
+      })
+      that.handleLogin();
     }
   },
   handleLogin: function () {
@@ -103,7 +104,7 @@ Page({
             tableData:res.data.data.list,
             total_num:res.data.data.total_count,
           });
-          if(res.data.data.list.length<this.data.total_num){
+          if(res.data.data.list.length<that.data.total_num){
             this.setData({
               tip:'加载完成'
             })
@@ -151,7 +152,7 @@ Page({
       page:1
     },
     () => {
-      if(this.data.identity){
+      if(!this.data.identity){
         this.getMissions()
       }else{
         tt.stopPullDownRefresh();

@@ -113,11 +113,30 @@
   color: #fff;
   background-color: red;
 }
-.control_btn {
+.control_btn1{
   line-height: 60rpx;
   position: absolute;
   right: 0;
-  bottom: 0;
+  top: 0;
+  padding: 0 20rpx;
+  color: #fff;
+  font-size: 30rpx;
+  background-color: #ff0000;
+}
+.control_btn2{
+  line-height: 60rpx;
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 0 20rpx;
+  color: #fff;
+  font-size: 30rpx;
+  background-color: #fdf037;
+}
+.control_btn3{line-height: 60rpx;
+  position: absolute;
+  right: 0;
+  top: 0;
   padding: 0 20rpx;
   color: #fff;
   font-size: 30rpx;

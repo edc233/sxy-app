@@ -65,13 +65,14 @@ Page({
       },
       success(res) {
         tt.stopPullDownRefresh();
+        console.log(res)
         tt.hideLoading();
         if (res.data.code == 200) {
           that.setData({
             tableData: res.data.data.list,
             total_num: res.data.data.list.length,
           });
-          if(that.data.total_num==0){
+          if(that.data.total_num<=that.data.pageSize){
             that.setData({
               tip:"暂无数据"
             });
@@ -126,5 +127,39 @@ Page({
   },
   onReachBottom:function(){
     this.nextPage()
+  },
+  switchtrain:function(e){
+    if(e.currentTarget.dataset.state==1){
+      console.log(e.currentTarget.dataset.state)
+      tt.navigateTo({
+        url: '../train/train?id='+e.currentTarget.dataset.id, // 指定页面的url
+      });
+    }
+    if(e.currentTarget.dataset.state==2&&
+    e.currentTarget.dataset.mode==2&&
+    e.currentTarget.dataset.expired==0){
+      tt.scanCode({
+        success: (res) => {
+          console.log(res)
+          tt.request({
+            url: app.baseUrl+'/college/College/signInCollege', // 目标服务器url
+            data:{
+              id: e.currentTarget.dataset.id,
+              college_id:res.result,
+            },
+            success: (res) => {
+              console.log("签到成功")
+              console.log(res)
+            },fail(res){
+              console.log("签到失败")
+              console.log(res)
+            }
+          });
+        },fail(res){
+          console.log(res)
+          console.log("失败！")
+        }
+      });
+    }
   }
 })
