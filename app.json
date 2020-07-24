@@ -1,11 +1,22 @@
 {
   "pages":[
+<<<<<<< HEAD
+    "pages/index/index",
+    "pages/invitation/invitation",
+    "pages/examDetail/examDetail",
+    "pages/exam/exam",
+    "pages/login/login",
+    "pages/user/user",
+    "pages/train/train",
+    "pages/notice/notice"
+=======
     "pages/exam/exam",
     "pages/examDetail/examDetail",
     "pages/user/user",
     "pages/index/index",
     "pages/login/login",
     "pages/train/train"
+>>>>>>> 8a2e09e8ecec05e82c4c6ec5a88673ffaeb19c89
   ],
   "window":{
     "backgroundTextStyle":"light",

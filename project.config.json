@@ -7,5 +7,34 @@
 		"newFeature": true
 	},
 	"appid": "cli_9e630e4a0079100e",
-	"projectname": "sxy-app"
+	"projectname": "sxy-app",
+	"condition": {
+		"miniprogram": {
+			"current": 0,
+			"list": [
+				{
+					"id": 0,
+					"name": "邀请页面【培训",
+					"pathName": "pages/invitation/invitation",
+					"query": "college_id=40",
+					"scene": "1001",
+					"referrerInfo": {
+						"appId": "",
+						"extraData": ""
+					}
+				},
+				{
+					"id": 1,
+					"name": "邀请页面【考试",
+					"pathName": "pages/notice/notice",
+					"query": "exam_id=11",
+					"scene": "1001",
+					"referrerInfo": {
+						"appId": "",
+						"extraData": ""
+					}
+				}
+			]
+		}
+	}
 }

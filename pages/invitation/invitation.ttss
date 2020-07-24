@@ -46,3 +46,11 @@
     border:1px solid #000;
     border-radius: 5px;
 }
+
+.turnTo{
+    width:50%;
+    color: white;
+    background-color:pink;
+    font-weight: bold;
+    margin-top: 200rpx;
+}

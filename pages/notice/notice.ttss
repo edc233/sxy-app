@@ -24,25 +24,19 @@
     font-size: 48rpx;
     font-weight: bold;
     width: 100%;
-    text-align: center
-}
-.item_lecturer{
-    font-size: 36rpx;
-    width: 100%;
     text-align: center;
-    margin-bottom: 30rpx;
-    margin-top: 20rpx
+    margin-bottom: 100rpx;
 }
-.item_time,.item_deadline, .item_address{
+.item_time,.item_deadline{
     margin-left: 20rpx;
     font-size: 26rpx;
     margin-top: 10rpx;
 }
 
-.item_remark{
-    font-size: 32rpx;
-    margin-top: 30rpx;
-    min-height: 200rpx;
-    border:1px solid #000;
-    border-radius: 5px;
+.turnTo{
+    width:50%;
+    color: white;
+    background-color:pink;
+    font-weight: bold;
+    margin-top: 200rpx;
 }

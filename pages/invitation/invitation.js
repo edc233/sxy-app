@@ -5,10 +5,19 @@ Page({
     train:{}
   },
   onLoad: function (options) {
-    app.setTitle('培训')
+    if (!tt.getStorageSync("token")) {
+      app.navigator("/pages/login/login");
+    }
     this.setData({
-      id:options.id
+      id:options.college_id
     });
+    this.getDetail()
+  },
+  onShow(){
+    app.setTitle('培训')
+  },
+
+  getDetail(){
     tt.request({
       url: app.baseUrl+'/college/College/getCollegeInfo', // 目标服务器url
       data:{
@@ -19,9 +28,11 @@ Page({
         this.setData({
           train:res.data.data
         });
-        console.log(this.data.train)
+        console.log(res)
       }
     });
   },
-  
+  naviTo(){
+    app.switchtab("../index/index")
+  }
 })

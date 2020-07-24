@@ -10,4 +10,5 @@
         <div class="item_deadline">截止时间：{{train.finish_time_str}}</div>
         <div class="item_remark">培训描述：{{train.remark}}</div>
     </div>
+    <button class="turnTo" bindtap="naviTo"> 打开主页 </button>
 </div>

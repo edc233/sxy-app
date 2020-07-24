@@ -199,7 +199,3 @@
   font-size: 30rpx;
   background-color: rgb(0, 238, 68);
 }
-.test{
-  height: 80px;
-  width: 80px
-}
