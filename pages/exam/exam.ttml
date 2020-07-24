@@ -1,8 +1,8 @@
 <div class="container">
-    <div class="nav_container">
-        <div tt:for="{{navList}}" class="{{activeIndex==index?'active nav_item':'nav_item'}}" bindtap="handleNav" data-id="{{item.index}}">{{item.title}}</div>
+    <div class="nav_container" >
+        <div tt:for="{{navList}}" class="{{activeIndex==index+1?'active nav_item':'nav_item'}}" bindtap="handleNav" data-id="{{item.index}}">{{item.title}}</div>
     </div>
-    <div class="item" tt:for="{{tableData}}">
+    <div class="item" tt:for="{{tableData}}" tt:if="{{loading==2||loading==3}}" >
         <div class="item_title"><span class="header">标题</span>{{item.title}}</div>
         <div class="item_deadline"><span class="header">考试期限</span></div>
         <div class="times">{{item.show_time}}</div>
@@ -17,7 +17,11 @@
         <div class="tags">
             <div class="duration">{{item.time_length}}分钟</div>
             <div class="place">{{item.typeName}}</div>
-            <div class="exam_btn"  data-id="{{item.id}}" bindtap="startExam">开始考试</div>
+            <div class="exam_btn"  data-id="{{item.id}}" bindtap="startExam" tt:if="{{activeIndex==1}}" >开始考试</div>
         </div>
+        <div class="{{item.user_score<60?'user_score low_score':item.user_score>=60&&item.user_score<75?'user_score mid_score':'user_score high_score'}}" tt:if="{{activeIndex!=1&&item.user_score!=0}}">
+        得分：{{item.user_score}}分</div>
     </div>
+    <div class="note" tt:if="{{loading==1||loading==3}}" >加载中......</div>
+    <div class="note" tt:if="{{loading1}}" >暂无数据</div>
 </div>
