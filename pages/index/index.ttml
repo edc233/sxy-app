@@ -9,7 +9,7 @@
 
 
             <div class="item_container">
-                <div class="item" tt:for="{{tableData}}" data-id="{{item.id}}" data-state="{{state}}" data-mode="{{item.mode}}" data-expired="{{item.is_expired}}" bindtap="switchtrain">
+                <div class="item" tt:for="{{tableData}}" data-id="{{item.id}}" data-lecturer="{{item.lecturer_id}}" data-state="{{state}}" data-mode="{{item.mode}}" data-expired="{{item.is_expired}}" bindtap="switchtrain">
                     <div class="item_tag">{{item.modeName}}</div>
                     <div class="control_btn1"tt:if="{{state==2&&item.is_expired==1}}">已过期</div>
                     <div class="control_btn2"tt:if="{{state==2&&item.is_expired==0&&item.mode==1}}">点击完成</div>

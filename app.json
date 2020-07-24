@@ -1,13 +1,13 @@
 {
   "pages":[
+    "pages/index/index",
     "pages/examDetail/examDetail",
     "pages/exam/exam",
-    "pages/index/index",
     "pages/invitation/invitation",
     "pages/login/login",
     "pages/user/user",
-    "pages/train/train",
-    "pages/notice/notice"
+    "pages/notice/notice",
+    "pages/evaluate/evaluate"
   ],
   "window":{
     "backgroundTextStyle":"light",
