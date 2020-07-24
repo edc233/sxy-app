@@ -6,8 +6,13 @@ Page({
     isReady: false,
     answer: [
     ],
+    id: 0,
   },
   onLoad: function (options) {
+    this.setData({
+      id:options.id
+    })
+    console.log(this.data.id)
     this.getEvaluate();
     app.setTitle("讲师评价");
   },
@@ -22,7 +27,6 @@ Page({
       success(res) {
         app.hideLoading();
         if (res.data.code == 200) {
-          console.log(res.data.data);
           let len = 0;
           res.data.data.map((element) => {
             if (element.type == 2) {
@@ -73,6 +77,20 @@ Page({
     const len = this.data.len
     if(list.length!=len){
       app.showToast('还有未填的选项，请先完善','error')
+    }else{
+      tt.request({
+        url: app.baseUrl+'/college/College/addLecturerIssue', // 目标服务器url
+        method:"POST",
+        data:{
+          token: tt.getStorageSync("token"),
+          id:this.data.id,
+          answer:JSON.stringify(this.data.answer)
+        },
+        success: (res) => {
+          console.log(res)
+          tt.navigateBack();
+        }
+      });
     }
   }
 });

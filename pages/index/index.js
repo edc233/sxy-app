@@ -65,7 +65,6 @@ Page({
       },
       success(res) {
         tt.stopPullDownRefresh();
-        console.log(res)
         tt.hideLoading();
         if (res.data.code == 200) {
           that.setData({
@@ -129,12 +128,6 @@ Page({
     this.nextPage()
   },
   switchtrain:function(e){
-    if(e.currentTarget.dataset.state==1){
-      console.log(e.currentTarget.dataset.state)
-      tt.navigateTo({
-        url: '../train/train?id='+e.currentTarget.dataset.id, // 指定页面的url
-      });
-    }
     if(e.currentTarget.dataset.state==2&&
     e.currentTarget.dataset.mode==2&&
     e.currentTarget.dataset.expired==0){
@@ -159,6 +152,34 @@ Page({
           console.log(res)
           console.log("失败！")
         }
+      });
+    }else if(e.currentTarget.dataset.state==2&&
+    e.currentTarget.dataset.lecturer>0&&
+    e.currentTarget.dataset.expired==0){
+      console.log(e.currentTarget.dataset.id)
+      tt.navigateTo({
+        url: '../evaluate/evaluate?id='+e.currentTarget.dataset.id// 指定页面的url
+      });
+    }else if(e.currentTarget.dataset.state==2&&
+    e.currentTarget.dataset.expired==0){
+      tt.request({
+        url: app.baseUrl+'/college/College/finishCollege', // 目标服务器url
+        method:"POST",
+        data:{
+          token: tt.getStorageSync("token"),
+          id: e.currentTarget.dataset.id
+        },
+        success: (res) => {
+          this.setData({
+            page:1
+            },() => {
+              console.log(res)
+              this.getList()
+              })
+          },fail(res){
+            console.log(res)
+
+          }
       });
     }
   }
