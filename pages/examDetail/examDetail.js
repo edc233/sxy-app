@@ -9,18 +9,57 @@ Page({
     len: 0,
     score: 0,
     block: false,
-    id:''
+    id:'',
+    time:0,
+    second:10,
+    content:'关闭提示，开始答题',
+    showNote:true
   },
   onLoad: function (options) {
     this.setData({
-      // id:options.id
-      id:'21'
+      id:options.id
     },() => {
       app.setTitle("开始考试");
       this.getPaper();
     })
+    let time = setInterval(() => {
+      const s = this.data.second
+      this.setData({
+        second:s-1,
+        content:`关闭提示，开始答题(${s-1}s)`
+      },() => {
+        if(s==1){
+          this.setData({
+            second:'',
+            content:'关闭提示，开始答题'
+          })
+          clearInterval(time)
+          return
+        }
+      })
+    },1000)
   },
-
+  onShow: function () {
+    const t = this.data.time
+    this.setData({
+      time:t+1
+    },() => {
+      if(this.data.time >1){
+        tt.showModal({
+          title: '警告',
+          content: '检测到切屏，即将自动提交试卷',
+        })
+        this.checkPaper()
+      }
+    })
+  },
+  close: function () {
+    if(this.data.second==''){
+      this.setData({
+        showNote:false
+      })
+    }
+  },
   getPaper: function () {
     const that = this;
     app.showLoading("加载中");
@@ -71,6 +110,8 @@ Page({
           hour,
           minutes,
         });
+      }else{
+        this.checkPaper()
       }
     }, 1000);
   },
@@ -105,10 +146,9 @@ Page({
     }
   },
   checkPaper: function () {
-    app.showLoading("提交中");
-    // this.setData({
-    //   block: true,
-    // });
+    this.setData({
+      block: true,
+    });
     const tableData = this.data.tableData;
     const answerList = this.data.answerList;
     let answer = {};
@@ -148,7 +188,6 @@ Page({
         answer[element.id] = "";
       }
     });
-    this.sendAnswer(JSON.stringify(answer), this.data.tableData.id);
     this.setData(
       {
         score,
@@ -156,11 +195,12 @@ Page({
         showScore: true,
       },
       () => {
-        app.hideLoading();
+        this.sendAnswer(JSON.stringify(answer), this.data.tableData.id);
       }
     );
   },
   sendAnswer: function (answer, id) {
+    app.showLoading("提交中");
     const that = this;
     tt.request({
       url: app.baseUrl + "/college/Exam/finishExamPaper",
@@ -174,8 +214,8 @@ Page({
         "content-type": "application/json",
       },
       success(res) {
+        app.hideLoading();
         if (res.data.code == 200) {
-
           app.showToast("试卷提交成功");
         } else {
           tt.showModal({

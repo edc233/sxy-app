@@ -69,17 +69,16 @@ Page({
         app.hideLoading();
         tt.stopPullDownRefresh();
         if (res.data.code == 200) {
-          if (that.data.page == 1) {
+          if(res.data.data.list.length!=0){
             that.setData({
               loading: 2,
               tableData: res.data.data.list,
             });
-          } else {
-            let list = res.data.data.list;
-            let list1 = that.data.tableData;
+          }else{
             that.setData({
               loading: 2,
-              tableData: list1.concat(...list),
+              loading1:true,
+              tableData: res.data.data.list,
             });
           }
         }
