@@ -1,0 +1,47 @@
+.evaluate_container{
+    padding: 40rpx;
+}
+.part{
+    margin-bottom: 80rpx;
+}
+.part_title{
+    font-size: 34rpx;
+    font-weight: bold;
+    color: #333;
+}
+.part_item{
+    margin: 20rpx 0;
+    border-bottom: 1px solid #eee;
+}
+.item_title{
+    font-size: 30rpx;
+    color: #333;
+}
+.radio{
+    transform: scale(0.8);
+    width: 20%;
+}
+.radio_group{
+    margin: 20rpx 0;
+}
+.textarea{
+    border: 1px solid #eee;
+    margin: 10rpx 0;
+    font-size: 30rpx;
+    padding: 20rpx;
+    box-sizing: border-box;
+    width: 100%;
+}
+.submit{
+    width: 80vw;
+    line-height: 100rpx;
+    border-radius: 50rpx;
+    background-color: rgb(187, 184, 184);
+    text-align: center;
+    margin: 20rpx auto;
+    font-size: 30rpx;
+}
+.active{
+    background-color: rgba(242, 141, 47,1);
+    color: #fff;
+}   

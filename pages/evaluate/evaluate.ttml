@@ -1,0 +1,17 @@
+<div class="evaluate_container" tt:if="{{isReady}}">
+    <div class="part" tt:for="{{tableData}}">
+        <div class="part_title">{{item.title}}</div>
+        <textarea bindinput="handleChange" data-id="{{item.id}}" tt:if="{{item.type==2}}" class="textarea" placeholder="请输入" />
+        <div class="part_item" tt:for-item="el" tt:for="{{item.children}}">
+            <div class="item_title">{{index+1}}.{{el.title}}</div>
+            <radio-group data-id="{{el.id}}" bindchange="handleChange" class="radio_group" tt:if="{{el.type==1}}">
+                <radio class="radio" value='1'>1分</radio>
+                <radio class="radio" value='2'>2分</radio>
+                <radio class="radio" value='3'>3分</radio>
+                <radio class="radio" value='4'>4分</radio>
+                <radio class="radio" value='5'>5分</radio>
+            </radio-group>
+        </div>
+    </div>
+    <div class="{{answer.length==len?'submit active':'submit'}}" bindtap="submit" >提交评价</div>
+</div>
