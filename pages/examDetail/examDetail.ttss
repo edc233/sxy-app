@@ -119,7 +119,7 @@
   border-radius: 5px;
   position: absolute;
   top: calc(50% - 50vw);
-  padding: 10rpx;
+  padding: 20rpx;
   box-sizing: border-box;
   left: 0;
   right: 0;
@@ -131,8 +131,28 @@
   font-weight: bold;
   color: #333333;
 }
-li{
+.rule_container{
+  padding-top: 40rpx;
+}
+.rules{
   font-size: 30rpx;
+  margin: 20rpx;
   color: #333333;
   display: block;
+}
+.close{
+  width: 100%;
+  line-height: 80rpx;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  font-size: 30rpx;
+  background-color: rgb(187, 184, 184);
+  color: #333;
+  border-radius: 0 0 5px 5px;
+}
+.red{
+  background-color: #2376b7;
+  color: #fff;
 }

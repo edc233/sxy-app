@@ -142,4 +142,5 @@
     font-size: 30rpx;
     color: #666;
     line-height: 80rpx;
+    background-color: #fff;
 }
