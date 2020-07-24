@@ -104,3 +104,35 @@
 .high_score{
     color: #20894d !important;
 }
+.notice{
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.content{
+  width: 70vw;
+  height: 100vw;
+  border-radius: 5px;
+  position: absolute;
+  top: calc(50% - 50vw);
+  padding: 10rpx;
+  box-sizing: border-box;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  background-color: #fff;
+}
+.notice_title{
+  text-align: center;
+  font-weight: bold;
+  color: #333333;
+}
+li{
+  font-size: 30rpx;
+  color: #333333;
+  display: block;
+}
