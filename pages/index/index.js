@@ -20,7 +20,7 @@ Page({
     tip:'暂无数据',
     page: 1,
     tableData: [],
-    pageSize: 3,
+    pageSize: 6,
     total_num: 0,
   },
   onLoad: function () {
@@ -71,12 +71,15 @@ Page({
             tableData: res.data.data.list,
             total_num: res.data.data.list.length,
           });
-          if(that.data.total_num<=that.data.pageSize){
+          if(that.data.total_num<that.data.pageSize){
             that.setData({
-              tip:"暂无数据"
+              tip:"加载完毕"
             });
           }
         } else {
+          that.setData({
+            tip:"下拉刷新"
+          })
           app.showToast(res.data.msg);
         }
       }
@@ -87,6 +90,7 @@ Page({
       activeIndex: e.target.dataset.id,
       state: e.target.dataset.id + 1,
       page: 1,
+      tableData:[],
       tip:"暂无数据",
       total_num:0
     });
@@ -151,6 +155,7 @@ Page({
         },fail(res){
           console.log(res)
           console.log("失败！")
+          tt.openSetting()
         }
       });
     }else if(e.currentTarget.dataset.state==2&&
