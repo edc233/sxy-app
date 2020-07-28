@@ -131,7 +131,7 @@
   padding: 0 20rpx;
   color: #fff;
   font-size: 30rpx;
-  background-color: #fdf037;
+  background-color: #fdfa37;
 }
 .control_btn3{line-height: 60rpx;
   position: absolute;
