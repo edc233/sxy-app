@@ -104,9 +104,9 @@ Page({
             tableData:res.data.data.list,
             total_num:res.data.data.total_count,
           });
-          if(res.data.data.list.length<that.data.total_num){
-            this.setData({
-              tip:'加载完成'
+          if(res.data.data.list.length<=that.data.total_num){
+            that.setData({
+              tip:'加载完毕'
             })
           }
         }
