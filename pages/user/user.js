@@ -7,10 +7,11 @@ Page({
     total_num: 0,
     department: "",
     avatar: "",
+    username:"",
     position: "",
-    identity: true,
+    identity: false,
     test:{},
-    islog:true,
+    islog:false,
     navList:[
       {
         title:'我的任务',
@@ -22,13 +23,14 @@ Page({
       }
     ],
     activeIndex:0,
-    tip:"暂无数据",
+    tip:"暂无更多",
   },
   onLoad: function (options) {
-    app.setTitle("学员信息");
     
   },
   onShow: function () {
+    app.setTitle("学员信息");
+    app.getNum()
     const that = this;
     that.setData({
       page:1
@@ -40,6 +42,7 @@ Page({
           token: tt.getStorageSync("token"),
         },
         success(res) {
+            console.log(res)
           if (res.data.code == 200) {
             that.setData({
               username: res.data.data.name,
@@ -66,25 +69,23 @@ Page({
         },
       }); 
     } else {
-      that.setData({
-        islog:false
-      })
       that.handleLogin();
     }
   },
   handleLogin: function () {
-    app.navigator("/pages/login/login");
+     app.navigator("/pages/login/login");
   },
   handleNav: function (e) {
     this.setData({
       activeIndex:e.target.dataset.id,
       page: 1,
-      tip:"暂无数据"
+      tip:"暂无更多"
     }) 
     this.getMissions();
   },
   getMissions: function(){
     var that =this
+    app.getNum()
     tt.showLoading({ title: "加载中" });
     this.setData({
       tip:"加载中"
@@ -106,7 +107,7 @@ Page({
           });
           if(res.data.data.list.length<=that.data.total_num){
             that.setData({
-              tip:'加载完毕'
+              tip:'暂无更多'
             })
           }
         }
@@ -138,7 +139,7 @@ Page({
       }
       else if(res.data.data.list.length==0){
         that.setData({
-          tip:"加载完毕"
+          tip:"暂无更多"
         })
       }
       },
