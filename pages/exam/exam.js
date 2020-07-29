@@ -50,6 +50,7 @@ Page({
     }
   },
   getList: function () {
+    app.getNum()
     this.setData({
       loading: 1,
       loading1: false,

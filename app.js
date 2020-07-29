@@ -39,4 +39,46 @@ App({
   hideLoading: function () {
     tt.hideLoading();
   },
+  getNum(){
+    this.getCollegeNumber()
+    this.getExamNumber()
+  },
+  getCollegeNumber(){
+    tt.request({
+      url: this.baseUrl+'/college/College/getCollegeNumber', // 目标服务器url
+      data:{
+        token: tt.getStorageSync("token"),
+      },
+      method:"GET",
+      success: (res) => {
+        console.log(res)
+        tt.setTabBarBadge({
+          index: 0,
+          text: ""+res.data.data+""
+          })
+      },
+      fail:(res =>{
+        console.log(res)
+      })
+    });
+  },
+  getExamNumber(){
+    tt.request({
+      url: this.baseUrl+'/college/Exam/getExamNumber', // 目标服务器url
+      data:{
+        token: tt.getStorageSync("token"),
+      },
+      method:"GET",
+      success: (res) => {
+        console.log(res)
+        tt.setTabBarBadge({
+          index: 1,
+          text: ""+res.data.data+""
+          })
+      },
+      fail:(res =>{
+        console.log(res)
+      })
+    });
+  },
 });

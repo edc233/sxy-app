@@ -1,8 +1,8 @@
 <div class="index_container">
-    <div class="input_container">
+    <!-- <div class="input_container">
         <input type="text" class="input" placeholder="输入想要查找的内容" placeholder-style="font:normal bold 30rpx  PingFangSC-Regular;color:#999" />
         <icon class="tt-icon" type="search"></icon>
-    </div>
+    </div> -->
     <div class="nav_container">
         <div tt:for="{{navList}}" class="{{activeIndex==index?'active nav_item':'nav_item'}}" bindtap="handleNav" data-id="{{item.index}}">{{item.title}}</div>
     </div>

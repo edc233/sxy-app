@@ -27,8 +27,6 @@ Page({
     app.setTitle("课程");
     if (!tt.getStorageSync("token")) {
       app.navigator("/pages/login/login");
-    } else {
-       this.getList();
     }
   },
   onShow:function(){
@@ -51,6 +49,7 @@ Page({
   },
   getList: function () {
     const that = this;
+    app.getNum()
     tt.showLoading({ title: "加载中" });
     this.setData({
       tip:"加载中"
@@ -73,7 +72,7 @@ Page({
           });
           if(that.data.total_num<that.data.pageSize){
             that.setData({
-              tip:"加载完毕"
+              tip:"暂无更多"
             });
           }
         } else {
