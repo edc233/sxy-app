@@ -73,7 +73,7 @@ Page({
           });
           if(that.data.total_num<that.data.pageSize){
             that.setData({
-              tip:"加载完毕"
+              tip:"暂无更多"
             });
           }
         } else {

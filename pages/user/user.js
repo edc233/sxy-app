@@ -7,6 +7,7 @@ Page({
     total_num: 0,
     department: "",
     avatar: "",
+    username:"",
     position: "",
     identity: true,
     test:{},
@@ -22,7 +23,7 @@ Page({
       }
     ],
     activeIndex:0,
-    tip:"暂无数据",
+    tip:"暂无更多",
   },
   onLoad: function (options) {
     app.setTitle("学员信息");
@@ -40,6 +41,7 @@ Page({
           token: tt.getStorageSync("token"),
         },
         success(res) {
+            console.log(res)
           if (res.data.code == 200) {
             that.setData({
               username: res.data.data.name,
@@ -79,7 +81,7 @@ Page({
     this.setData({
       activeIndex:e.target.dataset.id,
       page: 1,
-      tip:"暂无数据"
+      tip:"暂无更多"
     }) 
     this.getMissions();
   },
@@ -106,7 +108,7 @@ Page({
           });
           if(res.data.data.list.length<=that.data.total_num){
             that.setData({
-              tip:'加载完毕'
+              tip:'暂无更多'
             })
           }
         }
@@ -138,7 +140,7 @@ Page({
       }
       else if(res.data.data.list.length==0){
         that.setData({
-          tip:"加载完毕"
+          tip:"暂无更多"
         })
       }
       },
