@@ -1,13 +1,13 @@
 .index_container {
   background: rgba(247, 247, 247, 1);
-  padding-top: 170rpx;
+  padding-top: 90rpx;
   min-height: 100vh;
   box-sizing: border-box;
 }
 .input_container {
   width: calc(100vw - 40rpx);
   margin: 0 auto;
-  height: 80rpx;
+  height: 0rpx;
   background-color: #f7f7f7;
   position: fixed;
   left: 0;
