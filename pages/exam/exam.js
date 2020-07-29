@@ -22,7 +22,7 @@ Page({
     loading1: false,
     stop: false,
   },
-  onLoad: function (options) {
+  onShow: function (options) {
     app.setTitle("培训");
     this.getList();
   },
@@ -69,15 +69,15 @@ Page({
         app.hideLoading();
         tt.stopPullDownRefresh();
         if (res.data.code == 200) {
-          if(res.data.data.list.length!=0){
+          if (res.data.data.list.length != 0) {
             that.setData({
               loading: 2,
               tableData: res.data.data.list,
             });
-          }else{
+          } else {
             that.setData({
               loading: 2,
-              loading1:true,
+              loading1: true,
               tableData: res.data.data.list,
             });
           }
@@ -123,8 +123,18 @@ Page({
     });
   },
   startExam: function (el) {
-    const id = el.target.dataset.id;
-    app.navigator("/pages/examDetail/examDetail?id=" + id);
+    tt.showModal({
+      title: "考前提示",
+      content: "考试开始后不可中途退出，是否立即开始？",
+      confirmText: "开始考试",
+      cancelText: "取消",
+      success(res) {
+        if (res.confirm) {
+          const id = el.target.dataset.id;
+          app.navigator("/pages/examDetail/examDetail?id=" + id);
+        }
+      },
+    });
   },
   handleNav: function (e) {
     this.setData(

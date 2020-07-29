@@ -53,10 +53,17 @@ Page({
       }
     })
   },
+  onUnload: function () {
+    setTimeout(() => {
+      this.checkPaper()
+    }, 500);
+  },
   close: function () {
     if(this.data.second==''){
       this.setData({
         showNote:false
+      },() => {
+        this.countDown()
       })
     }
   },
@@ -73,6 +80,7 @@ Page({
         app.hideToast();
         if (res.data.code == 200) {
           let obj = res.data.data;
+          console.log(obj)
           obj.question.forEach((el) => {
             let str = "";
             el.answer.forEach((as, i) => {
@@ -90,7 +98,7 @@ Page({
               hour: res.data.data.time_length,
             },
             () => {
-              that.countDown();
+              // that.countDown();
             }
           );
         } else {
@@ -101,7 +109,7 @@ Page({
   },
   countDown: function () {
     let time = parseInt(this.data.tableData.time_length) * 60;
-    setInterval(() => {
+    var cdown = setInterval(() => {
       if (time > 0) {
         time--;
         let hour = parseInt(time / 60);
@@ -127,13 +135,14 @@ Page({
         success: function (res) {
           if (res.confirm) {
             that.checkPaper();
+            clearInterval(cdown)
           }
         },
       });
     } else {
       tt.showModal({
         title: "提示",
-        content: "试卷提交后不可修改，是否提交试卷？",
+        content: "所有题目均已做完，您确认提交吗？本次考试限考一次，提交后不可重考",
         confirmText: "提交",
         showCancel: true,
         cancelText: "继续答题",

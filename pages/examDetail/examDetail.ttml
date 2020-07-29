@@ -31,7 +31,6 @@
             <div class="notice_title" >考试须知</div>
             <div class="rule_container" >
                 <div class="rules" >1.考试过程中禁止切出屏幕，否则会自动提交试卷。</div>
-                <div class="rules" >2.考试过程中禁止点击左下角退出考试按钮。</div>
                 <div class="rules" >3.考题完成后，点击右下角提交试卷，查看成绩，等待显示“试卷提交成功”，然后点击左下角退出考试，方可退出。</div>
                 <div class="rules">4.请勿使用手机自带返回键退出考试，可能会造成分数错乱。</div>
             </div>
