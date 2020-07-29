@@ -44,6 +44,17 @@
 						"appId": "",
 						"extraData": ""
 					}
+				},
+				{
+					"id": 3,
+					"name": "测试用户界面",
+					"pathName": "pages/user/user",
+					"query": "",
+					"scene": "1001",
+					"referrerInfo": {
+						"appId": "",
+						"extraData": ""
+					}
 				}
 			]
 		}

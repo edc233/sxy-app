@@ -9,9 +9,9 @@ Page({
     avatar: "",
     username:"",
     position: "",
-    identity: true,
+    identity: false,
     test:{},
-    islog:true,
+    islog:false,
     navList:[
       {
         title:'我的任务',
@@ -26,10 +26,11 @@ Page({
     tip:"暂无更多",
   },
   onLoad: function (options) {
-    app.setTitle("学员信息");
     
   },
   onShow: function () {
+    app.setTitle("学员信息");
+    app.getNum()
     const that = this;
     that.setData({
       page:1
@@ -68,14 +69,11 @@ Page({
         },
       }); 
     } else {
-      that.setData({
-        islog:false
-      })
       that.handleLogin();
     }
   },
   handleLogin: function () {
-    app.navigator("/pages/login/login");
+     app.navigator("/pages/login/login");
   },
   handleNav: function (e) {
     this.setData({
@@ -87,6 +85,7 @@ Page({
   },
   getMissions: function(){
     var that =this
+    app.getNum()
     tt.showLoading({ title: "加载中" });
     this.setData({
       tip:"加载中"

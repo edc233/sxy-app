@@ -22,7 +22,7 @@ Page({
     loading1: false,
     stop: false,
   },
-  onLoad: function (options) {
+  onShow: function (options) {
     app.setTitle("培训");
     this.getList();
   },
@@ -50,6 +50,7 @@ Page({
     }
   },
   getList: function () {
+    app.getNum()
     this.setData({
       loading: 1,
       loading1: false,
