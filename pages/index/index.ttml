@@ -9,11 +9,11 @@
 
 
             <div class="item_container">
-                <div class="item" tt:for="{{tableData}}" data-id="{{item.id}}" data-lecturer="{{item.lecturer_id}}" data-state="{{state}}" data-mode="{{item.mode}}" data-expired="{{item.is_expired}}" bindtap="switchtrain">
+                <div class="item" tt:for="{{tableData}}" data-id="{{item.id}}" data-lecturer="{{item.lecturer_id}}" data-state="{{state}}" data-mode="{{item.mode}}" data-expired="{{item.is_expired}}" >
                     <div class="item_tag">{{item.modeName}}</div>
-                    <div class="control_btn1"tt:if="{{state==2&&item.is_expired==1}}">已过期</div>
-                    <div class="control_btn2"tt:if="{{state==2&&item.is_expired==0&&item.mode==1}}">点击完成</div>
-                    <div class="control_btn3"tt:if="{{state==2&&item.is_expired==0&&item.mode==2}}">签到</div>
+                    <div class="control_btn1"  data-id="{{item.id}}" data-lecturer="{{item.lecturer_id}}" data-state="{{state}}" data-mode="{{item.mode}}" data-expired="{{item.is_expired}}" bindtap="switchtrain" tt:if="{{state==2&&item.is_expired==1}}">已过期</div>
+                    <div class="control_btn2"  data-id="{{item.id}}" data-lecturer="{{item.lecturer_id}}" data-state="{{state}}" data-mode="{{item.mode}}" data-expired="{{item.is_expired}}" bindtap="switchtrain" tt:if="{{state==2&&item.is_expired==0&&item.mode==1}}">点击完成</div>
+                    <div class="control_btn3" data-id="{{item.id}}" data-lecturer="{{item.lecturer_id}}" data-state="{{state}}" data-mode="{{item.mode}}" data-expired="{{item.is_expired}}" bindtap="switchtrain" tt:if="{{state==2&&item.is_expired==0&&item.mode==2}}">签到</div>
                     <div class="item_title">标题：{{item.title}}</div>
                     <div class="lecturer">讲师：{{item.lecturerName}}</div>
                     <div class="train_date">截止时间：{{item.finish_time_str}}</div>

@@ -153,7 +153,7 @@ Page({
       page:1
     },
     () => {
-      if(!this.data.identity){
+      if(this.data.identity){
         this.getMissions()
       }else{
         tt.stopPullDownRefresh();
@@ -178,6 +178,8 @@ Page({
         tt.previewImage({
           urls: [this.data.test], // 图片地址列表
         });
+      },fail:(res)=>{
+        app.showToast("二维码获取失败")
       }
     });
   }

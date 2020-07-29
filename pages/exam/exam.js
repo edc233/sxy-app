@@ -23,7 +23,7 @@ Page({
     stop: false,
   },
   onShow: function (options) {
-    app.setTitle("培训");
+    app.setTitle("考试");
     this.getList();
   },
   onPullDownRefresh() {

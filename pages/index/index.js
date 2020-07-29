@@ -134,27 +134,51 @@ Page({
     if(e.currentTarget.dataset.state==2&&
     e.currentTarget.dataset.mode==2&&
     e.currentTarget.dataset.expired==0){
-      tt.scanCode({
+      tt.showModal({
+        title:"扫码签到",
+        content:"扫描二维码进行签到",
         success: (res) => {
-          console.log(res)
-          tt.request({
-            url: app.baseUrl+'/college/College/signInCollege', // 目标服务器url
-            data:{
-              id: e.currentTarget.dataset.id,
-              college_id:res.result,
-            },
+          app.showLoading()
+          tt.scanCode({
             success: (res) => {
-              console.log("签到成功")
               console.log(res)
+              tt.request({
+                url: app.baseUrl+'/college/College/signInCollege', // 目标服务器url
+                data:{
+                  id: e.currentTarget.dataset.id,
+                  college_id:res.result,
+                },
+                success: (res) => {
+                  console.log("签到成功")
+                  console.log(res)
+                  tt.showModal({
+                    title:"签到成功",
+                    content:"签到已完成",
+                    showCancel:false,
+                    confirmText:"完成"
+                  });
+                  this.getList()
+                },fail(res){
+                  tt.showModal({
+                    title:"签到失败",
+                    content:res.data.msg,
+                    showCancel:false,
+                    confirmText:"返回",
+                    success(res){
+                      return
+                    }
+                  });
+                }
+              });
             },fail(res){
-              console.log("签到失败")
-              console.log(res)
+              tt.openSetting()
             }
           });
-        },fail(res){
-          console.log(res)
-          console.log("失败！")
-          tt.openSetting()
+          app.hideLoading()
+        },
+        fail(res){
+          app.hideLoading()
+          return
         }
       });
     }else if(e.currentTarget.dataset.state==2&&
