@@ -24,11 +24,13 @@ Page({
     total_num: 0,
   },
   onLoad: function () {
+    app.setTitle("课程");
     if (!tt.getStorageSync("token")) {
       app.navigator("/pages/login/login");
     }
   },
   onShow:function(){
+    app.setTitle("课程");
     this.setData({
       page:1
     })
@@ -131,7 +133,7 @@ Page({
   switchtrain:function(e){
     if(e.currentTarget.dataset.state==2&&
     e.currentTarget.dataset.mode==2&&
-    e.currentTarget.dataset.expired==0){
+    e.currentTarget.dataset.expired==0&&!e.currentTarget.dataset.signed){
       tt.showModal({
         title:"扫码签到",
         content:"扫描二维码进行签到",
@@ -184,7 +186,8 @@ Page({
       });
     }else if(e.currentTarget.dataset.state==2&&
     e.currentTarget.dataset.lecturer>0&&
-    e.currentTarget.dataset.expired==0){
+    e.currentTarget.dataset.expired==0&&
+    (e.currentTarget.dataset.signed||e.currentTarget.dataset.mode==1)){
       tt.showModal({
         title:"讲师评价",
         content:"是否进入讲师评价页面",
@@ -201,7 +204,9 @@ Page({
 
 
     }else if(e.currentTarget.dataset.state==2&&
-    e.currentTarget.dataset.expired==0){
+    e.currentTarget.dataset.lecturer==0&&
+    e.currentTarget.dataset.expired==0&&
+    (e.currentTarget.dataset.signed||e.currentTarget.dataset.mode==1)){
       tt.showModal({
         title:"培训完成",
         content:"是否确认培训任务已完成",
@@ -215,20 +220,39 @@ Page({
                 id: e.currentTarget.dataset.id
               },
               success: (res) => {
-                this.setData({
+                console.log(res.data.code)
+                if(res.data.code==200){
+                  this.setData({
                   page:1
                   },() => {
-                    console.log(res)
-                    this.getList()
+                    tt.showModal({
+                      title: '已完成', // 内容
+                      content:"培训任务已完成",
+                      showCancel:false,
+                      confirmText:"返回",
+                      success: (res) => {
+                        this.getList()
+                      }
+                    });
                     })
-                },fail(res){
-                  console.log(res)
+                }else{
+                  tt.showModal({
+                    title:"签到失败",
+                    content:res.data.msg,
+                    showCancel:false,
+                    confirmText:"返回",
+                    success(res){
+                      return
+                    }
+                  });
                 }
+              },fail(res){
+                console.log(res)
+              }
             });
           }
         }
       });
-
     }
   }
 })
