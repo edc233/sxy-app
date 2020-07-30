@@ -148,10 +148,11 @@ Page({
                 data:{
                   id: e.currentTarget.dataset.id,
                   college_id:res.result,
+                  token: tt.getStorageSync("token"),
                 },
+                method:"POST",
                 success: (res) => {
                   console.log("签到成功")
-                  console.log(res)
                   tt.showModal({
                     title:"签到成功",
                     content:"签到已完成",
