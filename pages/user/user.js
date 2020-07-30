@@ -175,14 +175,15 @@ Page({
         id:e.currentTarget.dataset.id
       },
       success: (res) => {
-        if(res.data.code==200){
-            this.hideLoading()
-            this.setData({
-            test:"data:image/png;base64,"+res.data
-            })
-        tt.previewImage({
-          urls: [this.data.test], // 图片地址列表
-        });
+       console.log(res.data.code)
+        if(!res.data.code){
+          tt.hideLoading()
+          this.setData({
+          test:"data:image/png;base64,"+res.data
+          });
+          tt.previewImage({
+            urls: [this.data.test], // 图片地址列表
+          });
         }
         else{
           tt.hideLoading();
