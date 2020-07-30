@@ -148,10 +148,11 @@ Page({
                 data:{
                   id: e.currentTarget.dataset.id,
                   college_id:res.result,
+                  token: tt.getStorageSync("token"),
                 },
+                method:"POST",
                 success: (res) => {
                   console.log("签到成功")
-                  console.log(res)
                   tt.showModal({
                     title:"签到成功",
                     content:"签到已完成",
@@ -186,30 +187,50 @@ Page({
     }else if(e.currentTarget.dataset.state==2&&
     e.currentTarget.dataset.lecturer>0&&
     e.currentTarget.dataset.expired==0){
-      console.log(e.currentTarget.dataset.id)
-      tt.navigateTo({
-        url: '../evaluate/evaluate?id='+e.currentTarget.dataset.id// 指定页面的url
+      tt.showModal({
+        title:"讲师评价",
+        content:"是否进入讲师评价页面",
+        success: (res) => {
+          if(res.confirm){
+            console.log(e.currentTarget.dataset.id)
+            tt.navigateTo({
+              url: '../evaluate/evaluate?id='+e.currentTarget.dataset.id// 指定页面的url
+            });
+          }else{return}
+        }
       });
+
+
+
     }else if(e.currentTarget.dataset.state==2&&
     e.currentTarget.dataset.expired==0){
-      tt.request({
-        url: app.baseUrl+'/college/College/finishCollege', // 目标服务器url
-        method:"POST",
-        data:{
-          token: tt.getStorageSync("token"),
-          id: e.currentTarget.dataset.id
-        },
+      tt.showModal({
+        title:"培训完成",
+        content:"是否确认培训任务已完成",
         success: (res) => {
-          this.setData({
-            page:1
-            },() => {
-              console.log(res)
-              this.getList()
-              })
-          },fail(res){
-            console.log(res)
+          if(res.confirm){
+            tt.request({
+              url: app.baseUrl+'/college/College/finishCollege', // 目标服务器url
+              method:"POST",
+              data:{
+                token: tt.getStorageSync("token"),
+                id: e.currentTarget.dataset.id
+              },
+              success: (res) => {
+                this.setData({
+                  page:1
+                  },() => {
+                    console.log(res)
+                    this.getList()
+                    })
+                },fail(res){
+                  console.log(res)
+                }
+            });
           }
+        }
       });
+
     }
   }
 })

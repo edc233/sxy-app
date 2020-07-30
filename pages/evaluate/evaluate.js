@@ -78,19 +78,31 @@ Page({
     if(list.length!=len){
       app.showToast('还有未填的选项，请先完善','error')
     }else{
-      tt.request({
-        url: app.baseUrl+'/college/College/addLecturerIssue', // 目标服务器url
-        method:"POST",
-        data:{
-          token: tt.getStorageSync("token"),
-          id:this.data.id,
-          answer:JSON.stringify(this.data.answer)
-        },
+      tt.showModal({
+        title:"提交评价",
+        content:"是否确认提交本次讲师评价",
         success: (res) => {
-          console.log(res)
-          tt.navigateBack();
+          if(res.confirm){
+            tt.request({
+              url: app.baseUrl+'/college/College/addLecturerIssue', // 目标服务器url
+              method:"POST",
+              data:{
+                token: tt.getStorageSync("token"),
+                id:this.data.id,
+                answer:JSON.stringify(this.data.answer)
+              },
+              success: (res) => {
+                console.log(res)
+                tt.navigateBack();
+              }
+            });
+          }else{
+            return
+          }
         }
       });
+
+
     }
   }
 });
