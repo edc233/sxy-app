@@ -183,7 +183,7 @@
   line-height: 60rpx;
   position: absolute;
   right: 0;
-  top:80;
+  bottom:0;
   padding: 0 20rpx;
   color: #fff;
   font-size: 30rpx;

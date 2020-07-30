@@ -138,6 +138,7 @@ Page({
         title:"扫码签到",
         content:"扫描二维码进行签到",
         success: (res) => {
+          if(res.confirm){
           app.showLoading()
           tt.scanCode({
             success: (res) => {
@@ -175,6 +176,7 @@ Page({
             }
           });
           app.hideLoading()
+        }
         },
         fail(res){
           app.hideLoading()
@@ -206,7 +208,6 @@ Page({
               })
           },fail(res){
             console.log(res)
-
           }
       });
     }

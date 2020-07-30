@@ -182,5 +182,39 @@ Page({
         app.showToast("二维码获取失败")
       }
     });
+  },
+  complete:function(e){
+    tt.showModal({
+      title:"点击完成",
+      content:"请确认该任务是否已完成",
+      confirmText:"完成",
+      success: (res) => {
+      if(res.confirm){
+        tt.request({
+          url: app.baseUrl+'/college/Lecturer/finishCollege', // 目标服务器url
+          data:{
+            token:tt.getStorageSync("token"),
+            id:e.currentTarget.dataset.id
+          },
+          method:"POST",
+          success: (res) => {
+            console.log(res)
+            tt.showModal({
+            title:"完成",
+            content:"该任务已完成",
+            showCancel:false,
+            });
+          },fail:(res)=>{
+            console.log(res)
+            tt.showModal({
+            title:"完成失败",
+            content:res.data.msg,
+            showCancel:false,
+            });
+          }
+        });
+      }
+      }
+    });
   }
 });
