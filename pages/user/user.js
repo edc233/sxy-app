@@ -25,11 +25,7 @@ Page({
     activeIndex:0,
     tip:"暂无更多",
   },
-  onLoad: function (options) {
-    
-  },
   onShow: function () {
-    app.setTitle("学员信息");
     app.getNum()
     const that = this;
     that.setData({

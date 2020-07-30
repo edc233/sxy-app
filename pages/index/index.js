@@ -24,13 +24,11 @@ Page({
     total_num: 0,
   },
   onLoad: function () {
-    app.setTitle("课程");
     if (!tt.getStorageSync("token")) {
       app.navigator("/pages/login/login");
     }
   },
   onShow:function(){
-    app.setTitle("课程");
     this.setData({
       page:1
     })

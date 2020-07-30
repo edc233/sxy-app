@@ -123,6 +123,9 @@ Page({
       }
     }, 1000);
   },
+  exit: function () {
+    app.navigateBack()
+  },
   submit: function () {
     const that = this;
     if (this.data.len < this.data.tableData.question.length) {

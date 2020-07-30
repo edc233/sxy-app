@@ -34,15 +34,6 @@
   height: 170rpx;
   border-radius: 50%;
 }
-.btns {
-  padding: 50rpx;
-  box-sizing: border-box;
-  border-radius: 20rpx 20rpx 0 0;
-  top: -20rpx;
-  position: relative;
-  z-index: 2;
-  background-color: #fff;
-}
 .container {
   padding-top: 90rpx;
   background: rgba(247, 247, 247, 1);
@@ -81,10 +72,15 @@
 }
 .item {
   box-sizing: border-box;
-  padding: 60rpx 40rpx 80rpx;
-  background-color: #fff;
+  padding: 60rpx 40rpx 20rpx;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: rgba(47,197,136, 1);
   margin: 0 20rpx 20rpx;
   position: relative;
+}
+.item div{
+  color: #fff;
 }
 .item_title {
   font-size: 34rpx;
@@ -108,7 +104,8 @@
 }
 .item_container{
   padding: 20rpx 0;
-
+  box-sizing: border-box;
+  min-height: 100vh;
 }
 .item_content {
   margin-top: 10rpx;
@@ -126,13 +123,12 @@
 }
 .item_tag {
   line-height: 40rpx;
-  padding: 0 20rpx;
+  padding: 10rpx 20rpx;
   position: absolute;
   top: 0;
   left: 0;
   font-size: 24rpx;
   color: #fff;
-  background-color: red;
 }
 /* .control_btn1,.control_btn2,.control_btn3,.control_btn4 {
   line-height: 60rpx;
@@ -159,11 +155,13 @@
   margin-left: 10rpx;
   color: #333;
 }
+.btns{
+  text-align: right;
+}
 .control_btn1{
   line-height: 60rpx;
-  position: absolute;
-  right: 0;
-  top: 0;
+  margin: 0 10rpx;
+  display: inline-block;
   padding: 0 20rpx;
   color: #fff;
   font-size: 30rpx;
@@ -171,9 +169,8 @@
 }
 .control_btn2{ 
   line-height: 60rpx;
-  position: absolute;
-  right: 0;
-  top: 0;
+  margin: 0 10rpx;
+  display: inline-block;
   padding: 0 20rpx;
   color: #fff;
   font-size: 30rpx;
@@ -181,9 +178,9 @@
 }
 .control_btn3{  
   line-height: 60rpx;
-  position: absolute;
-  right: 0;
-  bottom:0;
+  margin: 0 10rpx;
+  display: inline-block;
+  border-radius: 5px;
   padding: 0 20rpx;
   color: #fff;
   font-size: 30rpx;
@@ -191,11 +188,12 @@
 }
 .control_btn4{  
   line-height: 60rpx;
-  position: absolute;
-  right: 0;
-  top: 0;
+  margin: 0 10rpx;
+  display: inline-block;
   padding: 0 20rpx;
   color: #000000;
   font-size: 30rpx;
-  background-color: #2fc588;
+  color: #fff;
+  border-radius: 5px;
+  background-color: #0883e7;
 }

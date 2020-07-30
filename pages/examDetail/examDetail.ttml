@@ -37,4 +37,4 @@
             <div bindtap="close" class="{{second==0?'close red':'close'}}">{{content}}</div>
         </div>
     </div>
-</div>
+</div>      

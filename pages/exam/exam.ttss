@@ -1,6 +1,8 @@
 .container {
   padding-top: 90rpx;
   background: rgba(247, 247, 247, 1);
+  min-height: 100vh;
+  box-sizing: border-box;
 }
 .nav_container {
   width: 100vw;
@@ -142,5 +144,4 @@
     font-size: 30rpx;
     color: #666;
     line-height: 80rpx;
-    background-color: #fff;
 }

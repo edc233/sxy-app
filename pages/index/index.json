@@ -1,4 +1,5 @@
 {
     "enablePullDownRefresh": true,
-    "onReachBottomDistance": 0
+    "onReachBottomDistance": 0,
+    "navigationBarTitleText":"培训"
 }

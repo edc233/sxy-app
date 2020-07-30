@@ -60,10 +60,23 @@
 }
 .item {
   box-sizing: border-box;
-  padding: 60rpx 40rpx 80rpx;
-  background-color: #fff;
+  padding: 70rpx 40rpx 20rpx;
   margin: 0 20rpx 20rpx;
+  border-radius: 10px;
+  overflow: hidden;
   position: relative;
+}
+.item div{
+  color: #fff;
+}
+.bg_green{
+  background-color: rgba(47,197,136, 1);
+}
+.bg_red{
+  background-color:rgba(237,85,106, 1)
+}
+.bg_gray{
+  background-color: #bbb5ac;
 }
 .item_title {
   font-size: 34rpx;
@@ -79,15 +92,23 @@
   font-size: 30rpx;
   margin-top: 10rpx;
 }
+.finish_date{
+  font-size: 30rpx;
+  margin-top: 10rpx;
+}
 .nomore{
   font-size: 30rpx;
   text-align: center;
   color: #333;
   padding: 20rpx 0;
 }
+.address{
+  font-size: 30rpx;
+  margin-top: 10rpx;
+}
 .item_container{
   padding: 20rpx 0;
-
+  box-sizing: border-box;
 }
 .item_content {
   margin-top: 10rpx;
@@ -105,42 +126,59 @@
 }
 .item_tag {
   line-height: 40rpx;
-  padding: 0 20rpx;
+  padding: 10rpx 20rpx;
   position: absolute;
   top: 0;
   left: 0;
   font-size: 24rpx;
   color: #fff;
-  background-color: red;
+  /* background-color: #ee3f4d; */
 }
-.control_btn1{
+.btns{
+  text-align: right;
+  margin-top: 10rpx;
+  height: 60rpx;
+}
+.tag_sign{
+  padding: 0 30rpx;
   line-height: 60rpx;
-  position: absolute;
-  right: 0;
-  top: 0;
-  padding: 0 20rpx;
+  border: 1px solid #fff;
+  color: #fff;
+  border-radius: 5px;
+  font-size: 30rpx;
+  text-align: center;
+  float: left;
+}
+.control_btn1{ 
+  display: inline-block;
+  padding: 0 30rpx;
+  line-height: 60rpx;
   color: #fff;
   font-size: 30rpx;
-  background-color: #ff0000;
+  border-radius: 5px;
+  text-align: center;
+  background-color: #a7535a;
 }
 .control_btn2{
+  display: inline-block;
   line-height: 60rpx;
-  position: absolute;
-  right: 0;
-  top: 0;
-  padding: 0 20rpx;
+  padding: 0 30rpx;
   color: #fff;
   font-size: 30rpx;
-  background-color: #fdfa37;
+  text-align: center;
+  border-radius: 5px;
+  background-color: #0883e7;
+  margin: 0 10rpx;
 }
-.control_btn3{line-height: 60rpx;
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  padding: 0 20rpx;
+.control_btn3{
+  display: inline-block;
+  line-height: 60rpx;
+  padding: 0 30rpx;
   color: #fff;
   font-size: 30rpx;
-  background-color: #40a070;
+  background-color: #0883e7;
+  border-radius: 5px;
+  text-align: center;
 }
 .stat{
   position: absolute;
