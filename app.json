@@ -1,11 +1,11 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/examDetail/examDetail",
+    "pages/user/user",
     "pages/exam/exam",
+    "pages/examDetail/examDetail",
     "pages/invitation/invitation",
     "pages/login/login",
-    "pages/user/user",
     "pages/notice/notice",
     "pages/evaluate/evaluate"
   ],

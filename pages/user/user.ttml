@@ -15,20 +15,21 @@
     <div class="nav_container">
         <div tt:for="{{navList}}" class="{{activeIndex==index?'active nav_item':'nav_item'}}" bindtap="handleNav" data-id="{{item.index}}">{{item.title}}</div>
     </div>
-     <div class="item_container" tt:if="{{activeIndex==0}}">
-                <div class="item" tt:for="{{tableData}}">
-                    <div class="item_tag">{{item.modeName}}</div>
+    <div class="item_container" tt:if="{{activeIndex==0}}">
+        <div class="item" tt:for="{{tableData}}">
+            <div class="item_tag">{{item.modeName}}</div>
 
-                    <div class="control_btn1" tt:if="{{item.state==1}}">未开始</div>
-                    <div class="control_btn2" tt:if="{{item.state==3}}">已完成</div>
-                    <div class="control_btn3" data-id="{{item.id}}" bindtap="getQrcode" tt:if="{{item.state==2&&item.modeName=='线下'}}">生成签到码</div>
-                    <div class="control_btn4" data-id="{{item.id}}" bindtap="complete" tt:if="{{item.state==2}}">完成</div>
-                    
-                    <div class="item_title">{{item.id}}  标题：{{item.title}}</div>
-                    <div class="lecturer">讲师：{{username}}</div>
-                    <div class="train_date">培训时间：{{item.show_time}}</div>
-                    <div class="item_content">备注：{{item.remark}}</div>
-                </div>
+            <div class="item_title">{{item.id}}  标题：{{item.title}}</div>
+            <div class="lecturer">讲师：{{username}}</div>
+            <div class="train_date">培训时间：{{item.show_time}}</div>
+            <div class="item_content">备注：{{item.remark?item.remark:'-'}}</div>
+            <div class="btns">
+                <div class="control_btn1" tt:if="{{item.state==1}}">未开始</div>
+                <div class="control_btn2" tt:if="{{item.state==3}}">已完成</div>
+                <div class="control_btn3" data-id="{{item.id}}" bindtap="getQrcode" tt:if="{{item.state==2&&item.modeName=='线下'}}">生成签到码</div>
+                <div class="control_btn4" data-id="{{item.id}}" bindtap="complete" tt:if="{{item.state==2}}">完成</div>
             </div>
+        </div>
+    </div>
     <div class="nomore" tt:if="{{activeIndex==0}}">{{tip}}</div>
 </div>

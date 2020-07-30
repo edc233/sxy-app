@@ -3,5 +3,6 @@
   "navigationBarBackgroundColor":"#01c176",
   "navigationBarTextStyle":"#fff",
   "enablePullDownRefresh": true,
-  "onReachBottomDistance": 0
+  "onReachBottomDistance": 0,
+  "navigationBarTitleText":"我的"
 }

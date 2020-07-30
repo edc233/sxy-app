@@ -23,7 +23,6 @@ Page({
     stop: false,
   },
   onShow: function (options) {
-    app.setTitle("考试");
     this.getList();
   },
   onPullDownRefresh() {
