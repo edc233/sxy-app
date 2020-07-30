@@ -164,6 +164,9 @@ Page({
     this.nextMissons()
   },
   getQrcode:function(e){
+    tt.showLoading({
+      title: '生成中', // 内容
+    });
     console.log(e.currentTarget.dataset.id)
     tt.request({
       url: app.baseUrl+'/college/Lecturer/createQrcode', // 目标服务器url
@@ -172,12 +175,27 @@ Page({
         id:e.currentTarget.dataset.id
       },
       success: (res) => {
+        if(res.data.code==200){
+            this.hideLoading()
             this.setData({
             test:"data:image/png;base64,"+res.data
             })
         tt.previewImage({
           urls: [this.data.test], // 图片地址列表
         });
+        }
+        else{
+          tt.hideLoading();
+          tt.showModal({
+            title:"二维码获取失败",
+              content:res.data.msg,
+              showCancel:false,
+              confirmText:"返回",
+              success(res){
+                return
+              }
+          });
+        }
       },fail:(res)=>{
         app.showToast("二维码获取失败")
       }
