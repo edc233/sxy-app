@@ -88,22 +88,192 @@
     padding-left: 120px;
     box-sizing: border-box;
 }
-.train_item{
-    position: relative;
+.exam_list{
+    padding-left: 120px;
     box-sizing: border-box;
-    width: 300px;
-    padding: 20px;
-    border: 1px solid #000;
+}
+.mission_list{
+    padding-left: 120px;
+    box-sizing: border-box;
+    }
+.item{
+    box-sizing: border-box;
+    padding: 70rpx 40rpx 20rpx;
+    margin: 0 20rpx 20rpx;
     border-radius: 10px;
+    overflow: hidden;
+    position: relative;
 }
-.train_item div{
-    color: #333;
+.bg_green{
+  background-color: rgba(47,197,136, 1);
 }
-.item_title{
+.bg_red{
+  background-color:rgba(237,85,106, 1)
+}
+.bg_gray{
+  background-color: #bbb5ac;
+}
+.item_tag {
+  line-height: 40rpx;
+  padding: 10rpx 20rpx;
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 24rpx;
+  color: #fff;
+  /* background-color: #ee3f4d; */
+}
+.item_title {
+  font-size: 34rpx;
+  width: 80%;
+  color: #333;
+  font-weight: bold;
+}
+.lecturer{
+  font-size: 30rpx;
+  margin-top: 10rpx;
+}
+.train_date{
+  font-size: 30rpx;
+  margin-top: 10rpx;
+}
+.finish_date{
+  font-size: 30rpx;
+  margin-top: 10rpx;
+}
+.nomore{
+  font-size: 30rpx;
+  text-align: center;
+  color: #333;
+  padding-left: 120px;
+}
+.address{
+  font-size: 30rpx;
+  margin-top: 10rpx;
+}
+.item_container{
+  padding: 20rpx 0;
+  box-sizing: border-box;
+}
+.item_content {
+  margin-top: 10rpx;
+  font-size: 30rpx;
+  word-break: break-all;
+  width: 80%;
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  line-height: 40rpx;
+  color: #333;
+}
+.train_item {
+  box-sizing: border-box;
+  padding: 70rpx 40rpx 20rpx;
+  margin: 0 20rpx 20rpx;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.exam_item{  
+  margin: 0 20rpx 20rpx;
+  background-color: #fff;
+  box-sizing: border-box;
+  padding: 60rpx 40rpx 20rpx;
+  border-radius: 5px;
+  box-shadow: 8px 8px 10px 0px rgba(51, 51, 51, 0.05);
+  position: relative;
+}
+
+
+.item_title {
+  font-size: 32rpx;
+  font-weight: bold;
+}
+.item_time {
+  font-size: 26rpx;
+  margin-top: 10rpx;
+}
+.item_deadline {
+  font-size: 26rpx;
+  margin-top: 20rpx;
+}
+.item_info {
+  margin-top: 10rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.item_info span {
+  font-size: 28rpx;
+}
+.tags {
+  margin-top: 40rpx;
+}
+.tags > div {
+  line-height: 40rpx;
+  padding: 0 20rpx;
+  display: inline-block;
+  font-size: 26rpx;
+  border-radius: 3px;
+}
+.duration {
+  border: 1px solid #ed556a;
+  color: #ed556a;
+}
+.place {
+  border: 1px solid #11659a;
+  color: #11659a;
+  margin-left: 10rpx;
+}
+.header {
+  font-size: 30rpx;
+  display: inline-block;
+  padding: 0 20rpx;
+  border-radius: 3px;
+  margin-right: 10rpx;
+}
+.item_title .header {
+  border: 1px solid #ef475d;
+  color: #ef475d;
+}
+.item_deadline .header{
+    border: 1px solid #856d72;
+    color: #856d72;
+}
+.score .header{
+    border: 1px solid #2c9678;
+    color: #2c9678;
+}
+.score_level .header{
+    border: 1px solid #ff9900;
+    color: #ff9900;
+}
+.user_score{
+    position: absolute;
+    bottom: 20rpx;
+    right: 20rpx;
+    font-size: 40rpx;
+    color: #2fc588;
     font-weight: bold;
-    font-size: 24px;
 }
-.mode,.lecturer,.place,.train_date,.ddl,.remark{
-    font-size: 20px;
-    margin-top: 10px;
+.low_score{
+    color: #ef475d !important;
+}
+.mid_score{
+    color: #ff9900 !important;
+}
+.high_score{
+    color: #20894d !important;
+}
+.item {
+  box-sizing: border-box;
+  padding: 60rpx 40rpx 20rpx;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: rgba(47,197,136, 1);
+  margin: 0 20rpx 20rpx;
+  position: relative;
 }
