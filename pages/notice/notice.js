@@ -35,6 +35,7 @@ Page({
   naviTo(){
     tt.redirectTo({
       url: '../examDetail/examDetail', // 指定页面的url
+      data:this.data.id,
       fail(res){
         console.log(res)
       }
