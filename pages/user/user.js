@@ -12,6 +12,7 @@ Page({
     identity: false,
     test:{},
     islog:false,
+    isShow:false,
     navList:[
       {
         title:'我的任务',
@@ -45,6 +46,7 @@ Page({
             console.log(res)
           if (res.data.code == 200) {
             that.setData({
+              isShow:true,
               username: res.data.data.name,
               department: res.data.data.depart_name,
               avatar: res.data.data.avatar,

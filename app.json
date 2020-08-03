@@ -1,6 +1,7 @@
 {
   "pages":[
     "pages/index/index",
+    "pages/pc/index/index",
     "pages/user/user",
     "pages/exam/exam",
     "pages/examDetail/examDetail",
@@ -14,6 +15,12 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "Mini Program",
     "navigationBarTextStyle":"black"
+  },
+  "ext": {
+    "defaultPages": {
+      "sidebarMode": "pages/index/index",
+      "PCMode": "pages/index/index" 
+    }
   },
   "tabBar": {
     "selectedColor":"#d81e06",

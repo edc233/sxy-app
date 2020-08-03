@@ -24,13 +24,34 @@ Page({
     total_num: 0,
   },
   onLoad: function () {
-    app.setTitle("课程");
     if (!tt.getStorageSync("token")) {
       app.navigator("/pages/login/login");
     }
+
+
+    const updateManager = tt.getUpdateManager();
+    updateManager.onCheckForUpdate(function (res) {
+      // 请求完新版本信息的回调
+      console.log(res.hasUpdate);
+    });
+    updateManager.onUpdateReady(function () {
+      tt.showModal({
+        title: "更新提示",
+        content: "新版本已经准备好，是否重启应用？",
+        success: function (res) {
+          if (res.confirm) {
+            // 新的版本已经下载好，调用 applyUpdate 应用新版本并重启
+            updateManager.applyUpdate();
+          }
+        },
+      });
+    });
+    updateManager.onUpdateFailed(function () {
+      // 新版本下载失败
+      conosle.log("download error");
+    });
   },
   onShow:function(){
-    app.setTitle("课程");
     this.setData({
       page:1
     })
@@ -131,6 +152,7 @@ Page({
     this.nextPage()
   },
   switchtrain:function(e){
+    console.log(e.currentTarget.dataset)
     if(e.currentTarget.dataset.state==2&&
     e.currentTarget.dataset.mode==2&&
     e.currentTarget.dataset.expired==0&&!e.currentTarget.dataset.signed){
