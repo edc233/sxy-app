@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="top_nav">
+        <div tt:for="{{topList}}" data-index="{{item.index}}" bindtap="handleTopNav" class="{{item.index==topActiveIndex?'top_active top_item':'top_item'}}" >{{item.title}}</div>
+        <div class="{{topActiveIndex==1?'position1 line':topActiveIndex==2?'position2 line':'position3 line'}}" ></div>
+    </div>
+    <div class="list_container">
+        <div class="left_nav1 left_nav">
+            <div tt:for="{{leftList}}" class="{{leftActive==item.id?'left_item left_active':'left_item'}}" data-index="{{item.id}}" bindtap="handLeftNav" >{{item.title}}</div>
+            <div class="{{leftActive==1?'active_square left_position1':leftActive==2?'active_square left_position2':'active_square left_position3'}}"></div>
+        </div>
+        <div class="train_list">
+            <div class="train_item">
+                <div class="item_title">标题：XXXXXXXXX</div>
+                <div class="mode">模式：XXXXXXXXX</div>
+                <div class="lecturer">讲师：XXX</div>
+                <div class="place">地点：XXX</div>
+                <div class="train_date">培训时间：XXX</div>
+                <div class="ddl">截止时间：XXX</div>
+                <div class="remark">备注：XXX</div>
+            </div>
+        </div>
+    </div>
+</div>

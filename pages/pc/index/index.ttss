@@ -1,0 +1,109 @@
+.container{
+    min-height: 100vh;
+}
+.top_nav{
+    width: 100%;
+    height: 60px;
+    background-color: #fff;
+    position: fixed;
+    top: 0;
+    z-index: 2;
+}
+.top_item{
+    display: inline-block;
+    width: 33%;
+    font-size: 20px;
+    text-align: center;
+    line-height: 60px;
+    color: #333;
+    transition: all .3s;
+}
+.line{
+    width: 100px;
+    background-color: #ed556a;
+    height: 5px;
+    position: absolute;
+    top: 55px;
+    transition: all .3s;
+}
+.top_active{
+    font-weight: 450;
+    color: #ed556a !important;
+}
+.position1{
+    left: calc((33% - 100px)/2);
+}
+.position2{
+    left: calc((100% - 100px)/2);
+}
+.position3{
+    left: calc(66% + 50px);
+}
+.list_container{
+    width: 100%;
+    min-height: 100vh;
+    background-color: #eee;
+    box-sizing: border-box;
+    padding-top: 70px;
+}
+.left_nav{
+    width: 90px;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 62px;
+    background-color: #fff;
+}
+.left_item{
+    color: #333;
+    font-size: 20px;
+    line-height: 100px;
+    text-align: center;
+    transition: all .3s;
+    position: relative;
+    z-index: 2;
+}
+.left_active{
+    color: #fff;
+    font-weight: bold;
+}
+.active_square{
+    height: 100px;
+    width: 100%;
+    position: absolute;
+    transition: all .3s;
+    background-color: #63bbd0;
+    z-index: 0;
+}
+.left_position1{
+    top: 0;
+}
+.left_position2{
+    top: 100px;
+}
+.left_position3{
+    top: 200px;
+}
+.train_list{
+    padding-left: 120px;
+    box-sizing: border-box;
+}
+.train_item{
+    position: relative;
+    box-sizing: border-box;
+    width: 300px;
+    padding: 20px;
+    border: 1px solid #000;
+    border-radius: 10px;
+}
+.train_item div{
+    color: #333;
+}
+.item_title{
+    font-weight: bold;
+    font-size: 24px;
+}
+.mode,.lecturer,.place,.train_date,.ddl,.remark{
+    font-size: 20px;
+    margin-top: 10px;
+}

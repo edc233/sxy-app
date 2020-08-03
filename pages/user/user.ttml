@@ -1,4 +1,4 @@
-<div class="userinfo" tt:if="{{!identity}}">
+<div class="userinfo" tt:if="{{!identity&&isShow}}">
     <div class="user" tt:if="{{!isLog}}">
         <div class="username">{{username}}</div>
         <div class="department">
@@ -11,7 +11,7 @@
     </div>
 </div>
 
-<div class="container" tt:if="{{identity}}">
+<div class="container" tt:if="{{identity&&isShow}}">
     <div class="nav_container">
         <div tt:for="{{navList}}" class="{{activeIndex==index?'active nav_item':'nav_item'}}" bindtap="handleNav" data-id="{{item.index}}">{{item.title}}</div>
     </div>
