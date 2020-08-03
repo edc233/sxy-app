@@ -34,8 +34,7 @@ Page({
   },
   naviTo(){
     tt.redirectTo({
-      url: '../examDetail/examDetail', // 指定页面的url
-      data:this.data.id,
+      url: '../examDetail/examDetail?id='+this.data.id, // 指定页面的url
       fail(res){
         console.log(res)
       }
