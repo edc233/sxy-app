@@ -51,10 +51,16 @@ App({
       },
       method:"GET",
       success: (res) => {
-        tt.setTabBarBadge({
-          index: 0,
-          text: ""+res.data.data+""
+       if(res.data.data!=0){
+          tt.setTabBarBadge({
+            index: 0,
+            text: ""+res.data.data+""
+            })
+        }else{
+          tt.setTabBarBadge({
+            index:0,
           })
+        }
       },
       fail:(res =>{
       })
@@ -68,10 +74,16 @@ App({
       },
       method:"GET",
       success: (res) => {
-        tt.setTabBarBadge({
-          index: 1,
-          text: ""+res.data.data+""
+        if(res.data.data!=0){
+          tt.setTabBarBadge({
+            index: 1,
+            text: ""+res.data.data+""
+            })
+        }else{
+          tt.setTabBarBadge({
+            index:1,
           })
+        }
       },
       fail:(res =>{
       })
