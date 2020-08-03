@@ -36,7 +36,7 @@
 .turnTo{
     width:50%;
     color: white;
-    background-color:pink;
+    background-color:rgb(255, 0, 0);
     font-weight: bold;
     margin-top: 200rpx;
 }
