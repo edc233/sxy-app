@@ -1,7 +1,7 @@
 {
   "pages":[
-    "pages/index/index",
     "pages/pc/index/index",
+    "pages/index/index",
     "pages/user/user",
     "pages/exam/exam",
     "pages/examDetail/examDetail",
