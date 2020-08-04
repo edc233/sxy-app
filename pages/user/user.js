@@ -177,7 +177,7 @@ Page({
         id:e.currentTarget.dataset.id
       },
       success: (res) => {
-       console.log(res.data.code)
+       console.log(res)
         if(!res.data.code){
           tt.hideLoading()
           this.setData({
