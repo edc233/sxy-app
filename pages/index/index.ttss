@@ -69,14 +69,14 @@
 .item div {
   color: #fff;
 }
-.bg_green {
-  background: linear-gradient(to left, #41a1f7, #6acef0);
+.bg_green{
+  background-color: #29b867
 }
-.bg_red {
-  background: linear-gradient(to left, #ff5c9b, #fea36a);
+.bg_red{
+  background-color: #f15642
 }
-.bg_gray {
-  background: linear-gradient(to left, #a36efc, #d9a7fe);
+.bg_gray{
+  background-color: #ffc90c
 }
 .item_title {
   font-size: 34rpx;
@@ -135,6 +135,7 @@
   line-height: 40rpx;
   padding: 10rpx 20rpx;
   position: absolute;
+  top: 5;
   right: 0;
   font-size: 30rpx;
   color: #fff;
@@ -164,7 +165,7 @@
   font-size: 30rpx;
   border-radius: 5px;
   text-align: center;
-  background-color: #a7535a;
+  background-color: #a1a1a1;
 }
 .control_btn2 {
   display: inline-block;

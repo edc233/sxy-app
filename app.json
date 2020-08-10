@@ -2,8 +2,6 @@
   "pages":[
     "pages/index/index",
     "pages/pc/index/index",
-    "pages/login/login",
-    "pages/index/index",
     "pages/user/user",
     "pages/examDetail/examDetail",
     "pages/exam/exam",

@@ -75,7 +75,7 @@
   padding: 60rpx 40rpx 20rpx;
   border-radius: 10px;
   overflow: hidden;
-  background: linear-gradient(to right,#D678EA ,#5973FA );
+  background-color: #134857;
   margin: 0 20rpx 20rpx;
   position: relative;
 }
