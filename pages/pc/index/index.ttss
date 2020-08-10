@@ -3,8 +3,8 @@
     width: 1000px;
 }
 .top_nav{
-    width: 1000px;
-    height: 60px;
+    width: 100%;
+    height: 60rpx;
     background-color: #fff;
     position: fixed;
     top: 0;
@@ -14,18 +14,18 @@
 .top_item{
     display: inline-block;
     width: 33%;
-    font-size: 20px;
+    font-size: 35rpx;
     text-align: center;
-    line-height: 60px;
+    line-height: 60rpx;
     color: #333;
     transition: all .3s;
 }
 .line{
-    width: 100px;
+    width: 100rpx;
     background-color: #ed556a;
     height: 5px;
     position: absolute;
-    top: 55px;
+    top: 0rpx;
     transition: all .3s;
 }
 .top_active{
@@ -33,27 +33,31 @@
     color: #ed556a !important;
 }
 .position1{
-    left: calc((33.3% - 100px)/2);
+    left:10%;
 }
 .position2{
-    left: calc((100% - 105px)/2);
+    left: calc((100% - 100rpx)/2);
 }
 .position3{
-    left: calc(66.6% + 100px);
+    left: 76%;
 }
 .list_container{
     width: 100%;
     min-height: 100vh;
     background-color: #eee;
     box-sizing: border-box;
+<<<<<<< HEAD
     padding-top: 100px;
+=======
+    padding-top: 60rpx;
+>>>>>>> master
 }
 .left_nav{
     width: 90px;
     height: 100vh;
     position: fixed;
     left: 0;
-    top: 62px;
+    top: 60rpx;
     background-color: #fff;
 }
 .left_item{
@@ -148,7 +152,11 @@
   margin-top: 5px;
 }
 .nomore{
+<<<<<<< HEAD
   font-size: 15px;
+=======
+  font-size: 20rpx;
+>>>>>>> master
   text-align: center;
   color: #333;
   padding-left: 120px;

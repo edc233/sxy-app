@@ -70,13 +70,13 @@
   color: #fff;
 }
 .bg_green{
-  background-color: rgba(47,197,136, 1);
+  background: linear-gradient(to left,#41A1F7 ,#6ACEF0 );
 }
 .bg_red{
-  background-color:rgb(238, 78, 78)
+  background:linear-gradient(to left,#FF5C9B ,#FEA36A ); 
 }
 .bg_gray{
-  background-color: #bbb5ac;
+  background: linear-gradient(to left,#A36EFC ,#D9A7FE );
 }
 .item_title {
   font-size: 34rpx;
@@ -128,9 +128,9 @@
   line-height: 40rpx;
   padding: 10rpx 20rpx;
   position: absolute;
-  top: 0;
-  left: 0;
-  font-size: 24rpx;
+  top: 5;
+  right: 0;
+  font-size: 30rpx;
   color: #fff;
   /* background-color: #ee3f4d; */
 }
