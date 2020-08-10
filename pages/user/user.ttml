@@ -18,7 +18,6 @@
     <div class="item_container" tt:if="{{activeIndex==0}}">
         <div class="item" tt:for="{{tableData}}">
             <div class="item_tag">{{item.modeName}}</div>
-
             <div class="item_title">{{item.id}}  标题：{{item.title}}</div>
             <div class="lecturer">讲师：{{username}}</div>
             <div class="train_date">培训时间：{{item.show_time}}</div>

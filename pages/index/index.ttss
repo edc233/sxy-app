@@ -73,7 +73,7 @@
   background-color: rgba(47,197,136, 1);
 }
 .bg_red{
-  background-color:rgba(237,85,106, 1)
+  background-color:rgb(238, 78, 78)
 }
 .bg_gray{
   background-color: #bbb5ac;

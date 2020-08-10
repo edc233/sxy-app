@@ -29,7 +29,10 @@
   font-weight: bold;
   font-size: 50rpx !important;
 }
-
+.bg_gray{
+  background-color: rgb(177, 177, 177) !important;
+  color: rgb(133, 130, 130) !important;
+}
 .time {
   margin-top: 10rpx;
   font-size: 34rpx;

@@ -22,13 +22,18 @@ Page({
     tableData: [],
     pageSize: 6,
     total_num: 0,
+    isBackFromLogin:false
   },
   onLoad: function () {
+    // tt.clearStorageSync('token')
     if (!tt.getStorageSync("token")) {
       app.navigator("/pages/login/login");
+      this.setData({
+        tip:'暂未登录，点击登录'
+      })
+    }else{
+      this.getList()
     }
-
-
     const updateManager = tt.getUpdateManager();
     updateManager.onCheckForUpdate(function (res) {
       // 请求完新版本信息的回调
@@ -46,19 +51,13 @@ Page({
         },
       });
     });
-    updateManager.onUpdateFailed(function () {
-      // 新版本下载失败
-      conosle.log("download error");
-    });
   },
   onShow:function(){
-    this.setData({
-      page:1
-    })
-    if (!tt.getStorageSync("token")) {
-      app.navigator("/pages/login/login");
-    } else {
-       this.getList();
+    if(this.data.isBackFromLogin||tt.getStorageSync('token')){
+      this.getList()
+      this.setData({
+        isBackFromLogin:false
+      })
     }
   },
   onPullDownRefresh() {
@@ -105,16 +104,33 @@ Page({
       }
     });
   },
+  handleLog: function () {
+    if(this.data.tip=='暂未登录，点击登录'){
+      app.navigator('/pages/login/login')
+    }
+  },
   handleNav: function (e) {
-    this.setData({
-      activeIndex: e.target.dataset.id,
-      state: e.target.dataset.id + 1,
-      page: 1,
-      tableData:[],
-      tip:"暂无数据",
-      total_num:0
-    });
-    this.getList();
+    if(tt.getStorageSync('token')){
+      this.setData({
+        activeIndex: e.target.dataset.id,
+        state: e.target.dataset.id + 1,
+        page: 1,
+        tableData:[],
+        tip:"暂无数据",
+        total_num:0
+      },() => {
+        this.getList();
+      })
+    }else{
+      this.setData({
+        activeIndex: e.target.dataset.id,
+        state: e.target.dataset.id + 1,
+        page: 1,
+        tableData:[],
+        tip:"暂未登录，点击登录",
+        total_num:0
+      })
+    }
   },
   nextPage: function(){
     const that = this;

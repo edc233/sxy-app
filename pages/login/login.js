@@ -8,21 +8,29 @@ Page({
     app.showLoading('登录中')
     tt.login({
       success: function (res) {
-        console.log(res)
         if (res.code) {
+          console.log(res.code)
+          return
           tt.request({
             url: app.baseUrl+'/college/Index/getToken?code='+res.code,
             success(re) {
-                console.log(re)
               if(re.data.code==200){
                 tt.setStorageSync('token', re.data.data)
-                console.log('token')
-                console.log(re.data.data)
                 app.showToast('登录成功')
+                let pages = getCurrentPages()
+                console.log(pages[pages.length-2])
+                let prePage=pages[pages.length-2]
+                if(prePage.__route__=='pages/index/index'||prePage.__route__=='pages/exam/exam'){
+                  prePage.setData({
+                    isBackFromLogin:true
+                  })
+                }
                 setTimeout(() => {
                   app.hideToast()
-                  app.navigateBack()
-                }, 1000);
+                  tt.navigateBack({
+                    delta: 1
+                  })
+                }, 500);
               }
             }
           })
