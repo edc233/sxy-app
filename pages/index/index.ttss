@@ -70,13 +70,13 @@
   color: #fff;
 }
 .bg_green{
-  background: linear-gradient(to left,#41A1F7 ,#6ACEF0 );
+  background-color: #29b867
 }
 .bg_red{
-  background:linear-gradient(to left,#FF5C9B ,#FEA36A ); 
+  background-color: #f15642
 }
 .bg_gray{
-  background: linear-gradient(to left,#A36EFC ,#D9A7FE );
+  background-color: #ffc90c
 }
 .item_title {
   font-size: 34rpx;
@@ -157,7 +157,7 @@
   font-size: 30rpx;
   border-radius: 5px;
   text-align: center;
-  background-color: #a7535a;
+  background-color: #a1a1a1;
 }
 .control_btn2{
   display: inline-block;
