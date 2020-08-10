@@ -19,7 +19,11 @@
             <div class="train_date">培训时间：{{item.show_time}}
             </div>
             <div class="finish_date">截止时间：{{item.finish_time_str}}</div>
+<<<<<<< HEAD
             <div class="course_url" tt:if="{{item.source_url}}" >资源链接：{{item.source_url}}</div>
+=======
+            <div class="finish_date" tt:if="{{item.source_url}}" >资源链接：{{item.source_url}}</div>
+>>>>>>> 6eb27fc133b93b61215ed13217a0dd28b4256880
             <div class="item_content" >备注：{{item.remark?item.remark:'-'}}</div>
             <div class="btns">
                 <div class="tag_sign" tt:if="{{item.is_signin&&item.mode==2}}" >已签到</div>

@@ -10,6 +10,10 @@ Page({
       success: function (res) {
         if (res.code) {
           console.log(res.code)
+<<<<<<< HEAD
+=======
+          return
+>>>>>>> 6eb27fc133b93b61215ed13217a0dd28b4256880
           tt.request({
             url: app.baseUrl+'/college/Index/getToken?code='+res.code,
             success(re) {

@@ -46,7 +46,11 @@
     min-height: 100vh;
     background-color: #eee;
     box-sizing: border-box;
+<<<<<<< HEAD
+    padding-top: 100px;
+=======
     padding-top: 60rpx;
+>>>>>>> master
 }
 .left_nav{
     width: 90px;
@@ -146,6 +150,7 @@
 .finish_date{
   font-size: 15px;
   margin-top: 5px;
+<<<<<<< HEAD
 }
 .course_url{
   font-size: 15px;
@@ -153,9 +158,15 @@
 }
 .course_url a{
   font-size: 15px;
+=======
+>>>>>>> 6eb27fc133b93b61215ed13217a0dd28b4256880
 }
 .nomore{
+<<<<<<< HEAD
+  font-size: 15px;
+=======
   font-size: 20rpx;
+>>>>>>> master
   text-align: center;
   color: #333;
   padding-left: 120px;
@@ -217,11 +228,19 @@
 .item_time {
   font-size: 13px;
   margin-top: 5px;
+<<<<<<< HEAD
 }
 .item_deadline,.score,.score_level {
   font-size: 16px;
   margin-top: 10px;
 }
+=======
+}
+.item_deadline,.score,.score_level {
+  font-size: 16px;
+  margin-top: 10px;
+}
+>>>>>>> 6eb27fc133b93b61215ed13217a0dd28b4256880
 .times{
   font-size: 16px;
   margin-top: 10px;

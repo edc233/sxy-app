@@ -1,5 +1,6 @@
 {
   "pages":[
+    "pages/login/login",
     "pages/index/index",
     "pages/pc/index/index",
     "pages/user/user",
@@ -8,8 +9,12 @@
     "pages/invitation/invitation",
     "pages/notice/notice",
     "pages/evaluate/evaluate",
+<<<<<<< HEAD
     "pages/qrcode/qrcode",
     "pages/pc/course/course"
+=======
+    "pages/qrcode/qrcode"
+>>>>>>> 6eb27fc133b93b61215ed13217a0dd28b4256880
   ],
   "window":{
     "backgroundTextStyle":"light",

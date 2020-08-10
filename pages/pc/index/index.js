@@ -55,10 +55,13 @@ Page({
       });
     }
   },
+<<<<<<< HEAD
   goLearn(e){
     const url = e.currentTarget.dataset.url
     app.navigator('/pages/pc/course/course?url='+url)
   },
+=======
+>>>>>>> 6eb27fc133b93b61215ed13217a0dd28b4256880
   login: function () {
     const that = this
     app.showLoading("登录中");
