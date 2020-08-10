@@ -33,11 +33,6 @@ Page({
     });
   },
   naviTo(){
-    tt.redirectTo({
-      url: '../examDetail/examDetail?id='+this.data.id, // 指定页面的url
-      fail(res){
-        console.log(res)
-      }
-    });
+    app.switchtab('/pages/exam/exam')
   }
 })

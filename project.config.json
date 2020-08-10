@@ -10,13 +10,13 @@
 	"projectname": "sxy-app",
 	"condition": {
 		"miniprogram": {
-			"current": -1,
+			"current": 3,
 			"list": [
 				{
 					"id": 0,
 					"name": "邀请页面【培训",
 					"pathName": "pages/invitation/invitation",
-					"query": "college_id=40",
+					"query": "college_id=2",
 					"scene": "1001",
 					"referrerInfo": {
 						"appId": "",
@@ -27,7 +27,7 @@
 					"id": 1,
 					"name": "邀请页面【考试",
 					"pathName": "pages/notice/notice",
-					"query": "exam_id=7",
+					"query": "exam_id=1",
 					"scene": "1001",
 					"referrerInfo": {
 						"appId": "",

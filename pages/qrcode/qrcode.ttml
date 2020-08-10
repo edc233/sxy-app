@@ -1,0 +1,2 @@
+<image src="{{src}}" class="image" ></image>
+<div class="return" bindtap="return" >返回列表</div>

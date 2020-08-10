@@ -18,6 +18,7 @@ Page({
   onLoad: function (options) {
     this.setData({
       id:options.id
+      // id:'6'
     },() => {
       app.setTitle("开始考试");
       this.getPaper();
@@ -128,33 +129,35 @@ Page({
   },
   submit: function () {
     const that = this;
-    if (this.data.len < this.data.tableData.question.length) {
-      tt.showModal({
-        title: "提示",
-        content: "未答完所有题目，提交后不可修改，是否提交试卷？",
-        confirmText: "提交",
-        showCancel: true,
-        cancelText: "继续答题",
-        success: function (res) {
-          if (res.confirm) {
-            that.checkPaper();
-            clearInterval(cdown)
-          }
-        },
-      });
-    } else {
-      tt.showModal({
-        title: "提示",
-        content: "所有题目均已做完，您确认提交吗？本次考试限考一次，提交后不可重考",
-        confirmText: "提交",
-        showCancel: true,
-        cancelText: "继续答题",
-        success: function (res) {
-          if (res.confirm) {
-            that.checkPaper();
-          }
-        },
-      });
+    if(!this.data.block){
+      if (this.data.len < this.data.tableData.question.length) {
+        tt.showModal({
+          title: "提示",
+          content: "未答完所有题目，提交后不可修改，是否提交试卷？",
+          confirmText: "提交",
+          showCancel: true,
+          cancelText: "继续答题",
+          success: function (res) {
+            if (res.confirm) {
+              that.checkPaper();
+              clearInterval(cdown)
+            }
+          },
+        });
+      } else {
+        tt.showModal({
+          title: "提示",
+          content: "所有题目均已做完，您确认提交吗？本次考试限考一次，提交后不可重考",
+          confirmText: "提交",
+          showCancel: true,
+          cancelText: "继续答题",
+          success: function (res) {
+            if (res.confirm) {
+              that.checkPaper();
+            }
+          },
+        });
+      }
     }
   },
   checkPaper: function () {
