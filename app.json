@@ -1,5 +1,6 @@
 {
   "pages":[
+    "pages/class/class",
     "pages/index/index",
     "pages/pc/index/index",
     "pages/index/index",
@@ -9,7 +10,8 @@
     "pages/invitation/invitation",
     "pages/login/login",
     "pages/notice/notice",
-    "pages/evaluate/evaluate"
+    "pages/evaluate/evaluate",
+    "pages/class/class"
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -27,6 +29,12 @@
     "selectedColor":"#d81e06",
     "color":"#707070",
     "list":[
+      {
+        "pagePath":"pages/class/class",
+        "text":"课程",
+        "iconPath":"./public/icon/icon10.png",
+        "selectedIconPath": "./public/icon/icon11.png"
+      },
       {
         "pagePath":"pages/index/index",
         "text":"培训",
