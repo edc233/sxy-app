@@ -19,3 +19,8 @@
     background: linear-gradient(to bottom,#f86241,#f26c46);
     box-shadow: 0px 0px 20px #999;
 }
+.log_container{
+    width: 100vw;
+    position: fixed;
+    top: 0;
+}

@@ -18,6 +18,7 @@ Page({
   onLoad: function (options) {
     this.setData({
       id:options.id
+      // id:'6'
     },() => {
       app.setTitle("开始考试");
       this.getPaper();

@@ -1,2 +1,4 @@
-<image src="../../public/images/logo.png" mode="aspectFit" class="logo" />
-<div class="log-btn" bindtap="login" >授权登录</div>
+<div class="log_container">
+    <image src="../../public/images/logo.png" mode="aspectFit" class="logo" />
+    <div class="log-btn" bindtap="login">授权登录</div>
+</div>

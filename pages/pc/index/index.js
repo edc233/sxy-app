@@ -32,12 +32,59 @@ Page({
     tableData: [],
     topActiveIndex: 1, //顶部导航激活
     leftActive: 1, //左边导航激活
-    page:1,
-    pageSize:99,
-    total_num:0
+    page: 1,
+    pageSize: 99,
+    total_num: 0,
   },
   onLoad: function (options) {
-    this.getList()
+    const that = this;
+    if (tt.getStorageSync("token")) {
+      this.getList();
+    } else {
+      tt.showModal({
+        title: "登录",
+        content: "暂未登录，是否立即登录",
+        success(res) {
+          if (res.confirm) {
+            console.log(1);
+            that.login();
+          } else if (res.cancel) {
+          } else {
+          }
+        },
+      });
+    }
+  },
+  goLearn(e){
+    const url = e.currentTarget.dataset.url
+    app.navigator('/pages/pc/course/course?url='+url)
+  },
+  login: function () {
+    const that = this
+    app.showLoading("登录中");
+    tt.login({
+      success: function (res) {
+        if (res.code) {
+          tt.request({
+            url: app.baseUrl + "/college/Index/getToken?code=" + res.code,
+            success(re) {
+              if (re.data.code == 200) {
+                app.showLoading("登录成功");
+                tt.setStorageSync("token", re.data.data);
+                setTimeout(() => {
+                  tt.hideToast();
+                  that.getList();
+                }, 500);
+              } else {
+                app.showLoading(re.data.msg);
+              }
+            },
+          });
+        } else {
+          console.log(res.errMsg);
+        }
+      },
+    });
   },
   handleTopNav: function (e) {
     const index = e.currentTarget.dataset.index;
@@ -71,37 +118,37 @@ Page({
           id: 3,
         },
       ];
-    }else{
+    } else {
       var list = [
         {
-          title:'任务',
-          id:1
-        }
-      ]
+          title: "任务",
+          id: 1,
+        },
+      ];
     }
     this.setData({
       topActiveIndex: index,
       leftList: list,
-      tableData:[],
-      leftActive:1
+      tableData: [],
+      leftActive: 1,
     });
-    console.log(this.data.topActiveIndex)
-    this.getlist()
+    console.log(this.data.topActiveIndex);
+    this.getlist();
   },
   handLeftNav: function (e) {
     const index = e.currentTarget.dataset.index;
     this.setData({
       leftActive: index,
     });
-    this.getlist()
+    this.getlist();
   },
   getList: function () {
     const that = this;
-    app.getNum()
+    app.getNum();
     tt.showLoading({ title: "加载中" });
     this.setData({
-      tip:"加载中"
-    })
+      tip: "加载中",
+    });
     tt.request({
       url: app.baseUrl + "/college/College/getCollegeList",
       data: {
@@ -118,24 +165,25 @@ Page({
             tableData: res.data.data.list,
             total_num: res.data.data.list.length,
           });
-          if(that.data.total_num<that.data.pageSize){
+          if (that.data.total_num < that.data.pageSize) {
             that.setData({
-              tip:"暂无更多"
+              tip: "暂无更多",
             });
           }
         } else {
           that.setData({
-            tip:"下拉刷新"
-          })
+            tip: "下拉刷新",
+          });
           app.showToast(res.data.msg);
         }
-      },fail(res){
-        console.log(res.data)
-      }
+      },
+      fail(res) {
+        console.log(res.data);
+      },
     });
-  }, 
+  },
   getList1: function () {
-    app.getNum()
+    app.getNum();
     this.setData({
       loading: 1,
       loading1: false,
@@ -174,52 +222,52 @@ Page({
       },
     });
   },
-  getMissions: function(){
-    var that =this
-    app.getNum()
+  getMissions: function () {
+    var that = this;
+    app.getNum();
     tt.showLoading({ title: "加载中" });
     this.setData({
-      tip:"加载中"
-    })
+      tip: "加载中",
+    });
     tt.request({
-      url:app.baseUrl + '/college/Lecturer/getCollegeList',
+      url: app.baseUrl + "/college/Lecturer/getCollegeList",
       data: {
-        token:tt.getStorageSync("token"),
-        page:that.data.page,
-        pageSize:that.data.pageSize,
+        token: tt.getStorageSync("token"),
+        page: that.data.page,
+        pageSize: that.data.pageSize,
       },
       success(res) {
         tt.stopPullDownRefresh();
         tt.hideLoading();
-        if(res.data.code==200){
+        if (res.data.code == 200) {
           that.setData({
-            tableData:res.data.data.list,
-            total_num:res.data.data.total_count,
+            tableData: res.data.data.list,
+            total_num: res.data.data.total_count,
           });
-          if(res.data.data.list.length<=that.data.total_num){
+          if (res.data.data.list.length <= that.data.total_num) {
             that.setData({
-              tip:'暂无更多'
-            })
+              tip: "暂无更多",
+            });
           }
         }
-      }
-    })
+      },
+    });
   },
-  getlist(){
-    if(this.data.topActiveIndex==1){
-      this.getList()
-    }else if(this.data.topActiveIndex==2){
-      this.getList1()
-    }else{
-      this.getMissions()
+  getlist() {
+    if (this.data.topActiveIndex == 1) {
+      this.getList();
+    } else if (this.data.topActiveIndex == 2) {
+      this.getList1();
+    } else {
+      this.getMissions();
     }
   },
-  notice(){
+  notice() {
     tt.showModal({
       title: "电脑端提示",
       content: "如需更多功能，烦请使用手机端打开本小程序",
-      showCancel:false,
-      confirmText:"我已知晓",
+      showCancel: false,
+      confirmText: "我已知晓",
     });
-  }
+  },
 });

@@ -1,35 +1,35 @@
 App({
-  //baseUrl: "https://tiaodao.headlinetop.com",
-  baseUrl: "http://192.168.111.32:80",
+  baseUrl: "https://tiaodao.headlinetop.com",
+  // baseUrl: "http://192.168.111.32:80",
   onLaunch: function () {},
   setTitle: function (title) {
     tt.setNavigationBarTitle({
       title: title,
     });
   },
-  showToast: function (title,icon="success") {
+  showToast: function (title, icon = "success") {
     tt.showToast({
       title,
-      icon
-    })
+      icon,
+    });
   },
   hideToast: function () {
     tt.hideToast();
   },
   navigator: function (url) {
     tt.navigateTo({
-      url
-    })
+      url,
+    });
   },
-  navigateBack: function (i=1) {
+  navigateBack: function (i) {
     tt.navigateBack({
-      delta: i
-    })
+      delta: i,
+    });
   },
   switchtab: function (url) {
     tt.switchTab({
-      url
-    })
+      url,
+    });
   },
   showLoading: function (title) {
     tt.showLoading({
@@ -39,20 +39,21 @@ App({
   hideLoading: function () {
     tt.hideLoading();
   },
-  getNum(){
-    this.getCollegeNumber()
-    this.getExamNumber()
+  getNum() {
+    this.getCollegeNumber();
+    this.getExamNumber();
   },
-  getCollegeNumber(){
+  getCollegeNumber() {
     tt.request({
-      url: this.baseUrl+'/college/College/getCollegeNumber', // 目标服务器url
-      data:{
+      url: this.baseUrl + "/college/College/getCollegeNumber", // 目标服务器url
+      data: {
         token: tt.getStorageSync("token"),
       },
-      method:"GET",
+      method: "GET",
       success: (res) => {
-       if(res.data.data!=0){
+        if (res.data.data) {
           tt.setTabBarBadge({
+<<<<<<< HEAD
             index: 1,
             text: ""+res.data.data+""
             })
@@ -60,21 +61,28 @@ App({
           tt.setTabBarBadge({
             index:1,
           })
+=======
+            index: 0,
+            text: "" + res.data.data + "",
+          });
+        }else{
+          tt.hideTabBarRedDot({
+            index: 0,
+          });
+>>>>>>> master
         }
-      },
-      fail:(res =>{
-      })
+      }
     });
   },
-  getExamNumber(){
+  getExamNumber() {
     tt.request({
-      url: this.baseUrl+'/college/Exam/getExamNumber', // 目标服务器url
-      data:{
+      url: this.baseUrl + "/college/Exam/getExamNumber", // 目标服务器url
+      data: {
         token: tt.getStorageSync("token"),
       },
-      method:"GET",
+      method: "GET",
       success: (res) => {
-        if(res.data.data!=0){
+        if (res.data.data) {
           tt.setTabBarBadge({
             index: 2,
             text: ""+res.data.data+""
@@ -84,9 +92,7 @@ App({
             index:2,
           })
         }
-      },
-      fail:(res =>{
-      })
+      }
     });
   },
 });

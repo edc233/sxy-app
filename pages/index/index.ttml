@@ -30,5 +30,5 @@
         </div>
     </div>
 
-    <div class="nomore">{{tip}}</div>
+    <div class="nomore" bindtap='handleLog' >{{tip}}</div>
 </div>

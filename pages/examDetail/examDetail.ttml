@@ -29,7 +29,7 @@
     </div>
     <div class="controls">
         <div class="exit" bindtap="exit" >退出考试</div>
-        <div class="submit" bindtap="submit">提交试卷</div>
+        <div class="{{block?'submit bg_gray':'submit '}}" bindtap="submit" >提交试卷</div>
     </div>
 
     <div class="notice" tt:if="{{showNote}}" >
