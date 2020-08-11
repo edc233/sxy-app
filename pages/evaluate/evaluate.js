@@ -4,15 +4,14 @@ Page({
     tableData: [],
     len: 0,
     isReady: false,
-    answer: [
-    ],
+    answer: [],
     id: 0,
   },
   onLoad: function (options) {
     this.setData({
-      id:options.id
-    })
-    console.log(this.data.id)
+      id: options.id,
+    });
+    console.log(this.data.id);
     this.getEvaluate();
     app.setTitle("讲师评价");
   },
@@ -56,53 +55,63 @@ Page({
     let list = this.data.answer;
     const l = list.filter((el) => {
       return el.id == id;
-    })
-    if(l!=0){
-      list.forEach(element => {
-        if(element.id==id){
-          element.content=value
+    });
+    if (l != 0) {
+      list.forEach((element) => {
+        if (element.id == id) {
+          element.content = value;
         }
       });
-    }else{
+    } else {
       list.push({
-        id,content:value
-      })
+        id,
+        content: value,
+      });
     }
     this.setData({
-      answer:list
-    })
+      answer: list,
+    });
   },
   submit: function () {
-    const list = this.data.answer
-    const len = this.data.len
-    if(list.length!=len){
-      app.showToast('还有未填的选项，请先完善','error')
-    }else{
+    const list = this.data.answer;
+    const len = this.data.len;
+    if (list.length != len) {
+      app.showToast("还有未填的选项，请先完善", "error");
+    } else {
       tt.showModal({
-        title:"提交评价",
-        content:"是否确认提交本次讲师评价",
+        title: "提交评价",
+        content: "是否确认提交本次讲师评价",
         success: (res) => {
-          if(res.confirm){
+          if (res.confirm) {
             tt.request({
-              url: app.baseUrl+'/college/College/addLecturerIssue', // 目标服务器url
-              method:"POST",
-              data:{
+              url: app.baseUrl + "/college/College/addLecturerIssue", // 目标服务器url
+              method: "POST",
+              data: {
                 token: tt.getStorageSync("token"),
-                id:this.data.id,
-                answer:JSON.stringify(this.data.answer)
+                id: this.data.id,
+                answer: JSON.stringify(this.data.answer),
               },
               success: (res) => {
-                console.log(res)
-                tt.navigateBack();
-              }
+                if (res.data.code == 200) {
+                  tt.showModal({
+                    title: "成功",
+                    content: "评价成功",
+                    success(res) {
+                      if (res.confirm) {
+                        tt.navigateBack();
+                      }
+                    },
+                  });
+                } else {
+                  app.showToast(res.data.msg)
+                }
+              },
             });
-          }else{
-            return
+          } else {
+            return;
           }
-        }
+        },
       });
-
-
     }
-  }
+  },
 });

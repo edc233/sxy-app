@@ -10,11 +10,11 @@
 }
 .username {
   color: #fff;
-  font-size: 40rpx;
+  font-size: 30rpx;
 }
 .department {
   color: #fff;
-  font-size: 40rpx;
+  font-size: 30rpx;
   margin-top: 10rpx;
 }
 .department span:nth-last-of-type(1) {

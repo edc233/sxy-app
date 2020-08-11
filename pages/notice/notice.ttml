@@ -10,5 +10,5 @@
         <div class="item_time">开始时间：{{exam.start_time}}</div>
         <div class="item_deadline">结束时间：{{exam.end_time}}</div>
     </div>
-    <button class="turnTo" bindtap="naviTo"> 打开考试页 </button>
+    <button class="turnTo" bindtap="naviTo"> 返回考试列表 </button>
 </div>
