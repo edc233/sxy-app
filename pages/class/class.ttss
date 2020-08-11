@@ -1,0 +1,28 @@
+.container {
+  padding-top: 90rpx;
+  background: rgba(247, 247, 247, 1);
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+.nav_container {
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  height: 80rpx;
+  overflow-x: auto;
+  white-space: nowrap;
+  background-color: #fff;
+  z-index: 2;
+}
+.nav_item {
+  width: 33%;
+  line-height: 60rpx;
+  display: inline-block;
+  text-align: center;
+  box-sizing: border-box;
+  font-size: 30rpx;
+  position: relative;
+}
+.nav_container .active {
+  color: #2fc588;
+}

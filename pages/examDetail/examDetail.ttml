@@ -1,22 +1,28 @@
 <div tt:if="{{isReady}}" >
     <div class="paper_info">
-        <div class="title">试卷标题：{{tableData.title}}</div>
-        <div class="score">及格分/总分：{{tableData.score_level}}/{{tableData.score}}</div>
         <div class="question_num">已答题数/总题数：{{len}}/{{tableData.question.length}}</div>
         <div class="time">考试剩余时间：{{hour}}:{{minutes}}</div>
-        <div class="{{score<60?'get_score low_score':score>=60&&score<75?'get_score mid_score':'get_score high_score'}}" tt:if="{{showScore}}" >分数：{{score}}分</div>
     </div>
     <div class="questions">
+        <div class="title">试卷标题：{{tableData.title}}</div>        
+        <div class="score">及格分/总分：{{tableData.score_level}}/{{tableData.score}}</div>
+        <div class="{{score<60?'get_score low_score':score>=60&&score<75?'get_score mid_score':'get_score high_score'}}" tt:if="{{showScore}}" >分数：{{score}}分</div>
         <div class="item" tt:for="{{tableData.question}}">
             <div class="question_title"> {{index+1}}.{{item.title}}({{item.property==1?'单选':item.property==2?'多选':'判断'}})({{item.score}}分)
                 <icon class="tt-icon" type="success" size="20px" color="#5dbe8a" tt:if="{{item.isRight==2}}"></icon>
                 <icon class="tt-icon" type="clear" size="20px" color="#ef475d" tt:if="{{item.isRight==1}}"></icon>
             </div>
-            <radio-group class="radio_group" data-index="{{index}}" bindchange="handleChange" tt:if="{{item.property!=2}}">
-                <radio class="radio" tt:for-item="el" tt:for-index="in" disabled="{{block}}" tt:for="{{item.answer}}" color="#5cb3cc" value="{{in}}">{{el.title}}</radio>
+            <radio-group class="radio_group" data-index="{{index}}"  bindchange="handleChange" tt:if="{{item.property!=2}}">
+                <label tt:for-item="el" tt:for="{{item.answer}}" tt:for-index="in">
+                    <radio class="radio" disabled="{{block}}" color="#5cb3cc" value="{{in}}"></radio>
+                    <text class="radio_text">{{el.title}}</text>
+                </label>
             </radio-group>
             <checkbox-group class="radio_group"  data-index="{{index}}" bindchange="handleChange1" tt:if="{{item.property==2}}">
-                <checkbox class="radio" tt:for-item="el" tt:for-index="in" disabled="{{block}}" tt:for="{{item.answer}}" color="#5cb3cc" value="{{in}}">{{el.title}}</checkbox>
+                <label tt:for-item="el" tt:for="{{item.answer}}"  tt:for-index="in">
+                    <checkbox class="radio"  disabled="{{block}}" color="#5cb3cc" value="{{in}}"></radio>
+                    <text style="font-size:40rpx;word-break: break-all">{{el.title}}</text>
+                </label>
             </checkbox-group>
             <div class="right" tt:if="{{tableData.check_mistake&&block}}">正确答案：{{item.right}}</div>
         </div>
@@ -30,9 +36,10 @@
         <div class="content">
             <div class="notice_title" >考试须知</div>
             <div class="rule_container" >
-                <div class="rules" >1.考试过程中禁止切出屏幕，否则会自动提交试卷。</div>
-                <div class="rules" >3.考题完成后，点击右下角提交试卷，查看成绩，等待显示“试卷提交成功”，然后点击左下角退出考试，方可退出。</div>
-                <div class="rules">4.请勿使用手机自带返回键退出考试，可能会造成分数错乱。</div>
+                <div class="rules" >1. 考试过程中禁止切出屏幕，否则会自动提交试卷。</div>
+                <div class="rules" >2. 请勿在单个页面停留时间超过60秒，否则会自动提交试卷。</div>
+                <div class="rules">3. 请勿使用手机自带返回键退出考试，可能会造成分数错乱。</div>
+                <div class="rules">4. 考题完成后点击右下角提交试卷，查看成绩，等待显示“试卷提交成功”，然后点击左下角退出考试，即可推出。</div>
             </div>
             <div bindtap="close" class="{{second==0?'close red':'close'}}">{{content}}</div>
         </div>

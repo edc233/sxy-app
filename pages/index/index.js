@@ -86,6 +86,10 @@ Page({
         tt.stopPullDownRefresh();
         tt.hideLoading();
         if (res.data.code == 200) {
+           res.data.data.list.forEach(item => {
+            item.time = item.show_time.split("~")[0];
+            item.time1 = item.show_time.split("~")[1];
+          })
           that.setData({
             tableData: res.data.data.list,
             total_num: res.data.data.list.length,
@@ -151,6 +155,10 @@ Page({
           for (var i = 0; i < res.data.data.list.length; i++) {
             table.push(res.data.data.list[i]) 
           }
+          table.forEach(item => {
+            item.time = item.show_time.split("~")[0];
+            item.time1 = item.show_time.split("~")[1];
+          })
           that.setData({
             tableData:table,
             total_num: res.data.data.total_count,

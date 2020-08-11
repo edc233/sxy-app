@@ -53,6 +53,15 @@ App({
       success: (res) => {
         if (res.data.data) {
           tt.setTabBarBadge({
+<<<<<<< HEAD
+            index: 1,
+            text: ""+res.data.data+""
+            })
+        }else{
+          tt.setTabBarBadge({
+            index:1,
+          })
+=======
             index: 0,
             text: "" + res.data.data + "",
           });
@@ -60,6 +69,7 @@ App({
           tt.hideTabBarRedDot({
             index: 0,
           });
+>>>>>>> master
         }
       }
     });
@@ -74,13 +84,13 @@ App({
       success: (res) => {
         if (res.data.data) {
           tt.setTabBarBadge({
-            index: 1,
-            text: "" + res.data.data + "",
-          });
-        } else {
-          tt.hideTabBarRedDot({
-            index: 1,
-          });
+            index: 2,
+            text: ""+res.data.data+""
+            })
+        }else{
+          tt.setTabBarBadge({
+            index:2,
+          })
         }
       }
     });

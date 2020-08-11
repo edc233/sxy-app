@@ -13,14 +13,14 @@
          class="{{activeIndex==0?'item bg_green':state==2&&item.is_expired==0?'item bg_red':'item bg_gray'}}"
          data-expired="{{item.is_expired}}">
             <div class="item_tag">{{item.modeName}}</div>
-            <div class="item_title">标题：{{item.title}}</div>
-            <div class="lecturer">讲师：{{item.lecturerName?item.lecturerName:'-'}}</div>
-            <div class="address">地点：{{item.address?item.address:'-'}}</div>
-            <div class="train_date">培训时间：{{item.show_time}}
+            <div class="item_title">培训标题：{{item.title}}</div>
+            <div class="lecturer">培训讲师：{{item.lecturerName?item.lecturerName:'-'}}</div>
+            <div class="address">培训地点：{{item.address?item.address:'-'}}</div>
+            <div class="train_date">培训时间：{{item.time}}
+                <div style="margin-top:5rpx;margin-left:150rpx" >{{item.time1}}</div>
             </div>
             <div class="finish_date">截止时间：{{item.finish_time_str}}</div>
-            <div class="course_url" tt:if="{{item.source_url}}" >资源链接：{{item.source_url}}</div>
-            <div class="item_content" >备注：{{item.remark?item.remark:'-'}}</div>
+            <div class="item_content" tt:if="{{item.remark}}">培训备注：{{item.remark}}</div>
             <div class="btns">
                 <div class="tag_sign" tt:if="{{item.is_signin&&item.mode==2}}" >已签到</div>
                 <div class="control_btn1"  tt:if="{{state==2&&item.is_expired==1}}">已过期</div>

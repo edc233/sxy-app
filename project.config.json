@@ -16,7 +16,7 @@
 					"id": 0,
 					"name": "邀请页面【培训",
 					"pathName": "pages/invitation/invitation",
-					"query": "college_id=2",
+					"query": "college_id=7",
 					"scene": "1001",
 					"referrerInfo": {
 						"appId": "",
@@ -61,6 +61,17 @@
 					"name": "测试pc",
 					"pathName": "pages/pc/index/index",
 					"query": "",
+					"scene": "1001",
+					"referrerInfo": {
+						"appId": "",
+						"extraData": ""
+					}
+				},
+				{
+					"id": 5,
+					"name": "考试页面",
+					"pathName": "pages/examDetail/examDetail",
+					"query": "id=8",
 					"scene": "1001",
 					"referrerInfo": {
 						"appId": "",

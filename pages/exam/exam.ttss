@@ -36,7 +36,7 @@
   left: 50%;
   margin-left: -20rpx;
 }
-.exam_item {
+.item {
   margin: 0 20rpx 20rpx;
   background-color: #fff;
   box-sizing: border-box;
@@ -107,8 +107,8 @@
     border: 1px solid #ff9900;
     color: #ff9900;
 }
-.user_score{
-    position: absolute;
+.user_score{ 
+  position: absolute;
     bottom: 20rpx;
     right: 20rpx;
     font-size: 40rpx;

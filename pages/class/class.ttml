@@ -1,0 +1,5 @@
+  <div class="index_container">
+    <div class="nav_container">
+        <div tt:for="{{navList}}" class="{{activeIndex==index?'active nav_item':'nav_item'}}" bindtap="handleNav" data-id="{{item.index}}">{{item.title}}</div>
+    </div>
+  </div>
