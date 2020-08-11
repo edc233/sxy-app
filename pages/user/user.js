@@ -71,8 +71,8 @@ Page({
       page: 1,
     });
   },
-  go(){
-    app.navigator('/pages/pc/index/index')
+  go() {
+    app.navigator("/pages/pc/index/index");
   },
   handleNav: function (e) {
     this.setData({
@@ -171,10 +171,12 @@ Page({
         id: e.currentTarget.dataset.id,
       },
       success: (res) => {
-        console.log("data:image/png;base64," + res.data)
+        console.log("data:image/png;base64," + res.data);
         if (!res.data.code) {
           tt.hideLoading();
-          app.navigator('/pages/qrcode/qrcode?src='+"data:image/png;base64," + res.data)
+          app.navigator(
+            "/pages/qrcode/qrcode?src=" + "data:image/png;base64," + res.data
+          );
         } else {
           tt.hideLoading();
           tt.showModal({
@@ -189,11 +191,12 @@ Page({
         }
       },
       fail: (res) => {
-        console.log('error')
+        console.log("error");
       },
     });
   },
   complete: function (e) {
+    const that = this
     tt.showModal({
       title: "点击完成",
       content: "请确认该任务是否已完成",
@@ -208,11 +211,22 @@ Page({
             },
             method: "POST",
             success: (res) => {
-              tt.showModal({
-                title: "完成",
-                content: "该任务已完成",
-                showCancel: false,
-              });
+              if (res.data.code == 200) {
+                tt.showModal({
+                  title: "完成",
+                  content: "该任务已完成",
+                  showCancel: false,
+                  success() {
+                    that.getMissions()
+                  },
+                });
+              } else {
+                tt.showModal({
+                  title: "失败",
+                  content: res.data.msg,
+                  showCancel: false,
+                });
+              }
             },
             fail: (res) => {
               tt.showModal({

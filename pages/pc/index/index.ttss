@@ -1,10 +1,10 @@
 .container{
     min-height: 100vh;
-    width: 1000px;
+    /* width: 1000px; */
 }
 .top_nav{
     width: 100%;
-    height: 60rpx;
+    height: 60px;
     background-color: #fff;
     position: fixed;
     top: 0;
@@ -14,18 +14,18 @@
 .top_item{
     display: inline-block;
     width: 33%;
-    font-size: 35rpx;
+    font-size: 18px;
     text-align: center;
-    line-height: 60rpx;
+    line-height: 60px;
     color: #333;
     transition: all .3s;
 }
 .line{
-    width: 100rpx;
+    width: 100px;
     background-color: #ed556a;
     height: 5px;
     position: absolute;
-    top: 55rpx;
+    top: 55px;
     transition: all .3s;
 }
 .top_active{
@@ -33,32 +33,32 @@
     color: #ed556a !important;
 }
 .position1{
-    left:10%;
+    left:calc((33% - 100px)/2);
 }
 .position2{
-    left: calc((100% - 100rpx)/2);
+    left: calc((100% - 100px)/2);
 }
 .position3{
-    left: 76%;
+    left: calc((165% - 100px)/2);
 }
 .list_container{
     width: 100%;
     min-height: 100vh;
     background-color: #eee;
     box-sizing: border-box;
-    padding-top: 60rpx;
+    padding-top: 70px;
 }
 .left_nav{
     width: 90px;
     height: 100vh;
     position: fixed;
     left: 0;
-    top: 60rpx;
+    top: 60px;
     background-color: #fff;
 }
 .left_item{
     color: #333;
-    font-size: 20px;
+    font-size: 18px;
     line-height: 100px;
     text-align: center;
     transition: all .3s;
@@ -87,24 +87,25 @@
     top: 200px;
 }
 .train_list{
-    padding-left: 120px;
+    padding-left: 95px;
     box-sizing: border-box;
 }
 .exam_list{
-    padding-left: 120px;
+    padding-left: 95px;
     box-sizing: border-box;
 }
 .mission_list{
-    padding-left: 120px;
+    padding-left: 95px;
     box-sizing: border-box;
     }
 .item{
     box-sizing: border-box;
     padding: 35px 20px 10px;
-    margin: 0 10px 10px;
+    margin: 0 auto 10px;
     border-radius: 10px;
     overflow: hidden;
     position: relative;
+    max-width: 800px;
 }
 .bg_green{
   background-color: rgba(47,197,136, 1);
@@ -155,10 +156,11 @@
   font-size: 15px;
 }
 .nomore{
-  font-size: 20rpx;
+  font-size: 14px;
   text-align: center;
   color: #333;
-  padding-left: 120px;
+  padding-left: 90px;
+  padding-right: 90px;
 }
 .address{
   font-size: 15px;
@@ -186,20 +188,22 @@
 .train_item {
   box-sizing: border-box;
   padding: 35px 20px 10px;
-  margin: 0 10px 10px;
+  margin: 0 auto 10px;
   border-radius: 10px;
   overflow: hidden;
   position: relative;
+  max-width: 800px;
 }
 
 .exam_item{  
-  margin: 0 10px 10px;
+  margin: 0 auto 10px;
   background-color: #fff;
   box-sizing: border-box;
   padding: 30px 20px 10px;
   border-radius: 5px;
   box-shadow: 8px 8px 10px 0px rgba(51, 51, 51, 0.05);
   position: relative;
+  max-width: 800px;
 }
 .item_title2 {
   font-size: 16px;
@@ -300,6 +304,7 @@
   border-radius: 10px;
   overflow: hidden;
   background-color: rgba(47,197,136, 1);
-  margin: 0 10px 10px;
+  margin: 0 auto 10px;
   position: relative;
+  max-width: 800px;
 }
