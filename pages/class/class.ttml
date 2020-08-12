@@ -2,4 +2,9 @@
     <div class="nav_container">
         <div tt:for="{{navList}}" class="{{activeIndex==index?'active nav_item':'nav_item'}}" bindtap="handleNav" data-id="{{item.index}}">{{item.title}}</div>
     </div>
+    <div class="container">
+      <div class="nav_left">
+        <div tt:for="{{navLeft}}" class="{{activeLeft==index?'active nav_item1':'nav_item1'}}" bindtap="handleNav1" data-id="{{item.index}}">{{item.title}}</div>
+      </div>
+    </div>
   </div>

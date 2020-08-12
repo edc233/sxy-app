@@ -13,7 +13,8 @@ Page({
     time:0,
     second:10,
     content:'关闭提示，开始答题',
-    showNote:true
+    showNote:true,
+    showScore:false,
   },
   onLoad: function (options) {
     this.setData({
@@ -120,7 +121,7 @@ Page({
           hour,
           minutes,
         });
-      }else if(time<=0){
+      }else if(time<=0&&this.data.showScore==false){
         this.checkPaper()
       }
     }, 1000);
@@ -217,6 +218,9 @@ Page({
         this.sendAnswer(JSON.stringify(answer), this.data.tableData.id);
       }
     );
+    tt.pageScrollTo({
+      scrollTop: 0 // 目标位置
+    });       
   },
   sendAnswer: function (answer, id) {
     app.showLoading("提交中");

@@ -1,6 +1,6 @@
 App({
-  baseUrl: "https://tiaodao.headlinetop.com",
-  // baseUrl: "http://192.168.111.32:80",
+  //baseUrl: "https://tiaodao.headlinetop.com",
+  baseUrl: "http://192.168.111.32:80",
   onLaunch: function () {},
   setTitle: function (title) {
     tt.setNavigationBarTitle({
@@ -53,7 +53,6 @@ App({
       success: (res) => {
         if (res.data.data) {
           tt.setTabBarBadge({
-<<<<<<< HEAD
             index: 1,
             text: ""+res.data.data+""
             })
@@ -61,15 +60,6 @@ App({
           tt.setTabBarBadge({
             index:1,
           })
-=======
-            index: 0,
-            text: "" + res.data.data + "",
-          });
-        }else{
-          tt.hideTabBarRedDot({
-            index: 0,
-          });
->>>>>>> master
         }
       }
     });
