@@ -6,5 +6,17 @@
       <div class="nav_left">
         <div tt:for="{{navLeft}}" class="{{activeLeft==index?'active nav_item1':'nav_item1'}}" bindtap="handleNav1" data-id="{{item.index}}">{{item.title}}</div>
       </div>
+      <div class="item_container">
+          <div class="item" tt:for="{{tableData}}">
+              <div class="item_tag">{{item.modeName}}</div>
+              <div class="item_title">课程标题：{{item.title}}</div>
+              <div class="summarize">概述：{{item.summarize}}</div>
+              <div class = row>
+                <div class="attribute">属性：{{item.attribute}}</div>
+                <div class="lecturer">作者：{{item.lecturerName?item.lecturerName:'-'}}</div>
+              </div>
+          </div>
+      </div>
     </div>
+
   </div>
