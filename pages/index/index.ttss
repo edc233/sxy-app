@@ -139,7 +139,6 @@
   right: 0;
   font-size: 30rpx;
   color: #fff;
-  top: 0;
   /* background-color: #ee3f4d; */
 }
 .btns {

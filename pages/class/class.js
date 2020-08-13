@@ -27,8 +27,15 @@ Page({
       {
         title: "后台",
         index: 2,
-      },],
+      }],
     activeLeft:0,
+    tableData:[{
+      modeName:"测试",
+      title:"测试",
+      summarize:"测试",
+      attribute:"测试",
+      lecturerName:"测试",
+    }],
 
   },
   onLoad: function (options) {
@@ -49,5 +56,5 @@ Page({
         page: 1,
       },
     );
-  },
+  }
 })
