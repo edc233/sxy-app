@@ -126,7 +126,7 @@ Page({
       }
     }, 1000);
   },
-  exit: function () {
+  exit: function () { 
     app.navigateBack()
   },
   submit: function () {

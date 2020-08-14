@@ -16,7 +16,7 @@
         <div class="tags">
             <div class="duration">{{item.time_length}}分钟</div>
             <div class="place">{{item.typeName}}</div>
-            <div class="exam_btn"  data-id="{{item.id}}" bindtap="startExam" tt:if="{{activeIndex==1}}" >开始考试</div>
+            <div class="exam_btn"  data-id="{{item.id}}" bindtap="startExam" tt:if="{{activeIndex==1&&item.is_start==1}}" >开始考试</div>
         </div>
         <div class="{{item.user_score<60?'user_score low_score':item.user_score>=60&&item.user_score<75?'user_score mid_score':'user_score high_score'}}" tt:if="{{activeIndex!=1}}">
         得分：{{item.user_score}}分</div>
