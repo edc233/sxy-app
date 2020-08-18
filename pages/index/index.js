@@ -98,11 +98,12 @@ Page({
             that.setData({
               tip:"暂无更多"
             });
-          }
-        } else {
+          }else{
           that.setData({
             tip:"下拉刷新"
           })
+          }
+        } else {
           app.showToast(res.data.msg);
         }
       }
@@ -233,7 +234,7 @@ Page({
     }else if(e.currentTarget.dataset.state==2&&
     e.currentTarget.dataset.lecturer>0&&
     e.currentTarget.dataset.expired==0&&
-    (e.currentTarget.dataset.signed||e.currentTarget.dataset.mode==1)){
+    (e.currentTarget.dataset.signed&&e.currentTarget.dataset.mode==2)){
       tt.showModal({
         title:"讲师评价",
         content:"是否进入讲师评价页面",
@@ -250,9 +251,8 @@ Page({
 
 
     }else if(e.currentTarget.dataset.state==2&&
-    e.currentTarget.dataset.lecturer==0&&
     e.currentTarget.dataset.expired==0&&
-    (e.currentTarget.dataset.signed||e.currentTarget.dataset.mode==1)){
+    (e.currentTarget.dataset.signed|e.currentTarget.dataset.mode==1)){
       tt.showModal({
         title:"培训完成",
         content:"是否确认培训任务已完成",

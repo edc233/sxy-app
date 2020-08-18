@@ -1,21 +1,25 @@
+ 
   <div class="index_container">
     <div class="nav_container">
         <div tt:for="{{navList}}" class="{{activeIndex==index?'active nav_item':'nav_item'}}" bindtap="handleNav" data-id="{{item.index}}">{{item.title}}</div>
-    </div>
+    </div> 
     <div class="container">
       <div class="nav_left">
-        <div tt:for="{{navLeft}}" class="{{activeLeft==index?'active nav_item1':'nav_item1'}}" bindtap="handleNav1" data-id="{{item.index}}">{{item.title}}</div>
+        <div tt:for="{{navLeft}}" class="{{activeLeft==index?'active nav_item1':'nav_item1'}}" bindtap="handleNav1" data-index="{{item.index}}" data-id="{{item.id}}">{{item.title}}</div>
       </div>
-      <div class="item_container">
+      <div class="item_container" id="test">
           <div class="item" tt:for="{{tableData}}">
-              <div class="item_tag">{{item.modeName}}</div>
+              <div class="item_tag">{{item.study_percentage}}%</div>
               <div class="item_title">课程标题：{{item.title}}</div>
-              <div class="summarize">概述：{{item.summarize}}</div>
               <div class = row>
-                <div class="attribute">属性：{{item.attribute}}</div>
-                <div class="lecturer">作者：{{item.lecturerName?item.lecturerName:'-'}}</div>
+                <div class="attribute">属性：{{item.propertyName}}</div>
+                <div class="lecturer">作者：{{item.author?item.author:'-'}}</div>
               </div>
+              <div class="source">资源链接：{{item.source_url?item.source_url:'-'}}</div>
+              <div class="summarize">概述：{{item.remark}}</div>
           </div>
+          
+    <div class="nomore" >{{tip}}</div>
       </div>
     </div>
 
