@@ -53,12 +53,12 @@ App({
       success: (res) => {
         if (res.data.data) {
           tt.setTabBarBadge({
-            index: 1,
+            index: 0,
             text: ""+res.data.data+""
             })
         }else{
           tt.setTabBarBadge({
-            index:1,
+            index:0,
           })
         }
       }
@@ -74,12 +74,12 @@ App({
       success: (res) => {
         if (res.data.data) {
           tt.setTabBarBadge({
-            index: 2,
+            index: 1,
             text: ""+res.data.data+""
             })
         }else{
           tt.setTabBarBadge({
-            index:2,
+            index:1,
           })
         }
       }
