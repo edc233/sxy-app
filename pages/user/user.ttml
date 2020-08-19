@@ -3,7 +3,6 @@
         <div class="username">{{username}}</div>
         <div class="department">
             <span>{{department}}</span>
-            <span>{{position}}</span>
         </div>
     </div>
     <div class="avatar_container">
@@ -19,10 +18,10 @@
     <div class="item_container" tt:if="{{activeIndex==0}}">
         <div class="item" tt:for="{{tableData}}">
             <div class="item_tag">{{item.modeName}}</div>
-            <div class="item_title">{{item.id}}  标题：{{item.title}}</div>
-            <div class="lecturer">讲师：{{username}}</div>
+            <div class="item_title">培训标题：{{item.title}}</div>
+            <div class="lecturer">培训讲师：{{username}}</div>
             <div class="train_date">培训时间：{{item.show_time}}</div>
-            <div class="item_content">备注：{{item.remark?item.remark:'-'}}</div>
+            <div class="item_content" tt-if="{{item.remark}}">培训备注：{{item.remark?item.remark:'-'}}</div>
             <div class="btns">
                 <div class="control_btn1" tt:if="{{item.state==1}}">未开始</div>
                 <div class="control_btn2" tt:if="{{item.state==3}}">已完成</div>

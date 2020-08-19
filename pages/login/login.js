@@ -10,6 +10,7 @@ Page({
       success: function (res) {
         if (res.code) {
           console.log(res.code)
+          // return
           tt.request({
             url: app.baseUrl+'/college/Index/getToken?code='+res.code,
             success(re) {
@@ -30,6 +31,12 @@ Page({
                     delta: 1
                   })
                 }, 500);
+              }else{
+                tt.showModal({
+                  title: '提示',
+                  content: res.data.msg,
+                  showCancel:false
+                })
               }
             }
           })

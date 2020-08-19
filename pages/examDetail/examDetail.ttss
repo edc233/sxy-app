@@ -18,12 +18,14 @@
 .score{
   text-align: center;
   font-size: 30rpx;
+  margin-top: 10rpx;
 }
 .get_score {
   margin-top: 0;
   width: 100%;
   text-align: center;
   font-weight: bold;
+  margin-top: 10rpx;
   font-size: 50rpx !important;
 }
 .title {
@@ -158,4 +160,34 @@
 .red{
   background-color: #2376b7;
   color: #fff;
+}
+.ban{
+  width: 70vw;
+  height: 40vh;
+  position: fixed;
+  top: calc((100vh - 40vh) / 2);
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+.warning{
+  font-size: 30rpx;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 40rpx;
+  color: #fff;
+}
+.warning div{
+  line-height:60rpx;
+}
+.seconds{
+  margin-top: 40rpx;
+  text-align: center;
+  font-size: 200rpx;
+  font-weight: bold;
+  color: rgb(255, 87, 87);
 }
