@@ -21,30 +21,33 @@ Page({
     loading: 0,
     loading1: false,
     stop: false,
-    tip:'加载中...',
-    isBackFromLogin:false
+    tip: "加载中...",
+    isBackFromLogin: false,
   },
   onLoad: function () {
-    if(tt.getStorageSync('token')){
-      this.getList()
-    }else{
+    if (tt.getStorageSync("token")) {
+      this.getList();
+    } else {
       app.navigator("/pages/login/login");
       this.setData({
-        loading:1,
-        tip:'暂未登录，点击登录'
-      })
+        loading: 1,
+        tip: "暂未登录，点击登录",
+      });
     }
   },
   onShow: function () {
-    if(this.data.isBackFromLogin){
-      this.setData({
-        tip:'加载中'
-      },() => {
-        this.getList()
-      })
+    if (this.data.isBackFromLogin) {
+      this.setData(
+        {
+          tip: "加载中",
+        },
+        () => {
+          this.getList();
+        }
+      );
     }
-    if(tt.getStorageSync('token')){
-      this.getList()
+    if (tt.getStorageSync("token")) {
+      this.getList();
     }
   },
   onPullDownRefresh() {
@@ -71,50 +74,52 @@ Page({
     }
   },
   getList: function () {
-    if(tt.getStorageSync('token')){
+    if (tt.getStorageSync("token")) {
       const that = this;
-      app.getNum()
+      app.getNum();
       this.setData({
         loading: 1,
         loading1: false,
         stop: false,
       });
       app.showLoading("加载中");
-      tt.request({
-        url: app.baseUrl + "/college/Exam/getExamList",
-        data: {
-          token: tt.getStorageSync("token"),
-          state: that.data.activeIndex,
-          page: that.data.page,
-          pageSize: 5,
-        },
-        success(res) {
-          app.hideLoading();
-          tt.stopPullDownRefresh();
-          if (res.data.code == 200) {
-            if (res.data.data.list.length != 0) {
-              that.setData({
-                loading: 2,
-                tableData: res.data.data.list,
-              });
-            } else {
-              that.setData({
-                loading: 2,
-                loading1: true,
-                tableData: res.data.data.list,
-              });
+      setTimeout(() => {
+        tt.request({
+          url: app.baseUrl + "/college/Exam/getExamList",
+          data: {
+            token: tt.getStorageSync("token"),
+            state: that.data.activeIndex,
+            page: that.data.page,
+            pageSize: 5,
+          },
+          success(res) {
+            app.hideLoading();
+            tt.stopPullDownRefresh();
+            if (res.data.code == 200) {
+              if (res.data.data.list.length != 0) {
+                that.setData({
+                  loading: 2,
+                  tableData: res.data.data.list,
+                });
+              } else {
+                that.setData({
+                  loading: 2,
+                  loading1: true,
+                  tableData: res.data.data.list,
+                });
+              }
             }
-          }
-        },
-        fail(res) {
-          console.log(`request 调用失败`);
-        },
-      });
-    }else{
+          },
+          fail(res) {
+            console.log(`request 调用失败`);
+          },
+        });
+      }, 500);
+    } else {
       this.setData({
         loading: 1,
-        tip:'暂未登录，点击登录'
-      })
+        tip: "暂未登录，点击登录",
+      });
     }
   },
   addList: function () {
@@ -152,7 +157,7 @@ Page({
     });
   },
   handleLog: function () {
-    if(this.data.tip=='暂未登录，点击登录'){
+    if (this.data.tip == "暂未登录，点击登录") {
       app.navigator("/pages/login/login");
     }
   },
@@ -166,7 +171,7 @@ Page({
         if (res.confirm) {
           const id = el.target.dataset.id;
           app.navigator("/pages/examDetail/examDetail?id=" + id);
-          console.log(id)
+          console.log(id);
         }
       },
     });

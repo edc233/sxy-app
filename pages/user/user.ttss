@@ -157,6 +157,7 @@
 }
 .btns{
   text-align: right;
+  margin-top: 20rpx;
 }
 .control_btn1{
   line-height: 60rpx;
