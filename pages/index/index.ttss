@@ -60,7 +60,7 @@
 }
 .item {
   box-sizing: border-box;
-  padding: 70rpx 40rpx 20rpx;
+  padding: 20rpx 30rpx 20rpx;
   margin: 0 20rpx 20rpx;
   border-radius: 10px;
   overflow: hidden;
@@ -73,7 +73,7 @@
   background-color: #29b867
 }
 .bg_red{
-  background-color: #f15642
+  background-color: #f76856
 }
 .bg_gray{
   background-color: #ffc90c
@@ -131,6 +131,10 @@
   line-height: 40rpx;
   color: #333;
 }
+.course{
+  font-size: 30rpx;
+  margin-top: 10rpx;
+}
 .item_tag {
   line-height: 40rpx;
   padding: 10rpx 20rpx;
@@ -143,7 +147,7 @@
 }
 .btns {
   text-align: right;
-  margin-top: 10rpx;
+  margin-top: 20rpx;
   height: 60rpx;
 }
 .tag_sign {
@@ -178,6 +182,16 @@
   margin: 0 10rpx;
 }
 .control_btn3 {
+  display: inline-block;
+  line-height: 60rpx;
+  padding: 0 30rpx;
+  color: #fff;
+  font-size: 30rpx;
+  background-color: #0883e7;
+  border-radius: 5px;
+  text-align: center;
+}
+.course_btn{
   display: inline-block;
   line-height: 60rpx;
   padding: 0 30rpx;

@@ -11,7 +11,8 @@
     "pages/notice/notice",
     "pages/evaluate/evaluate",
     "pages/qrcode/qrcode",
-    "pages/pc/course/course"
+    "pages/pc/course/course",
+    "pages/course/course"
   ],
   "window":{
     "backgroundTextStyle":"light",
