@@ -93,6 +93,7 @@ Page({
             pageSize: 5,
           },
           success(res) {
+            console.log(res)
             app.hideLoading();
             tt.stopPullDownRefresh();
             if (res.data.code == 200) {

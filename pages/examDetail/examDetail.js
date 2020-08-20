@@ -23,8 +23,7 @@ Page({
   onLoad: function (options) {
     this.setData(
       {
-        // id: options.id,
-        id: "25",
+        id: options.id,
       },
       () => {
         app.setTitle("开始考试");
