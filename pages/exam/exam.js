@@ -93,7 +93,6 @@ Page({
             pageSize: 5,
           },
           success(res) {
-            console.log(res)
             app.hideLoading();
             tt.stopPullDownRefresh();
             if (res.data.code == 200) {
@@ -172,7 +171,6 @@ Page({
         if (res.confirm) {
           const id = el.target.dataset.id;
           app.navigator("/pages/examDetail/examDetail?id=" + id);
-          console.log(id);
         }
       },
     });
