@@ -63,6 +63,17 @@ Page({
                 identity: false,
               });
             }
+          } else if (res.data.code == 501||res.data.code == 500) {
+            tt.showModal({
+              title: "Error",
+              content: res.data.msg,
+              confirmText: "点击登录",
+              success(res) {
+                if (res.confirm) {
+                  app.navigator("/pages/login/login");
+                }
+              },
+            });
           }
         },
       });
@@ -97,7 +108,7 @@ Page({
         pageSize: that.data.pageSize,
       },
       success(res) {
-        console.log(res)
+        console.log(res);
         tt.stopPullDownRefresh();
         tt.hideLoading();
         if (res.data.code == 200) {
@@ -197,7 +208,7 @@ Page({
     });
   },
   complete: function (e) {
-    const that = this
+    const that = this;
     tt.showModal({
       title: "点击完成",
       content: "请确认该任务是否已完成",
@@ -218,7 +229,7 @@ Page({
                   content: "该任务已完成",
                   showCancel: false,
                   success() {
-                    that.getMissions()
+                    that.getMissions();
                   },
                 });
               } else {

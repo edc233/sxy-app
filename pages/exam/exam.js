@@ -109,7 +109,18 @@ Page({
                   tableData: res.data.data.list,
                 });
               }
-            }
+            }else if (res.data.code == 501||res.data.code == 500) {
+              tt.showModal({
+                title: 'Error',
+                content: res.data.msg,
+                confirmText:'点击登录',
+                success(res) {
+                  if (res.confirm) {
+                    app.navigator('/pages/login/login')
+                  }
+                },
+              });
+            } 
           },
           fail(res) {
             console.log(`request 调用失败`);

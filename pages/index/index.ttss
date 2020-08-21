@@ -103,6 +103,10 @@
 	text-overflow:ellipsis;
 	white-space:nowrap;
 }
+.course_percent{
+  font-size:30rpx;
+  margin-top: 10rpx;
+}
 .nomore {
   font-size: 30rpx;
   text-align: center;
