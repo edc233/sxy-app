@@ -18,8 +18,8 @@
             <div class="address">培训地点/zoom号：{{item.address?item.address:'-'}}</div>
             
             <div class="address">{{item.source_url?'培训链接：'+item.source_url:''}}</div>
-            <div class="train_date">培训时间：{{item.time}}
-                <div style="margin-top:5rpx;margin-left:150rpx" >{{item.time1}}</div>
+            <div class="train_date">培训时间：{{item.show_time}}
+                <!-- <div style="margin-top:5rpx;margin-left:150rpx" >{{item.time1}}</div> -->
             </div>
             <div class="finish_date">截止时间：{{item.finish_time_str}}</div>
             <div class="item_content" tt:if="{{item.remark}}">培训备注：{{item.remark}}</div>
@@ -29,9 +29,9 @@
                 <div class="control_btn1"  tt:if="{{state==2&&item.is_expired==1}}">已过期</div>
                 <div class="control_btn3" data-id="{{item.id}}" data-lecturer="{{item.lecturer_id}}" data-state="{{state}}" data-mode="{{item.mode}}" data-expired="{{item.is_expired}}" data-signed="{{item.is_signin}}" bindtap="switchtrain" tt:if="{{state==2&&item.is_expired==0&&item.mode==2&&!item.is_signin}}">签到</div>
                 <div class="control_btn2" data-id="{{item.id}}" data-lecturer="{{item.lecturer_id}}" data-state="{{state}}" data-mode="{{item.mode}}" data-expired="{{item.is_expired}}" data-signed="{{item.is_signin}}" bindtap="switchtrain" tt:if="{{state==2&&item.is_expired==0&&(item.is_signin||item.mode==1)}}">点击完成</div>
-                <div class="course_btn" 
+                <!-- <div class="course_btn" 
                 data-item="{{item}}"
-                bindtap="handleCourse">开始学习</div>
+                bindtap="handleCourse">开始学习</div> -->
             </div>
         </div>
     </div>
