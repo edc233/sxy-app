@@ -103,6 +103,12 @@ Page({
             tip:"下拉刷新"
           })
           }
+          if(that.data.total_num==0){
+            
+            that.setData({
+              tip:"当前暂无学习任务"
+            });
+            }
         } else {
           app.showToast(res.data.msg);
         }
