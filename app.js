@@ -58,7 +58,7 @@ App({
             })
         }else{
           tt.removeTabBarBadge({
-            index:1,
+            index:0,
           });
         }
       }
