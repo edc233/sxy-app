@@ -1,6 +1,7 @@
 {
   "pages":[
     "pages/index/index",
+    "pages/checkList/checkList",
     "pages/examDetail/examDetail",
     "pages/exam/exam",
     "pages/login/login",
@@ -12,7 +13,8 @@
     "pages/evaluate/evaluate",
     "pages/qrcode/qrcode",
     "pages/pc/course/course",
-    "pages/course/course"
+    "pages/course/course",
+    "pages/checkList/checkList"
   ],
   "window":{
     "backgroundTextStyle":"light",
