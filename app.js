@@ -1,6 +1,6 @@
 App({
   baseUrl: "https://tiaodao.headlinetop.com",
-  //baseUrl: "http://192.168.111.32:80",
+  // baseUrl: "http://192.168.111.32:80",
   onLaunch: function () {},
   setTitle: function (title) {
     tt.setNavigationBarTitle({
@@ -78,7 +78,6 @@ App({
             text: ""+res.data.data+""
             })
         }else{
-          console.log(1)
           tt.removeTabBarBadge({
             index:1,
           });

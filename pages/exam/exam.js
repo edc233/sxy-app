@@ -36,6 +36,10 @@ Page({
     }
   },
   onShow: function () {
+    if (tt.getStorageSync("token")) {
+      console.log(123)
+      this.getList();
+    }
     if (this.data.isBackFromLogin) {
       this.setData(
         {
@@ -45,9 +49,6 @@ Page({
           this.getList();
         }
       );
-    }
-    if (tt.getStorageSync("token")) {
-      this.getList();
     }
   },
   onPullDownRefresh() {

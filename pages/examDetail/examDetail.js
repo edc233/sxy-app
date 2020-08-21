@@ -24,6 +24,7 @@ Page({
     this.setData(
       {
         id: options.id,
+        // id: "25",
       },
       () => {
         app.setTitle("开始考试");
@@ -61,6 +62,7 @@ Page({
           tt.showModal({
             title: "警告",
             content: "检测到切屏，即将自动提交试卷",
+            showCancel:false
           });
           this.checkPaper();
         }
