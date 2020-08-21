@@ -11,9 +11,9 @@
         <div tt:if="{{topActiveIndex==1}}" class="train_list">
             <div class="{{leftActive==1?'train_item bg_green':leftActive==2&&item.is_expired==0?'train_item bg_red':'train_item bg_gray'}}" tt:for="{{tableData}}">
                 <div class="item_tag">{{item.modeName}}</div>
-                <div class="item_title1">标题：{{item.title}}</div>
-                <div class="lecturer">讲师：{{item.lecturerName?item.lecturerName:'-'}}</div>
-                <div class="address">地点/zoom号：{{item.address?item.address:'-'}}</div>
+                <div class="item_title1">培训标题：{{item.title}}</div>
+                <div class="lecturer">培训讲师：{{item.lecturerName?item.lecturerName:'-'}}</div>
+                <div class="address">培训地点/Zoom号：{{item.address?item.address:'-'}}</div>
                 <div class="train_date">培训时间：{{item.show_time}}</div>
                 <div class="finish_date">截止时间：{{item.finish_time_str}}</div>
                 <div 
@@ -21,21 +21,21 @@
                 tt-if="{{item.source_url}}" 
                 bindtap="goLearn"
                 data-url="{{item.source_url}}">资源链接：<a href="javascript:void(0)" >{{item.source_url}}</a></div>
-                <div class="item_content" >备注：{{item.remark?item.remark:'-'}}</div>
+                <div class="item_content" >培训备注：{{item.remark?item.remark:'-'}}</div>
             </div>
         </div>
 
         <div tt:if="{{topActiveIndex==2}}" class="exam_list">
         <div class="exam_item" bindtap="notice" tt:for="{{tableData}}" tt:if="{{loading==2||loading==3}}" >
-        <div class="item_title2"><span class="header">标题</span>{{item.title}}</div>
+        <div class="item_title2"><span class="header">考试标题</span>{{item.title}}</div>
         <div class="item_deadline"><span class="header">考试期限</span></div>
         <div class="times">{{item.show_time}}</div>
         <div class="score">
-            <span class="header">总数</span>
+            <span class="header">考试总分</span>
             {{item.score}}分
         </div>
         <div class="score_level">
-            <span class="header">及格分</span>
+            <span class="header">考试及格分</span>
             {{item.score_level}}分
         </div>
         <div class="tags">

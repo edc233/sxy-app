@@ -179,6 +179,12 @@ Page({
     }
   });
   },
+  handleCourse: function (e) {
+    const CollegeId = e.currentTarget.dataset.item.id 
+    const courseId = e.currentTarget.dataset.item.courseInfo.id 
+    const type = e.currentTarget.dataset.item.courseInfo.property 
+    app.navigator(`/pages/course/course?collegeId=${CollegeId}&courseId=${courseId}&type=${type}`)
+  },
   onReachBottom:function(){
     this.nextPage()
   },
