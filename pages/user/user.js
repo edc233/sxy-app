@@ -3,7 +3,7 @@ Page({
   data: {
     page: 0,
     tableData: [],
-    pageSize: 3,
+    pageSize: 20,
     total_num: 0,
     department: "",
     avatar: "",
@@ -97,6 +97,7 @@ Page({
         pageSize: that.data.pageSize,
       },
       success(res) {
+        console.log(res)
         tt.stopPullDownRefresh();
         tt.hideLoading();
         if (res.data.code == 200) {

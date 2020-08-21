@@ -172,7 +172,6 @@ Page({
         if (res.confirm) {
           const id = el.target.dataset.id;
           app.navigator("/pages/examDetail/examDetail?id=" + id);
-          console.log(id);
         }
       },
     });

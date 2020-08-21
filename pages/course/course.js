@@ -2,7 +2,7 @@
 Page({
   data: {
     src:'',
-    baseUrl:'http://192.168.111.30:8080'
+    baseUrl:'http://192.168.111.30:8081'
   },
   onLoad: function (options) {
     

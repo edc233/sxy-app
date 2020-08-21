@@ -13,15 +13,15 @@
                 <icon class="tt-icon" type="clear" size="20px" color="#ef475d" tt:if="{{item.isRight==1}}"></icon>
             </div>
             <radio-group class="radio_group" data-index="{{index}}" bindchange="handleChange" tt:if="{{item.property!=2}}">
-                <label tt:for-item="el" tt:for="{{item.answer}}" tt:for-index="in">
+                <label tt:for-item="el" class="radio_item" tt:for="{{item.answer}}" tt:for-index="in">
                     <radio class="radio" disabled="{{block}}" color="#5cb3cc" value="{{in}}"></radio>
                     <text class="radio_text">{{el.title}}</text>
                 </label>
             </radio-group>
             <checkbox-group class="radio_group" data-index="{{index}}" bindchange="handleChange1" tt:if="{{item.property==2}}">
-                <label tt:for-item="el" tt:for="{{item.answer}}" tt:for-index="in">
-                    <checkbox class="radio" disabled="{{block}}" color="#5cb3cc" value="{{in}}"></radio>
-                    <text style="font-size:40rpx;word-break: break-all">{{el.title}}</text>
+                <label tt:for-item="el" class="radio_item" tt:for="{{item.answer}}" tt:for-index="in">
+                    <checkbox class="radio" disabled="{{block}}" color="#5cb3cc" value="{{in}}"></checkbox>
+                    <text style="font-size:30rpx;word-break: break-all">{{el.title}}</text>
                 </label>
             </checkbox-group>
             <div class="right" tt:if="{{tableData.check_mistake&&block}}">正确答案：{{item.right}}</div>

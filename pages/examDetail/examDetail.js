@@ -216,7 +216,6 @@ Page({
     }
   },
   checkPaper: function () {
-    console.log(999);
     this.setData({
       block: true,
     });

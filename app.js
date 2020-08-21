@@ -57,9 +57,9 @@ App({
             text: ""+res.data.data+""
             })
         }else{
-          tt.setTabBarBadge({
+          tt.removeTabBarBadge({
             index:0,
-          })
+          });
         }
       }
     });
@@ -78,9 +78,9 @@ App({
             text: ""+res.data.data+""
             })
         }else{
-          tt.setTabBarBadge({
+          tt.removeTabBarBadge({
             index:1,
-          })
+          });
         }
       }
     });
