@@ -10,7 +10,7 @@
 	"projectname": "sxy-app",
 	"condition": {
 		"miniprogram": {
-			"current": 1,
+			"current": 5,
 			"list": [
 				{
 					"id": 0,
@@ -71,7 +71,7 @@
 					"id": 5,
 					"name": "考试页面",
 					"pathName": "pages/examDetail/examDetail",
-					"query": "id=8",
+					"query": "id=9",
 					"scene": "1001",
 					"referrerInfo": {
 						"appId": "",

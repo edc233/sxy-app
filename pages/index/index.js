@@ -86,10 +86,10 @@ Page({
         tt.stopPullDownRefresh();
         tt.hideLoading();
         if (res.data.code == 200) {
-           res.data.data.list.forEach(item => {
-            item.time = item.show_time.split("~")[0];
-            item.time1 = item.show_time.split("~")[1];
-          })
+          //  res.data.data.list.forEach(item => {
+          //   item.time = item.show_time.split("~")[0];
+          //   item.time1 = item.show_time.split("~")[1];
+          //})
           that.setData({
             tableData: res.data.data.list,
             total_num: res.data.data.list.length,

@@ -87,17 +87,19 @@ Page({
     }, 30000);
   },
   showWarning: function () {
-    timer2 = setInterval(() => {
-      const s = this.data.warningSeconds;
-      if(s==0){
-        this.checkPaper()
-        clearInterval(timer2);
-      }else{
-        this.setData({
-          warningSeconds: s - 1,
-        });
-      }
-    }, 1000);
+    if(this.data.block==false){
+      timer2 = setInterval(() => {
+        const s = this.data.warningSeconds;
+        if(s==0){
+          this.checkPaper()
+          clearInterval(timer2);
+        }else{
+          this.setData({
+            warningSeconds: s - 1,
+          });
+        }
+      }, 1000);
+    }
   },
   close: function () {
     if (this.data.second == "") {
@@ -180,8 +182,15 @@ Page({
     });
   },
   submit: function () {
-    const that = this;
-    if (this.data.len < this.data.tableData.question.length) {
+    const that = this;if(this.data.block==true) {
+      tt.showModal({
+        title: "提示",
+        confirmText: "我已知晓",
+        showCancel: false,
+        content: "不可重复提交",
+        success: (res) => {},
+      });
+    }else if (this.data.len < this.data.tableData.question.length) {
       tt.showModal({
         title: "提示",
         content: "未答完所有题目，不可提交",
@@ -203,15 +212,7 @@ Page({
           }
         },
       });
-    } else {
-      tt.showModal({
-        title: "提示",
-        confirmText: "我已知晓",
-        showCancel: false,
-        content: "不可重复提交",
-        success: (res) => {},
-      });
-    }
+    } 
   },
   checkPaper: function () {
     this.setData({

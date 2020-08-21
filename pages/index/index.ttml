@@ -18,8 +18,8 @@
             <div class="address">培训地点/zoom号：{{item.address?item.address:'-'}}</div>
             
             <div class="address">{{item.source_url?'培训链接：'+item.source_url:''}}</div>
-            <div class="train_date">培训时间：{{item.time}}
-                <div style="margin-top:5rpx;margin-left:150rpx" >{{item.time1}}</div>
+            <div class="train_date">培训时间：{{item.show_time}}
+                <!-- <div style="margin-top:5rpx;margin-left:150rpx" >{{item.time1}}</div> -->
             </div>
             <div class="finish_date">截止时间：{{item.finish_time_str}}</div>
             <div class="item_content" tt:if="{{item.remark}}">培训备注：{{item.remark}}</div>
