@@ -78,7 +78,6 @@ App({
             text: ""+res.data.data+""
             })
         }else{
-          console.log(1)
           tt.removeTabBarBadge({
             index:1,
           });

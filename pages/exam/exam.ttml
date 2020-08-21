@@ -22,5 +22,5 @@
         得分：{{item.user_score}}分</div>
     </div>
     <div class="note" tt:if="{{loading==1||loading==3}}" bindtap="handleLog" >{{tip}}</div>
-    <div class="note" tt:if="{{loading1}}" >暂无更多~</div>
+    <div class="note" tt:if="{{loading1}}" >当前暂无学习任务</div>
 </div>

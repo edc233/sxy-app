@@ -13,7 +13,7 @@
                 <div class="item_tag">{{item.modeName}}</div>
                 <div class="item_title1">标题：{{item.title}}</div>
                 <div class="lecturer">讲师：{{item.lecturerName?item.lecturerName:'-'}}</div>
-                <div class="address">地点：{{item.address?item.address:'-'}}</div>
+                <div class="address">地点/zoom号：{{item.address?item.address:'-'}}</div>
                 <div class="train_date">培训时间：{{item.show_time}}</div>
                 <div class="finish_date">截止时间：{{item.finish_time_str}}</div>
                 <div 
