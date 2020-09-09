@@ -1,6 +1,7 @@
 const app = getApp();
 let timer = null;
 let timer2 = null;
+let second = 1;
 Page({
   data: {
     tableData: {},
@@ -13,7 +14,7 @@ Page({
     block: false,
     id: "",
     time: 0,
-    second: 10,
+    second: 8,
     content: "关闭提示，开始答题",
     showNote: true,
     showScore: false,
@@ -21,8 +22,10 @@ Page({
     warningSeconds: 11,
   },
   onLoad: function (options) {
+    second = 1
     this.setData(
       {
+        block: false,
         id: options.id,
         // id: "25",
       },
@@ -31,7 +34,7 @@ Page({
         this.getPaper();
       }
     );
-    let time = setInterval(() => {
+    var time = setInterval(() => {
       const s = this.data.second;
       this.setData(
         {
@@ -45,6 +48,7 @@ Page({
               content: "关闭提示，开始答题",
             });
             clearInterval(time);
+            time = null;
             return;
           }
         }
@@ -58,11 +62,11 @@ Page({
         time: t + 1,
       },
       () => {
-        if (this.data.time > 1) {
+        if (this.data.time > 1 && !this.data.block) {
           tt.showModal({
             title: "警告",
             content: "检测到切屏，即将自动提交试卷",
-            showCancel:false
+            showCancel: false,
           });
           this.checkPaper();
         }
@@ -70,32 +74,34 @@ Page({
     );
   },
   onUnload: function () {
-    const tableData = this.data.tableData;
-    let answer = {};
-    tableData.question.forEach((element, i) => {
-      answer[element.id] = "";
-    });
-    this.sendAnswer(JSON.stringify(answer), this.data.tableData.id);
+    if (!this.data.block) {
+      const tableData = this.data.tableData;
+      let answer = {};
+      tableData.question.forEach((element, i) => {
+        answer[element.id] = "";
+      });
+      this.sendAnswer(JSON.stringify(answer), this.data.tableData.id);
+    }
   },
   onPageScroll: function () {
     clearTimeout(timer);
-    clearInterval(timer2)
+    clearInterval(timer2);
     this.setData({
-      warningSeconds:11
-    })
+      warningSeconds: 11,
+    });
     timer = setTimeout(() => {
-      console.log(123123123)
-      this.showWarning()
+      console.log(123123123);
+      this.showWarning();
     }, 30000);
   },
   showWarning: function () {
-    if(this.data.block==false){
+    if (this.data.block == false) {
       timer2 = setInterval(() => {
         const s = this.data.warningSeconds;
-        if(s==0){
-          this.checkPaper()
+        if (s == 0) {
+          this.checkPaper();
           clearInterval(timer2);
-        }else{
+        } else {
           this.setData({
             warningSeconds: s - 1,
           });
@@ -132,7 +138,7 @@ Page({
             let str = "";
             el.answer.forEach((as, i) => {
               if (as.is_correct == 1) {
-                let s = i == 0 ? "A" : i == 1 ? "B" : i == 2 ? "C" : "D";
+                let s = i == 0 ? "A" : i == 1 ? "B" : i == 2 ? "C" :i == 3 ? "D": i == 4 ? "E" : "F";
                 str = str + "" + s;
               }
               el.right = str;
@@ -171,20 +177,25 @@ Page({
     }, 1000);
   },
   exit: function () {
-    tt.showModal({
-      title: "警告",
-      content: "退出考试将自动结束考试并记零分，请确认是否退出考试",
-      confirmText: "确认退出",
-      cancelText: "返回答题",
-      success(res) {
-        if (res.confirm) {
-          app.navigateBack();
-        }
-      },
-    });
+    if (!this.data.block) {
+      tt.showModal({
+        title: "警告",
+        content: "退出考试将自动结束考试并记零分，请确认是否退出考试",
+        confirmText: "确认退出",
+        cancelText: "返回答题",
+        success(res) {
+          if (res.confirm) {
+            app.navigateBack();
+          }
+        },
+      });
+    } else {
+      app.navigateBack();
+    }
   },
   submit: function () {
-    const that = this;if(this.data.block==true) {
+    const that = this;
+    if (this.data.block == true) {
       tt.showModal({
         title: "提示",
         confirmText: "我已知晓",
@@ -192,7 +203,7 @@ Page({
         content: "不可重复提交",
         success: (res) => {},
       });
-    }else if (this.data.len < this.data.tableData.question.length) {
+    } else if (this.data.len < this.data.tableData.question.length) {
       tt.showModal({
         title: "提示",
         content: "未答完所有题目，不可提交",
@@ -214,7 +225,7 @@ Page({
           }
         },
       });
-    } 
+    }
   },
   checkPaper: function () {
     this.setData({
@@ -270,37 +281,41 @@ Page({
       }
     );
     tt.pageScrollTo({
-      scrollTop: 0 // 目标位置
-    });       
+      scrollTop: 0, // 目标位置
+    });
   },
   sendAnswer: function (answer, id) {
-    app.showLoading("提交中");
     const that = this;
-    tt.request({
-      url: app.baseUrl + "/college/Exam/finishExamPaper",
-      data: {
-        token: tt.getStorageSync("token"),
-        answer,
-        id: that.data.id,
-      },
-      method: "POST",
-      header: {
-        "content-type": "application/json",
-      },
-      success(res) {
-        app.hideLoading();
-        if (res.data.code == 200) {
-          app.showToast("试卷提交成功");
-        } else {
-          tt.showModal({
-            title: "提示",
-            content: res.data.msg,
-            confirmText: "确定",
-            showCancel: false,
-          });
-        }
-      },
-    });
+    app.showLoading("提交中");
+    second += 1;
+    console.log(second)
+    if (second == 2) {
+      tt.request({
+        url: app.baseUrl + "/college/Exam/finishExamPaper",
+        data: {
+          token: tt.getStorageSync("token"),
+          answer,
+          id: that.data.id,
+        },
+        method: "POST",
+        header: {
+          "content-type": "application/json",
+        },
+        success(res) {
+          app.hideLoading();
+          if (res.data.code == 200) {
+            app.showToast("试卷提交成功");
+          } else {
+            tt.showModal({
+              title: "提示",
+              content: res.data.msg,
+              confirmText: "确定",
+              showCancel: false,
+            });
+          }
+        },
+      });
+    }
   },
   handleChange: function (e) {
     const answer = e.detail.value;

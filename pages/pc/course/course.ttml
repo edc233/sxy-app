@@ -1,1 +1,29 @@
-<web-view src="{{src}}"></web-view>
+<div class="nav_container">
+    <div  tt:for="{{typeList}}" class="{{item.id==activeIndex?'item active':'item'}}" data-i="{{item.id}}" bindtap="handleNav">{{item.title}}</div>
+</div>
+<div class="select_container">
+    <div tt:for="{{selectList}}" class="{{item.id==selectIndex?'select active':'select'}}"  data-i="{{item.id}}" bindtap="handleSelect">{{item.title}}({{item.course_num}})</div>
+</div>
+<div class="course_container">
+    <div class="course" tt:for="{{list}}">
+    <div class="header">
+        <image src="{{item.property==1?'../../../public/images/text.png':'../../../public/images/mp4.png'}}" class="course_img"></image>
+        <div class="info">
+            <div class="title">《{{item.title}}》</div>
+            <div class="author">课程作者：{{item.author}}</div>
+            <div class="property">课程属性：{{item.propertyName=="video"?'视频':'文档'}}</div>
+            <div class="remark">课程概述：{{item.remark}}</div>
+        </div>
+    </div>
+    <div class="btns">
+        <div tt:if="{{!item.is_lock}}" class="progress">学习进度{{item.study_percentage}}%</div>
+        <div tt:if="{{!item.is_lock}}" data-item="{{item}}" bindtap='start' class="learn">开始学习</div>
+        <image tt:if="{{item.is_lock}}"  src="../../../public/images/lock1.png" class="lock"></image>
+    </div>
+    </div>
+</div>
+<div class="page_container"  tt:if="{{list.length!=0}}">
+<div class="{{index+1 == page?'paging active':'paging'}}" data-i="{{index+1}}"
+bindtap="handlePage" tt:for="{{totalPage}}">{{index+1}}</div>
+</div>
+<div class="notice" tt:if="{{list.length==0}}">暂无更多课程</div>

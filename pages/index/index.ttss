@@ -37,7 +37,7 @@
   z-index: 2;
 }
 .nav_item {
-  width: 33%;
+  width: 25%;
   line-height: 80rpx;
   display: inline-block;
   text-align: center;
@@ -65,10 +65,41 @@
   border-radius: 10px;
   height: auto;
   position: relative;
+  overflow: hidden;
 }
 .item div {
   color: #fff;
 }
+.select{
+  position: fixed;
+  top: 80rpx;
+  width: 100vw;
+  height: 60rpx; 
+  background-color: #fff;
+  z-index: 2;
+}
+.select_item{
+  line-height: 60rpx;
+  text-align: center;
+  font-size: 28rpx;
+  display: inline-block;
+  width: 50%;
+  position: relative;
+}
+.select .active {
+  color: #2fc588;
+}
+.select .active::after {
+  content: "";
+  position: absolute;
+  width: 40rpx;
+  height: 6rpx;
+  background-color: #2fc588;
+  bottom: 0;
+  left: 50%;
+  margin-left: -20rpx;
+}
+
 .bg_green{
   background-color: #29b867
 }
@@ -118,17 +149,18 @@
   margin-top: 10rpx;
 }
 .item_container {
-  padding: 20rpx 0;
   box-sizing: border-box;
+}
+.pd-40{
+  padding: 80rpx 0 20rpx;
+}
+.pd-20{
+  padding: 20rpx 0;
 }
 .item_content {
   margin-top: 10rpx;
   font-size: 30rpx;
-  height: auto;
   word-break: break-all;
-  width: 80%;
-  display: -webkit-box;
-  line-height: 40rpx;
   color: #333;
 }
 .course{
@@ -186,6 +218,7 @@
   line-height: 60rpx;
   padding: 0 30rpx;
   color: #fff;
+  margin: 0 10rpx;
   font-size: 30rpx;
   background-color: #0883e7;
   border-radius: 5px;
@@ -216,4 +249,29 @@
   font-size: 26rpx;
   margin-left: 10rpx;
   color: #333;
+}
+.train_url{
+  color: #0883e7 !important;
+  font-size: 30rpx;
+  margin-top: 10rpx;
+  word-break: break-all;
+  color: #333;
+}
+p{
+  margin: 10rpx 0 !important;
+}
+.remark{
+  position: relative;
+  display: block;
+  word-break: break-all;
+  color: #333;
+  font-size:28rpx;
+}
+span{
+  display: block !important;
+  user-select: text !important;
+}
+.url_list{
+  margin: 6rpx 0;
+  font-size: 30rpx;
 }

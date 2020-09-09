@@ -1,17 +1,21 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/examDetail/examDetail",
+    "pages/pc/entrance/entrance",
+    "pages/pc/user/user",
+    "pages/pc/train/train",
+    "pages/pc/course/course",
     "pages/exam/exam",
-    "pages/login/login",
+    "pages/pc/exam/exam",
     "pages/class/class",
-    "pages/pc/index/index",
     "pages/user/user",
+    "pages/login/login",
+    "pages/examDetail/examDetail",
+    "pages/checkList/checkList",
     "pages/invitation/invitation",
     "pages/notice/notice",
     "pages/evaluate/evaluate",
     "pages/qrcode/qrcode",
-    "pages/pc/course/course",
     "pages/course/course"
   ],
   "window":{
@@ -23,13 +27,13 @@
   "ext": {
     "defaultPages": {
       "sidebarMode": "pages/index/index",
-      "PCMode": "pages/pc/index/index" 
+      "PCMode": "pages/pc/entrance/entrance" 
     }
   },
   "tabBar": {
     "selectedColor":"#d81e06",
     "color":"#707070",
-    "list":[
+    "list":[ 
       
       {
         "pagePath":"pages/index/index",
@@ -42,6 +46,12 @@
         "text":"考试",
         "iconPath":"./public/icon/icon20.png",
         "selectedIconPath": "./public/icon/icon21.png"
+      },
+      {
+        "pagePath":"pages/class/class",
+        "text":"课程",
+        "iconPath":"./public/icon/icon10.png",
+        "selectedIconPath": "./public/icon/icon11.png"
       },
       {
         "pagePath":"pages/user/user",

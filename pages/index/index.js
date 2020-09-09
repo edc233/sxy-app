@@ -3,7 +3,7 @@ Page({
   data: {
     navList: [
       {
-        title: "未开课",
+        title: "未开始",
         index: 0,
       },
       {
@@ -14,9 +14,14 @@ Page({
         title: "已完成",
         index: 2,
       },
+      {
+        title: "已过期",
+        index: 3,
+      },
     ],
     activeIndex: 0,
     state: 1,
+    is_end: 1,
     tip: "暂无数据",
     page: 1,
     tableData: [],
@@ -25,19 +30,10 @@ Page({
     isBackFromLogin: false,
   },
   onLoad: function () {
-    // tt.clearStorageSync('token')
-    if (!tt.getStorageSync("token")) {
-      app.navigator("/pages/login/login");
-      this.setData({
-        tip: "暂未登录，点击登录",
-      });
-    } else {
-      this.getList();
-    }
     const updateManager = tt.getUpdateManager();
     updateManager.onCheckForUpdate(function (res) {
       // 请求完新版本信息的回调
-      console.log(res.hasUpdate);
+      console.log(res);
     });
     updateManager.onUpdateReady(function () {
       tt.showModal({
@@ -53,6 +49,12 @@ Page({
     });
   },
   onShow: function () {
+    if (!tt.getStorageSync("token")) {
+      app.navigator("/pages/login/login");
+      this.setData({
+        tip: "暂未登录，点击登录",
+      });
+    }
     if (this.data.isBackFromLogin || tt.getStorageSync("token")) {
       this.getList();
       this.setData({
@@ -70,6 +72,17 @@ Page({
       }
     );
   },
+  copyData(e) {
+    tt.setClipboardData({
+      data: e.currentTarget.dataset.url,
+      success(res) {
+        tt.showToast({
+          title: "复制成功",
+          icon: "success",
+        });
+      },
+    });
+  },
   getList: function () {
     const that = this;
     app.getNum();
@@ -77,24 +90,43 @@ Page({
     this.setData({
       tip: "加载中",
     });
-    tt.request({
-      url: app.baseUrl + "/college/College/getCollegeList",
-      data: {
+    let data = {};
+    if (that.data.activeIndex == 1) {
+      data = {
         token: tt.getStorageSync("token"),
         state: that.data.state,
         page: that.data.page,
         pageSize: that.data.pageSize,
-      },
+        is_end: that.data.is_end,
+      };
+    } else {
+      data = {
+        token: tt.getStorageSync("token"),
+        state: that.data.state,
+        page: that.data.page,
+        pageSize: that.data.pageSize,
+      };
+    }
+    tt.request({
+      url: app.baseUrl + "/college/College/getCollegeList",
+      data,
       success(res) {
         tt.stopPullDownRefresh();
         tt.hideLoading();
         if (res.data.code == 200) {
-          //  res.data.data.list.forEach(item => {
-          //   item.time = item.show_time.split("~")[0];
-          //   item.time1 = item.show_time.split("~")[1];
-          //})
+          const list = res.data.data.list;
+          list.forEach((el) => {
+            if (el.source_url) {
+              el.urlList = el.source_url.split("&").map((el) => {
+                return {
+                  title: el.split("@")[0],
+                  url: el.split("@")[1],
+                };
+              });
+            }
+          });
           that.setData({
-            tableData: res.data.data.list,
+            tableData: list,
             total_num: res.data.data.list.length,
           });
           if (that.data.total_num < that.data.pageSize) {
@@ -106,14 +138,15 @@ Page({
               tip: "下拉刷新",
             });
           }
-        } else if (res.data.code == 501||res.data.code == 500) {
+        } else if (res.data.code == 501 || res.data.code == 500) {
+          console.log(1123123123);
           tt.showModal({
-            title: 'Error',
+            title: "提示",
             content: res.data.msg,
-            confirmText:'重新登录',
+            confirmText: "重新登录",
             success(res) {
               if (res.confirm) {
-                app.navigator('/pages/login/login')
+                app.navigator("/pages/login/login");
               }
             },
           });
@@ -154,20 +187,40 @@ Page({
       });
     }
   },
+  handleSelect(e) {
+    const is_end = e.currentTarget.dataset.idx;
+    this.setData(
+      {
+        is_end,
+      },
+      () => {
+        this.getList();
+      }
+    );
+  },
   nextPage: function () {
     const that = this;
     var table = that.data.tableData;
-    that.setData({
-      page: that.data.page + 1,
-    });
-    tt.request({
-      url: app.baseUrl + "/college/College/getCollegeList",
-      data: {
+    let data = {};
+    if (that.data.activeIndex == 1) {
+      data = {
         token: tt.getStorageSync("token"),
         state: that.data.state,
-        page: that.data.page,
+        page: that.data.page + 1,
         pageSize: that.data.pageSize,
-      },
+        is_end: that.data.is_end,
+      };
+    } else {
+      data = {
+        token: tt.getStorageSync("token"),
+        state: that.data.state,
+        page: that.data.page + 1,
+        pageSize: that.data.pageSize,
+      };
+    }
+    tt.request({
+      url: app.baseUrl + "/college/College/getCollegeList",
+      data: data,
       success(res) {
         if (res.data.code == 200 && res.data.data.list.length != 0) {
           for (var i = 0; i < res.data.data.list.length; i++) {
@@ -179,6 +232,7 @@ Page({
           });
           that.setData({
             tableData: table,
+            page: that.data.page + 1,
             total_num: res.data.data.total_count,
           });
         } else if (res.data.data.list.length == 0) {
@@ -291,6 +345,7 @@ Page({
         content: "是否确认培训任务已完成",
         success: (res) => {
           if (res.confirm) {
+            app.showLoading(" ");
             tt.request({
               url: app.baseUrl + "/college/College/finishCollege", // 目标服务器url
               method: "POST",
@@ -299,6 +354,7 @@ Page({
                 id: e.currentTarget.dataset.id,
               },
               success: (res) => {
+                app.hideLoading();
                 console.log(res.data.code);
                 if (res.data.code == 200) {
                   this.setData(
@@ -337,5 +393,12 @@ Page({
         },
       });
     }
+  },
+  handleLearn(e) {
+    const url = e.currentTarget.dataset.url;
+    tt.openSchema({
+      schema: url,
+      external: false,
+    });
   },
 });

@@ -37,7 +37,7 @@
             <div class="notice_title">考试须知</div>
             <div class="rule_container">
                 <div class="rules">1. 考试过程中禁止切出屏幕，否则会自动提交试卷。</div>
-                <div class="rules">2. 请勿在单个页面停留时间超过60秒，否则会自动提交试卷。</div>
+                <div class="rules">2. 请勿在单个页面停留时间超过30秒，否则会自动提交试卷。</div>
                 <div class="rules">3. 请勿使用手机自带返回键退出考试，可能会造成分数错乱。</div>
                 <div class="rules">4. 考题完成后点击右下角提交试卷，查看成绩，等待显示“试卷提交成功”，然后点击左下角退出考试，即可退出。</div>
             </div>
@@ -46,7 +46,7 @@
     </div>
     <div class="ban" tt:if="{{warningSeconds<=10}}" >
         <div class="warning">
-        <div>您已经在此页面停留一分钟！</div>
+        <div>您已经在此页面停留30秒！</div>
         <div>即将自动提交试卷！</div>
         </div>
         <div class="seconds">{{warningSeconds}}</div>

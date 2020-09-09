@@ -1,26 +1,26 @@
- 
-  <div class="index_container">
-    <div class="nav_container">
-        <div tt:for="{{navList}}" class="{{activeIndex==index?'active nav_item':'nav_item'}}" bindtap="handleNav" data-id="{{item.index}}">{{item.title}}</div>
-    </div> 
-    <div class="container">
-      <div class="nav_left">
-        <div tt:for="{{navLeft}}" class="{{activeLeft==index?'active nav_item1':'nav_item1'}}" bindtap="handleNav1" data-index="{{item.index}}" data-id="{{item.id}}">{{item.title}}</div>
-      </div>
-      <div class="item_container" id="test">
-          <div class="item" tt:for="{{tableData}}">
-              <div class="item_tag">{{item.study_percentage}}%</div>
-              <div class="item_title">课程标题：{{item.title}}</div>
-              <div class = row>
-                <div class="attribute">属性：{{item.propertyName}}</div>
-                <div class="lecturer">作者：{{item.author?item.author:'-'}}</div>
-              </div>
-              <div class="source">资源链接：{{item.source_url?item.source_url:'-'}}</div>
-              <div class="summarize">概述：{{item.remark}}</div>
-          </div>
-          
-    <div class="nomore" >{{tip}}</div>
+<div class="nav_container">
+  <div tt:for="{{bigType}}" class="{{index==navActive?'nav_item nav_active':'nav_item'}}" data-index="{{index}}" data-id="{{item.id}}" bindtap="handleNav">{{item.title}}</div>
+</div>
+<div class="select_container" tt:if="{{smType.length!=0}}">
+  <!-- <span class="select_header">筛选：</span> -->
+  <div tt:for="{{smType}}" class="{{item.id==smActive?'select_item select_active':'select_item'}}" bindtap="handleSelect" data-id="{{item.id}}">{{item.title}}({{item.course_num}})</div>
+</div>
+<div class="item_container">
+  <div tt:for="{{courseList}}" class="item">
+    <image src="{{item.property==1?'../../public/images/book.png':'../../public/images/laptop.png'}}" class="header_img"></image>
+    <div class="course_info" >
+      <div class="course_title">课程标题:{{item.title}}</div>
+      <div class="course_author">课程作者:{{item.author}}</div>
+      <div class="course_property">课程属性:{{item.property==1?'文字':'视频'}}</div>
+      <div class="course_remark">课程概述:{{item.remark}}</div>
+      <div class="btns">
+        <div class="course_progress" tt:if="{{!item.is_lock}}">学习进度{{item.study_percentage}}%</div>
+        <div data-item="{{item}}" tt:if="{{!item.is_lock}}" class="start" bindtap="start">{{item.study_percentage>0?'继续学习':'开始学习'}}</div>
+        <div tt:if="{{item.is_lock}}">
+        </div>
+          <image tt:if="{{item.is_lock}}" src="../../public/images/lock.png" class="lock"></image>
       </div>
     </div>
-
   </div>
+</div>
+<div class="notice" tt:if="{{notice!=''}}">{{notice}}</div>

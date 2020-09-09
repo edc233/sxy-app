@@ -29,6 +29,8 @@ Page({
   onLoad: function (options) {
     if (!tt.getStorageSync("token")) {
       app.navigator("/pages/login/login");
+    }else{
+      this.getMissions()
     }
   },
   onShow: function () {
@@ -147,7 +149,7 @@ Page({
             total_num: res.data.data.total_count,
             page: that.data.page + 1,
           });
-        } else if (res.data.data.list.length == 0) {
+        } else if (res.data.code != 200||res.data.data.list.length == 0) {
           that.setData({
             tip: "暂无更多",
           });
@@ -206,6 +208,10 @@ Page({
         console.log("error");
       },
     });
+  },
+  getChecked:function(e) {
+    app.navigator("/pages/checkList/checkList?id=" + e.currentTarget.dataset.id
+          );
   },
   complete: function (e) {
     const that = this;

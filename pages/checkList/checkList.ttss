@@ -1,0 +1,51 @@
+.history-table-wrap{
+  position: absolute;
+  width: 668rpx;
+  height: auto;
+  left: 50%;
+  margin-left: -334rpx;
+  top: 30rpx;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.table{
+  border:1px solid #dadada;
+  border-right:0;
+  border-bottom: 0;
+  width: 98%;
+  margin-left: 1%;
+}
+.tr{
+  width:100%;
+  display: flex;
+  justify-content: space-between;
+}
+.th,.td{
+  padding: 10px;
+  border-bottom: 1px solid #dadada;
+  border-right: 1px solid #dadada;
+  text-align: center;
+  width: 100%;
+}
+.th2,.td2{
+  width: 80%
+}
+.th3,.td3{
+  width: 40%
+}
+.th{
+  font-weight: 800;
+  background-color: #2fc588;
+  font-size: 30rpx;
+  
+  color: #ffffff;
+}
+.td{
+  font-size: 24rpx;
+}
+.signed{
+  color: blue
+}
+.unsigned{
+  color: #f76856
+}

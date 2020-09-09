@@ -1,0 +1,26 @@
+<div class="nav_container">
+    <div tt:for="{{navList}}" class="{{activeIndex==item.id?'active item':'item'}}" data-index="{{item.id}}" bindtap="handleNav">
+        <image src="{{item.id==1?'../../../public/images/future.png':item.id==2?'../../../public/images/done.png':'../../../public/images/pasttime.png'}}" class="nav_img"></image>{{item.title}}
+    </div>
+    <div class="{{activeIndex==1?'slider position1':activeIndex==2?'slider position2':'slider position3'}}"></div>
+</div>
+<div class="item_container">
+    <div class="{{activeIndex==1?'exam_item bg1':activeIndex==2?'exam_item bg2':'exam_item bg3'}}" tt:for="{{list}}">
+        <div class="header">
+            <image class="item_img" src="{{activeIndex==1?'../../../public/images/exam1.png':activeIndex==2?'../../../public/images/exam2.png':'../../../public/images/exam3.png'}}"></image>
+            <div class="info">
+                <div class="exam_title">考试标题：{{item.title}}</div>
+                <div class="exam_time">考试期限：{{item.show_time}}</div>
+                <div class="exam_score">考试总分：{{item.score}}</div>
+                <div class="exam_pass_score">考试及格分：{{item.score_level}}</div>
+            </div>
+        </div>
+        <div class="btns">
+            <div class="time">{{item.time_length}}分钟</div>
+            <div class="type">{{item.typeName}}</div>
+            <div class="warn" tt:if="{{activeIndex==1}}">请在小程序端参与考试</div>
+            <i class="user_score" tt:if="{{activeIndex==2}}">{{item.user_score}}分</i>
+        </div>
+    </div>
+</div>
+<div class="notice">{{notice}}</div>

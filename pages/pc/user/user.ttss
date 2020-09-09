@@ -1,0 +1,165 @@
+body{
+    min-height: auto !important;
+}
+.user{
+    width: 400px;
+    border-radius: 10px;
+    padding: 20px 20px 0;
+    margin-top: 100px;
+    background-color: #ff793f;
+    position: relative;
+    height: 200px;
+    margin-left: 10px;
+}
+.avatar{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    float: right;
+}
+.name{
+    font-size: 20px;
+    color: #fff;
+    font-weight: bold;
+}
+.department{
+    padding-left: 20px;
+    font-size: 20px;
+    color: #fff;
+    margin-top: 10px;
+    font-weight: bold;
+}
+.img1{
+    width: 50px;
+    position: absolute;
+    bottom: 0;
+    left: 150px;
+}
+.img2{
+    width: 50px;
+    position: absolute;
+    bottom: 0;
+    left: 100px;
+}
+.top{
+    width: 50px;
+    position: absolute;
+    top: -50px;
+    left: 100px;
+}
+.sit{
+    width: 100px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+.run{
+    width: 50px;
+    position: absolute;
+    right: 20px;
+    top: -60px;
+}
+.task{
+    display: block;
+    padding: 20px;
+    background-color: #eee;
+    float: left;
+    margin-top: 20px;
+    font-size: 20px;
+    width: 1000px;
+}
+.task_title{
+    font-size: 24px;
+}
+.task_item{
+    display: inline-block;
+    width: 450px;
+    padding: 10px;
+    margin: 10px;
+    border: 2px solid #227093;
+    border-radius: 2px;
+}
+.title{
+    font-size:18px;
+    color: #333;
+}
+.address,.show_time,.finish_time{
+    margin-top: 10px;
+    font-size: 16px;
+    color: #333;
+}
+.task_img{
+    width: 50px;
+    margin-left: 20px;
+}
+.task_info{
+    display: inline-block;
+    width: 370px;
+}
+.remark{
+    margin-top: 10px;
+    font-size: 18px;
+}
+.btns{
+    margin-top: 10px;
+    font-size: 20px;
+}
+.btns > div{
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 2px;
+    font-size: 18px;
+    color: #fff;
+    margin: 0 5px;
+    cursor: pointer;
+}
+.sign_info{
+    background-color: #ff793f;
+}
+.sign{
+    background-color: #474787;
+}
+.done{
+    background-color: #33d9b2;
+}
+.sign_img{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    margin: 0 auto;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.qrcode{
+    width: 400px;
+    height: 400px;
+}
+.sign_table{
+    background-color: #fff;
+    font-size: 18px;
+    padding: 30px;
+}
+.header,.body{
+    display: flex;
+}
+.tname{
+    width: 200px;
+    border: 1px solid #333;
+    padding: 5px 10px;
+    border-right: none;
+}
+.is_sign{
+    border: 1px solid #333;
+    width: 100px;
+    padding: 5px 10px;
+}
+.success{
+    color: #2ecc71;
+}
+.warning{
+    color: #e74c3c;
+}

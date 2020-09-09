@@ -1,190 +1,184 @@
 const app = getApp();
 Page({
   data: {
-    navList: [
-      {
-        title: "抖音",
-        index: 0,
-      },
-      {
-        title: "头条",
-        index: 1,
-      },
-      {
-        title: "后台",
-        index: 2,
-      },
-    ],
+    courseList:[],
+    bigType: [],
+    smType:[],
+    navActive: 0,
+    smActive:0,
     page:1,
-    
-    activeIndex: 0,
-    navLeft:[],
-    activeLeft:0,
-    leftId:0,
-    total_num: 0,
-    tip:"暂无更多",
-    pageSize: 5,
-    tableData:[],
-
+    totalNum:0,
+    notice:'加载中'
   },
-  onLoad: function (options) {// tt.clearStorageSync('token')
-    if (!tt.getStorageSync("token")) {
-      app.navigator("/pages/login/login");
-      this.setData({
-        tip:'暂未登录，点击登录'
-      })
+  onLoad: function (options) {
+    if(!tt.getStorageSync('token')){
+      app.navigator('/pages/login/login')
     }else{
-      this.getTypeList();
+      this.getBigTypeList();
     }
-    const updateManager = tt.getUpdateManager();
-    updateManager.onCheckForUpdate(function (res) {
-      // 请求完新版本信息的回调
-      console.log(res.hasUpdate);
-    });
-    updateManager.onUpdateReady(function () {
-      tt.showModal({
-        title: "更新提示",
-        content: "新版本已经准备好，是否重启应用？",
-        success: function (res) {
-          if (res.confirm) {
-            // 新的版本已经下载好，调用 applyUpdate 应用新版本并重启
-            updateManager.applyUpdate();
-          }
-        },
-      });
-    });
   },
-  onShow:function(options){
-    this.getTypeList();
-  },
-  onPullDownRefresh() {
+  onPullDownRefresh: function() { 
     this.setData({
       page:1
     },() => {
-      this.getList()
+      this.getSmTypeList(this.data.bigType[this.data.navActive].id)
     })
   },
-  getTypeList:function(e){
-    app.getNum()
-    tt.showLoading({
-      title: '加载中', // 内容
-    });
-    tt.request({
-      url: app.baseUrl+'/college/Course/getCourseTypeNumList', // 目标服务器url
-      method:'get',
-      data:{
-        type:this.data.activeIndex+1,
-        token: tt.getStorageSync("token"),
-      },
-      success: (res) => {
-        tt.hideLoading();
-        if(res.data.code==200){
-          var list = res.data.data;
-          for(var ele in list){
-            list[ele].index = ele;
-          }
-          this.setData({
-            navLeft:res.data.data,
-            activeLeft:res.data.data[0].index,
-            leftId:res.data.data[0].id
-          });
-         this.getList();
-      }
+  onReachBottom: function() {
+    const {courseList,totalNum,page,notice} = this.data
+    if(courseList.length<totalNum&&notice!='暂无更多课程'){
+      this.setData({
+        page:page+1
+      },()=>{
+        this.getList()
+      })
+    }else{
+      this.setData({
+        notice:'暂无更多课程'
+      })
     }
-    })
-    },
-  getList:function(e){
-    tt.showLoading({
-      title: '加载中', // 内容
-    });
-    this.setData({
-      tip:"加载中"
-    })
-    tt.request({
-      url: app.baseUrl+'/college/Course/getCourseList', // 目标服务器url
-      method:'get',
-      data:{
-        page:this.data.page,
-        pageSize:this.data.pageSize,
-        type_id:this.data.leftId,
-        token: tt.getStorageSync("token"),
-      },
-      success: (res) => {
-          tt.stopPullDownRefresh();
-          tt.hideLoading();
-        if(res.data.code==200){
-          this.setData({
-            tableData:res.data.data.list,
-            total_num: res.data.data.list.length,
-          }) 
-          if(this.data.total_num<this.data.pageSize){
-              this.setData({
-                tip:"暂无更多"
-              });
-            }else{
-            this.setData({
-              tip:"下拉加载"
-            })
-          }
-        }else{
-          app.showToast(res.data.msg);
-        }
-      }
-    })
   },
-  handleNav: function (e) {
-    this.setData(
-      {
-        activeIndex: e.target.dataset.id,
-        page: 1,
-      },
-    );
-    this.getTypeList();
-  },
-   handleNav1: function (e) {
-    this.setData(
-      {
-        leftId:e.target.dataset.id,
-        activeLeft: e.target.dataset.index,
-        page: 1,
-      },
-    );
-    this.getList();
-  },
-
-  nextPage: function(){
+  //获取顶部大类列表
+  getBigTypeList() {
     const that = this;
-    var table=that.data.tableData;
     that.setData({
-      page:that.data.page+1
-    });
+      notice:'加载中',
+      courseList:[]
+    })
     tt.request({
-      url: app.baseUrl + "/college/Course/getCourseList",
+      url: app.baseUrl + "/college/Course/getBigTypeList",
       data: {
-        page:this.data.page,
-        pageSize:this.data.pageSize,
-        type_id:this.data.leftId,
         token: tt.getStorageSync("token"),
       },
       success(res) {
         if (res.data.code == 200) {
-          for (var i = 0; i < res.data.data.list.length; i++) {
-            table.push(res.data.data.list[i]) 
-          }
           that.setData({
-            tableData:table,
-            total_num: res.data.data.total_count,
+            bigType: res.data.data,
           });
-      }if(res.data.data.list.length<that.data.pageSize){
-        that.setData({
-          tip:"暂无更多"
-        })
+          if(res.data.data.length!=0){
+            that.getSmTypeList(res.data.data[0].id)
+          }
+        } else {
+          tt.showModal({
+            title: "提示",
+            content: res.data.msg,
+            confirmText: "重新登录",
+            success(res) {
+              if (res.confirm) {
+                app.navigator("/pages/login/login");
+              }
+            },
+          });
+        }
+      },
+    });
+  },
+  //获取小类列表
+  getSmTypeList(type) {
+    const that = this
+    that.setData({
+      notice:'加载中',
+      courseList:[]
+    })
+    app.showLoading('加载中')
+    tt.request({
+      url: app.baseUrl + "/college/Course/getCourseTypeNumList",
+      data: {
+        token: tt.getStorageSync("token"),
+        type,
+      },
+      success(res) {
+        tt.stopPullDownRefresh()
+        if(res.data.code==200 && res.data.data.length != 0){
+          that.setData({
+            smType:res.data.data,
+            smActive:res.data.data[0].id
+          },() => {
+            that.getList()
+          })
+        }else{
+          app.hideLoading()
+          that.setData({
+            smType:[],
+            smActive:'',
+            notice:'暂无更多课程'
+          })
+        }
+      },
+    });
+  },
+  //获取课程列表
+  getList(){
+    const that = this
+    app.showLoading('加载中')
+    that.setData({
+      notice:'加载中'
+    })
+    tt.request({
+      url: app.baseUrl+'/college/Course/getCourseList',
+      data: {
+        token:tt.getStorageSync('token'),
+        type_id:that.data.smActive,
+        page:that.data.page,
+        pageSize:5
+      },
+      success(res) {
+        tt.stopPullDownRefresh()
+        app.hideLoading()
+        if(res.data.code==200){
+          const list = res.data.data.list
+          if(that.data.page==1){
+            if(res.data.data.total_count<=5){
+              that.setData({
+                courseList:list,
+                totalNum:res.data.data.total_count,
+                notice:'暂无更多课程'
+              })
+            }else{
+              that.setData({
+                courseList:list,
+                totalNum:res.data.data.total_count,
+                notice:''
+              })
+            }
+          }else{
+            let list1 = that.data.courseList
+            that.setData({
+              courseList:list1.concat(...list),
+              notice:''
+            })
+          }
+        }
+      },
+      fail(res) {
+        console.log(`request 调用失败`);
       }
+    })
+  },
+  handleNav(e) {
+    const i  = e.currentTarget.dataset.index
+    const id  = e.currentTarget.dataset.id
+    if (i != this.data.navActive) {
+      this.setData({
+        navActive: i,
+        page:1
+      });
+      this.getSmTypeList(id);
     }
-  });
   },
-  onReachBottom:function(){
-    this.nextPage()
+  handleSelect(e){
+    if(e.currentTarget.dataset.id != this.data.smActive){
+      this.setData({
+        smActive:e.currentTarget.dataset.id,
+        page:1
+      })
+      this.getList(e.currentTarget.dataset.id)
+    }
   },
-})
-
+  start(e){
+    const CollegeId = '0';
+    const courseId = e.currentTarget.dataset.item.id;
+    const type = e.currentTarget.dataset.item.property;
+    app.navigator( `/pages/course/course?collegeId=${CollegeId}&courseId=${courseId}&type=${type}&pc=0`);
+  }
+});

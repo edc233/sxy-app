@@ -1,0 +1,46 @@
+<div class="user">
+    <image src="{{userInfo.avatar}}" class="avatar"></image>
+    <div class="info">
+        <div class="name">{{userInfo.name}}</div>
+        <div class="department"> {{userInfo.depart_name}}</div>
+    </div>
+    <image src="../../../public/images/user.png" mode="widthFix" class="img1"></image>
+    <image src="../../../public/images/user2.png" mode="widthFix" class="img2"></image>
+    <image src="../../../public/images/talk2.png" mode="widthFix" class="top"></image>
+    <image src="../../../public/images/sitdown.png" mode="widthFix" class="sit"></image>
+    <image src="../../../public/images/run.png" mode="widthFix" class="run"></image>
+</div>
+
+<div class="task" tt:if="{{userInfo.lecturer_id!=0&&lecturerList.length!=0}}">
+    <div class="task_title">讲师任务</div>
+    <div class="task_item" tt:for="{{lecturerList}}">
+        <div class="task_info">
+            <div class="title">培训标题：{{item.title}}</div>
+            <div class="address">培训地点/zoom：{{item.address}}</div>
+            <div class="show_time">培训时间：{{item.show_time}}</div>
+            <div class="finish_time">截止时间：{{item.finish_time_str}}</div>
+        </div>
+        <image src="../../../public/images/talk.png" mode="widthFix" class="task_img"></image>
+        <div class="btns">
+            <div data-id="{{item.id}}" tt:if="{{item.state!=3}}" bindtap="getSignInfo" class="sign_info">查看签到情况</div>
+            <div data-id="{{item.id}}" tt:if="{{item.state!=3}}" bindtap="getQrcode" class="sign">生成签到码</div>
+            <div data-id="{{item.id}}" tt:if="{{item.state==2}}" class="done" bindtap="done">完成任务</div>
+            <div class="done" tt:if="{{item.state==3}}">已完成</div>
+            <div class="done" tt:if="{{item.state==1}}">未开始</div>
+        </div>
+    </div>
+</div>
+
+<div class="sign_img" bindtap="handleClose" tt:if="{{qrCode||signList.length!=0}}">
+    <image src="{{qrCode}}" tt:if="{{qrCode}}" class="qrcode" mode="widthFix"></image>
+    <div class="sign_table" tt:if="{{signList.length!=0}}">
+        <div class="header">
+            <div class="tname">姓名</div>
+            <div class="is_sign">签到情况</div>
+        </div>
+        <div tt:for="{{signList}}" class="body">
+            <div class="tname">{{item.staff_info}}</div>
+            <div class="{{item.is_signin?'is_sign success':'is_sign warning'}}">{{item.is_signin?'已签到':'未签到'}}</div>
+        </div>
+    </div>
+</div>

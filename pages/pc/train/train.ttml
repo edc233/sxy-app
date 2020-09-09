@@ -1,0 +1,60 @@
+<div class="nav_container">
+    <div tt:for="{{navList}}" class="{{activeIndex==item.id?'active item':'item'}}" data-index="{{item.id}}" bindtap="handleNav">
+        <image src="{{item.id==1?'../../../public/images/notice.png':item.id==2?'../../../public/images/danger.png':item.id==3?'../../../public/images/success.png':'../../../public/images/warning.png'}}" class="nav_img"></image>{{item.title}}
+    </div>
+    <div class="{{activeIndex==1?'slider position1':activeIndex==2?'slider position2':activeIndex==3?'slider position3':'slider position4'}}"></div>
+</div>
+<div class="select" tt:if="{{activeIndex==2}}">
+    <div class="{{is_end==1?'select_item active':'select_item'}}" data-idx="1" bindtap="handleSelect">未结束</div>
+    <div class="{{is_end==2?'select_item active':'select_item'}}" data-idx="2" bindtap="handleSelect">已结束</div>
+</div>
+
+<div class="{{activeIndex==2?'mg2':'mg1'}}">
+
+    <div class="{{activeIndex==1?'list_item bg1':activeIndex==2?'list_item bg2':activeIndex==3&&!item.is_expired?'list_item bg3':'list_item bg4'}}"  tt:for="{{list}}">
+
+
+        <div class="header">
+            
+            <image src="{{item.mode==1?'../../../public/images/online.png':'../../../public/images/underline.png'}}" class="item_img"></image>
+
+            <div class="info">
+                <div class="item_title">培训标题：{{item.title}}</div>
+                <div class="item_lecturer" tt:if="{{item.lecturerName}}">培训讲师：{{item.lecturerName}}</div>
+                <div class="item_address">培训地点/zoom号：{{item.address}}</div>
+                <div class="item_address">培训时间：{{item.show_time}}</div>
+                <div class="item_address">截止时间：{{item.finish_time_str}}</div>
+                <div class="item_url" tt:if="{{item.courseInfo.id}}">培训课程：{{item.courseInfo.title}}</div>
+
+            </div>
+
+        </div>
+        <div class="item_url" tt:if="{{item.source_url}}">培训链接：
+            <div tt:for="{{item.urlList}}" tt:for-item="url" class="urllist">
+                <div class="url_title">{{url.title}}：</div>
+                <div class='url_content' data-url="{{url.url}}" bindtap="handleLearn">{{url.url}}</div>
+            </div>
+        </div>
+
+        <div class="item_remark" tt:if="{{item.remark}}">培训备注：
+            <text selectable="{{true}}">
+                <rich-text nodes="{{item.remark}}"></rich-text>
+            </text>
+        </div>
+
+
+
+        <div class="btns">
+            <div class="issign">{{item.mode==1?'线上':'线下'}}</div>
+            <div class="issign" tt:if="{{activeIndex==2&&item.is_signin==1}}">已签到</div>
+            <div class="issign" tt:if="{{activeIndex!=1&&item.is_expired==1}}">已过期</div>
+            <div class="issign" tt:if="{{activeIndex==2&&item.is_signin==0&&item.mode==2}}">请在小程序端签到</div>
+            <div class="learn" tt:if="{{activeIndex==2&&item.courseInfo.id}}">开始学习</div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<div class="notice">{{notice}}</div>

@@ -6,33 +6,48 @@
     <div class="nav_container">
         <div tt:for="{{navList}}" class="{{activeIndex==index?'active nav_item':'nav_item'}}" bindtap="handleNav" data-id="{{item.index}}">{{item.title}}</div>
     </div>
+    <div class="select" tt:if="{{activeIndex==1}}">
+        <div data-idx="1" bindtap="handleSelect" class="{{is_end==1?'select_item active':'select_item'}}">未结束</div>
+        <div data-idx="2" bindtap="handleSelect" class="{{is_end==2?'select_item active':'select_item'}}">已结束</div>
+    </div>
 
 
-    <div class="item_container">
-        <div tt:for="{{tableData}}" data-id="{{item.id}}" data-lecturer="{{item.lecturer_id}}" data-state="{{state}}" data-mode="{{item.mode}}" 
-         class="{{activeIndex==0?'item bg_green':state==2&&item.is_expired==0?'item bg_red':'item bg_gray'}}"
-         data-expired="{{item.is_expired}}">
+    <div class="{{activeIndex==1?'item_container pd-40':'item_container pd-20'}}" >
+        <div tt:for="{{tableData}}" data-id="{{item.id}}" data-lecturer="{{item.lecturer_id}}" data-state="{{state}}" data-mode="{{item.mode}}" class="{{activeIndex==0?'item bg_green':state==2&&item.is_expired==0?'item bg_red':'item bg_gray'}}" data-expired="{{item.is_expired}}">
             <div class="item_tag">{{item.modeName}}</div>
             <div class="item_title">培训标题：{{item.title}}</div>
             <div class="lecturer">培训讲师：{{item.lecturerName?item.lecturerName:'-'}}</div>
             <div class="address">培训地点/zoom号：{{item.address?item.address:'-'}}</div>
-            
-            <div class="address">{{item.source_url?'培训链接：'+item.source_url:''}}</div>
-            <div class="train_date">培训时间：{{item.show_time}}
-                <!-- <div style="margin-top:5rpx;margin-left:150rpx" >{{item.time1}}</div> -->
+
+
+            <div class="address" tt:if="{{item.source_url}}">培训链接：</div>
+
+            <div tt:if="{{item.urlList}}" tt:for="{{item.urlList}}" tt:for-item="url" class="url_list" data-url="{{url}}" bindtap="handleLearn">
+                <i tt:if="{{url.title}}">{{url.title}}：</i>
+                <i class="train_url" data-url="{{url.url}}" bindtap="handleLearn" tt:if="{{url.url}}">{{url.url}}</i>
             </div>
+
+
+            <div class="train_date">培训时间：{{item.show_time}}</div>
+
+
+
             <div class="finish_date">截止时间：{{item.finish_time_str}}</div>
-            <div class="item_content" tt:if="{{item.remark}}">培训备注：{{item.remark}}</div>
-            <div class="course" tt:if="{{item.courseInfo.title}}" >培训课程：{{item.courseInfo.title}}</div>
-            <div class="course_percent">学习进度：{{item.courseInfo.study_percentage?item.courseInfo.study_percentage:'0'}}%</div>
+            <div class="item_content" tt:if="{{item.remark}}">培训备注：
+            </div>
+            <div class="remark">
+                <text selectable="{{true}}">
+                    <rich-text nodes="{{item.remark}}" data-url="{{item.remark}}"></rich-text>
+                </text>
+            </div>
+            <div class="course" tt:if="{{item.courseInfo.title}}">培训课程：{{item.courseInfo.title}}</div>
+            <div class="course_percent" tt:if="{{item.courseInfo.id}}">学习进度：{{item.courseInfo.study_percentage?item.courseInfo.study_percentage:'0'}}%</div>
             <div class="btns" tt:if="{{state==2}}">
-                <div class="tag_sign" tt:if="{{item.is_signin&&item.mode==2}}" >已签到</div>
-                <div class="control_btn1"  tt:if="{{state==2&&item.is_expired==1}}">已过期</div>
+                <div class="tag_sign" tt:if="{{item.is_signin&&item.mode==2}}">已签到</div>
+                <div class="control_btn1" tt:if="{{state==2&&item.is_expired==1}}">已过期</div>
                 <div class="control_btn3" data-id="{{item.id}}" data-lecturer="{{item.lecturer_id}}" data-state="{{state}}" data-mode="{{item.mode}}" data-expired="{{item.is_expired}}" data-signed="{{item.is_signin}}" bindtap="switchtrain" tt:if="{{state==2&&item.is_expired==0&&item.mode==2&&!item.is_signin}}">签到</div>
                 <div class="control_btn2" data-id="{{item.id}}" data-lecturer="{{item.lecturer_id}}" data-state="{{state}}" data-mode="{{item.mode}}" data-expired="{{item.is_expired}}" data-signed="{{item.is_signin}}" bindtap="switchtrain" tt:if="{{state==2&&item.is_expired==0&&(item.is_signin||item.mode==1)}}">点击完成</div>
-                <div class="course_btn" 
-                data-item="{{item}}"
-                bindtap="handleCourse">开始学习</div>
+                <div class="course_btn" data-item="{{item}}" tt:if="{{item.courseInfo.id}}" bindtap="handleCourse">开始学习</div>
             </div>
         </div>
     </div>

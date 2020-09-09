@@ -1,0 +1,133 @@
+body{
+    min-height: auto !important;
+}
+.nav_container{
+    width: 100vw;
+    height: 100px;
+    margin: 0 auto;
+    display: flex;
+    background-color: #fff;
+    position: fixed;
+    top: 0;
+    z-index: 2;
+}
+.item{
+    text-align: center;
+    flex: 1;
+    font-size:18px;
+    color: #00a8ff;
+    z-index: 10;
+    transition: all .2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    cursor: pointer;
+}
+.active{
+    color: #fff;
+}
+.slider{
+    width: 33.3%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    z-index: 2;
+    transition: all .2s;
+}
+.position1{
+    left: 0;
+    background-color: #f0932b;
+}
+.position2{
+    left: 33.3%;
+    background-color: #05c46b;
+}
+.position3{
+    left: 66.6%;
+    background-color: #485460;
+}
+
+.nav_img{
+    width: 60px;
+    height: 60px;
+    transition: all .4s;
+}
+.item_container{
+    margin-top: 120px;
+}
+.info{
+    display: inline-block;
+    width: calc(100% - 200px);
+    vertical-align: top;
+}
+.exam_item{
+    width: 95vw;
+    box-sizing: border-box;
+    padding: 15px;
+    border: 3px solid #000;
+    border-radius: 10px;
+    margin: 20px auto;
+}
+.bg1{
+    border-color: #f0932b;
+}
+.bg2{
+    border-color: #05c46b;
+}
+.bg3{
+    border-color: #485460;
+}
+.exam_title{
+    font-size: 20px;
+    color: #333;
+    font-weight: bold;
+}
+.exam_time,.exam_score,.exam_pass_score{
+    font-size: 18px;
+    color: #333;
+    margin-top: 5px;
+}
+.item_img{
+    width: 200px;
+    height: 112px;
+}
+.btns{
+    position: relative;
+    font-size: 30px;
+}
+.btns > div{
+    font-size: 16px;
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 0 10px;
+    border-radius: 5px;
+}
+.btns >div:nth-of-type(1){
+    margin-left: 0;
+} 
+.time{
+    border: 1px solid #ff3f34;
+    color: #ff3f34;
+}
+.type{
+    border: 1px solid #575fcf;
+    color: #575fcf;
+}
+.warn{
+    border: 1px solid #05c46b;
+    color: #05c46b;
+}
+.user_score{
+    font-size:40px !important;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    color: #ff3f34;
+}
+.notice{
+    text-align: center;
+    margin: 20px 0;
+    font-size: 18px;
+    color: #333;
+}

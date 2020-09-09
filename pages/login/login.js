@@ -5,15 +5,16 @@ Page({
     app.setTitle("登录");
   },
   login: function () {
-    app.showLoading('登录中')
     tt.login({
       success: function (res) {
         if (res.code) {
           console.log(res.code)
           // return
+          app.showLoading('登录中')
           tt.request({
             url: app.baseUrl+'/college/Index/getToken?code='+res.code,
             success(re) {
+              app.hideToast()
               if(re.data.code==200){
                 tt.setStorageSync('token', re.data.data)
                 app.showToast('登录成功')
@@ -34,7 +35,7 @@ Page({
               }else{
                 tt.showModal({
                   title: '提示',
-                  content: res.data.msg,
+                  content: re.data.msg,
                   showCancel:false
                 })
               }
@@ -44,6 +45,9 @@ Page({
           console.log(res.errMsg);
         }
       },
+      fail: function (err) {
+        console.log(err)
+      }
     });
   },
 });

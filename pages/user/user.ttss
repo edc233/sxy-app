@@ -1,12 +1,15 @@
 .userinfo {
   width: 100vw;
-  height: 50vw;
+  height: 30vw;
   background-color: #01c176;
   padding: 0 80rpx;
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: fixed;
+  top: 0;
+  z-index: 9;
 }
 .username {
   color: #fff;
@@ -17,9 +20,7 @@
   font-size: 30rpx;
   margin-top: 10rpx;
 }
-.department span:nth-last-of-type(1) {
-  margin-left: 10rpx;
-}
+
 .avatar_container {
   width: 180rpx;
   height: 180rpx;
@@ -36,17 +37,19 @@
 }
 .container {
   padding-top: 90rpx;
-  background: rgba(247, 247, 247, 1);
+  /* background: rgba(247, 247, 247, 1); */
 }
 .nav_container {
   width: 100vw;
   position: fixed;
-  top: 0;
+  top: 30vw;
   height: 80rpx;
   overflow-x: auto;
   white-space: nowrap;
   background-color: #fff;
   z-index: 2;
+  /* border-bottom: 1px solid rgb(211, 211, 211); */
+  box-shadow: 5px 5px 10px #eee;
 }
 .nav_item {
   width: 50%;
@@ -103,9 +106,8 @@
   padding: 20rpx 0;
 }
 .item_container{
-  padding: 20rpx 0;
+  padding-top: calc(30vw + 40rpx );
   box-sizing: border-box;
-  min-height: 100vh;
 }
 .item_content {
   margin-top: 10rpx;

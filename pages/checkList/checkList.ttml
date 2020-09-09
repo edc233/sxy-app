@@ -1,0 +1,12 @@
+<view class='history-table-wrap'>
+    <view class="table">
+      <view class="tr">
+          <view class="th th1">学员姓名</view>
+          <view class="th th2">签到状态</view>
+      </view>
+      <view class="tr" tt:for="{{tableData}}" class="item">
+          <view class="{{item.is_signin==0?'td td1 unsigned':'td td1 signed'}}">{{item.staff_info}}</view>
+          <view class="{{item.is_signin==0?'td td2 unsigned':'td td2 signed'}}">{{item.is_signin==0?"未签到":"已签到"}}</view>
+      </view>
+    </view>
+ </view>
